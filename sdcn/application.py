@@ -31,10 +31,12 @@ class SdcnApplication(App):
         document = Button(text = "Document",size_hint=(1,0.075))
         picture = Button(text = "Picture",size_hint=(1,0.075))
         file_and_folder = Button(text = "File and folder",size_hint=(1,0.075))
+        pdfs = Button(text = "PDF",size_hint=(1,0.075))
         menu_type.add_widget(label_menu)
         menu_type.add_widget(document)
         menu_type.add_widget(picture)
         menu_type.add_widget(file_and_folder)
+        menu_type.add_widget(pdfs)
 #       MENU
         search = TextInput(multiline = False , size_hint = (0.60,1) )
         label_search = Label(text = "Search",size_hint=(None,1),font_size = 20)
