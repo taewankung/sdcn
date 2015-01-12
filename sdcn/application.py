@@ -57,13 +57,13 @@ class SdcnApplication(App):
         App_layout.add_widget(standard)
         return App_layout
 #    function document*******************************************************************************
-        document_menu = StackLayout(orientation = 'tb-lr')
-        doc_find_file = Button( text = "Find file",size_hint=(1,0.075))
-        document_menu.add_widget(doc_find_file)
-        doc_to_text = Button( text = "doc to text",size_hint=(1,0.075))
-        document_menu.add_widget(doc_to_text)
-        doc_to_html = Button( text = "doc to html",size_hint=(1,0.075))
-        document_menu.add_widget(doc_to_html)
-        doc_compress_files = Button( text = "compress files",size_hint=(1,0.075))
-        document_menu.add_widget(doc_compress_files)
-#****************************************************************************************************
+#         document_menu = StackLayout(orientation = 'tb-lr')
+#         doc_find_file = Button( text = "Find file",size_hint=(1,0.075))
+#         document_menu.add_widget(doc_find_file)
+#         doc_to_text = Button( text = "doc to text",size_hint=(1,0.075))
+#         document_menu.add_widget(doc_to_text)
+#         doc_to_html = Button( text = "doc to html",size_hint=(1,0.075))
+#         document_menu.add_widget(doc_to_html)
+#         doc_compress_files = Button( text = "compress files",size_hint=(1,0.075))
+#         document_menu.add_widget(doc_compress_files)
+# #****************************************************************************************************
