@@ -84,7 +84,7 @@ class SdcnApplication(App):
 #        pic.add_widget(pic_changetpye)
 # #*****************************************************************************************************
 
-# function PDF*************************************************************************************
+# function PDF**********************************************************************************
 #        pdf = StackLayout(orientation = 'tb-lr')
 #        pdf_findfile = Button(text = "Find File" , size_hint = (1,0.075))
 #        pdf_to_image = Button(text = "PDF To Image" , size_hint=(1,0.075))
