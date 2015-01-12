@@ -67,3 +67,31 @@ class SdcnApplication(App):
 #         doc_compress_files = Button( text = "compress files",size_hint=(1,0.075))
 #         document_menu.add_widget(doc_compress_files)
 # #****************************************************************************************************
+
+# function picture*************************************************************************************
+#        pic = StackLayout(orientation = 'tb-lr')
+#        pic_findfile = Button(text = "Find File" , size_hint = (1,0.075))
+#        pic_addPhoToalbum = Button(text = "Add Photo to Album" , size_hint=(1,0.075))
+#        pic_resize = Button(text = "Resize Photo", size_hint = (1,0.075))
+#        pic_crop = Button(text = "Crop Image", size_hint = (1,0.075))
+#        pic_rename = Button(text = "Rename File", size_hint = (1,0.075))
+#        pic_changetpye = Button(text = "Change File Type", size_hint = (1,0.075))
+#        pic.add_widget(pic_findfile)
+#        pic.add_widget(pic_addPhoToalbum)
+#        pic.add_widget(pic_resize)
+#        pic.add_widget(pic_crop)
+#        pic.add_widget(pic_rename)
+#        pic.add_widget(pic_changetpye)
+# #*****************************************************************************************************
+
+# function PDF*************************************************************************************
+#        pdf = StackLayout(orientation = 'tb-lr')
+#        pdf_findfile = Button(text = "Find File" , size_hint = (1,0.075))
+#        pdf_to_image = Button(text = "PDF To Image" , size_hint=(1,0.075))
+#        pdf_doc = Button(text = ".DOC To PDF", size_hint = (1,0.075))
+#        pdf_image_to_pdf = Button(text = "Image To PDF", size_hint = (1,0.075))
+#        pdf.add_widget(pdf_findfile)
+#        pdf.add_widget(pdf_to_image)
+#        pdf.add_widget(pdf_doc)
+#        pdf.add_widget(pdf_image_to_pdf)
+# #*****************************************************************************************************
