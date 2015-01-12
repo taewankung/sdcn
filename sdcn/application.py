@@ -24,6 +24,7 @@ class SdcnApplication(App):
         logo_layout.add_widget(name)
         menu_type = StackLayout(orientation = 'tb-lr')
         standard = BoxLayout()
+        
         menu = StackLayout(orientation = 'tb-lr')
         search_menu =  StackLayout(orientation = 'lr-tb',size_hint = (1,0.05))
         order = StackLayout(orientation = 'tb-lr')
