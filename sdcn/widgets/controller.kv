@@ -1,5 +1,4 @@
 #:kivy 1.0
-
 <SdcnController>:
 	box_wid: box1
 	box_wid2: box2
@@ -12,49 +11,60 @@
 	video_button: video_button
 	padding: 20
 	BoxLayout:
-		padding: 10
 		orientation: 'vertical'
 		StackLayout:
-			id: box1
-			Button:
-				id: document_button
-				text: 'Document'
-				size_hint_x: 1
-				size_hint_y: 0.075
-				on_press: root.do_action_document()
-			Button:
-				id: pic_button
-				text: 'Picture'
-				size_hint_x: 1
-				size_hint_y: 0.075
-				on_press: root.do_action_pic()
-			Button:
-				id: file_button
-				text: 'File and Folder'
-				size_hint_x: 1
-				size_hint_y: 0.075
-				on_press: root.do_action_files()
-			Button:
-				id: pdf_button
-				text: 'PDF'
-				size_hint_x: 1
-				size_hint_y: 0.075
-				on_press: root.do_action_pdf()
-			Button:
-				id: music_button
-				text: 'Music'
-				size_hint_x: 1
-				size_hint_y: 0.075
-				on_press: root.do_action_music()
-			Button:
-				id: video_button
-				text: 'Video'
-				size_hint_x: 1
-				size_hint_y: 0.075
-				on_press: root.do_action_video()
-	BoxLayout:
-		id: box2
-		padding: 10
-	BoxLayout:
-		id: box3
-		padding: 10
+			orientation: 'lr-tb'
+			size_hint_x: 1
+			size_hint_y: 0.2
+			Image:
+				source: "logo.png"
+			Image:
+				source: "name.png"
+		BoxLayout:
+			BoxLayout:
+				padding: 10
+				orientation: 'vertical'
+				StackLayout:
+					id: box1
+					Button:
+						id: document_button
+						text: 'Document'
+						size_hint_x: 1
+						size_hint_y: 0.075
+						on_press: root.do_action_document()
+					Button:
+						id: pic_button
+						text: 'Picture'
+						size_hint_x: 1
+						size_hint_y: 0.075
+						on_press: root.do_action_pic()
+					Button:
+						id: file_button
+						text: 'File and Folder'
+						size_hint_x: 1
+						size_hint_y: 0.075
+						on_press: root.do_action_files()
+					Button:
+						id: pdf_button
+						text: 'PDF'
+						size_hint_x: 1
+						size_hint_y: 0.075
+						on_press: root.do_action_pdf()
+					Button:
+						id: music_button
+						text: 'Music'
+						size_hint_x: 1
+						size_hint_y: 0.075
+						on_press: root.do_action_music()
+					Button:
+						id: video_button
+						text: 'Video'
+						size_hint_x: 1
+						size_hint_y: 0.075
+						on_press: root.do_action_video()
+			BoxLayout:
+				id: box2
+				padding: 10
+			BoxLayout:
+				id: box3
+				padding: 10
