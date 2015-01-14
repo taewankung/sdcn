@@ -14,7 +14,6 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 from kivy.uix.image import Image
 
-
 from .widgets.controller import SdcnController
 
 class SdcnApplication(App):

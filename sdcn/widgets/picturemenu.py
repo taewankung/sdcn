@@ -10,5 +10,5 @@ from kivy.uix.boxlayout import BoxLayout
 import os
 
 Builder.load_file(os.path.dirname(__file__) + '/picturemenu.kv')
-class PictureMenu(BoxLayout):
+class PictureMenu(StackLayout):
     pass

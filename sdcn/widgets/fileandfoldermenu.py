@@ -9,5 +9,5 @@ from kivy.uix.boxlayout import BoxLayout
 import os
 
 Builder.load_file(os.path.dirname(__file__) + '/fileandfolder.kv')
-class FileAndFolder(BoxLayout):
+class FileAndFolder(StackLayout):
     pass
