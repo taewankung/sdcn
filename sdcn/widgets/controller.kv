@@ -1,8 +1,28 @@
 #:kivy 1.0
 
-<contoller>:
-	StackLayout:
-		BoxLayout:
-			id = 'box1'
-		BoxLayout:
-			id = 'box2'
+<SdcnController>:
+	box_wid: box1
+	box_wid2: box2
+	box_wid3: box3
+
+	padding: 20
+	BoxLayout:
+		id: box1
+		orientation: 'vertical'
+		Button:
+			text: 'Document'
+		Button:
+			text: 'Picture'
+		Button:
+			text: 'File and Folder'
+		Button:
+			text: 'PDF'
+		Button:
+			text: 'Music'
+		Button:
+			text: 'Video'
+		
+	BoxLayout:
+		id: box2
+	BoxLayout:
+		id: box3
