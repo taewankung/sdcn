@@ -13,13 +13,16 @@
 	BoxLayout:
 		orientation: 'vertical'
 		StackLayout:
-			orientation: 'lr-tb'
-			size_hint_x: 1
-			size_hint_y: 0.2
+			orientation: 'tb-lr'
+			size_hint_y:0.2
 			Image:
 				source: "logo.png"
+				size_hint_x: 0.1
+				size_hint_y: 1
 			Image:
 				source: "name.png"
+				size_hint_x: 0.7
+				size_hint_y: 0.5
 		BoxLayout:
 			BoxLayout:
 				padding: 10
@@ -65,6 +68,7 @@
 			BoxLayout:
 				id: box2
 				padding: 10
-			BoxLayout:
+			StackLayout:
 				id: box3
 				padding: 10
+

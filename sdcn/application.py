@@ -15,7 +15,7 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.image import Image
 
 from .widgets.controller import SdcnController
-
+from .widgets.operation_doc import Order
 class SdcnApplication(App):
     def build(self):
         return SdcnController()
@@ -97,4 +97,4 @@ class SdcnApplication(App):
 #        pdf.add_widget(pdf_to_image)
 #        pdf.add_widget(pdf_doc)
 #        pdf.add_widget(pdf_image_to_pdf)
-# #*****************************************************************************************************
+# #****************************************************************************************************

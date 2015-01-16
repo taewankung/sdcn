@@ -23,9 +23,15 @@ class SdcnController(BoxLayout):
     pic = PictureMenu()
     music = MusicMenu()
     video = VideoMenu()
+    
     #pdf_layout.add_widget(pdfs)
     def do_action_document(self):
         self.box_wid2.add_widget(self.document)
+        if(self.document.num == 0):
+            self.box_wid3.add_widget(self.document.layout)
+        if(self.document.num > 0):
+            self.box_wid3.remove_widget(self.document.layout)
+            self.box_wid3.add_widget(self.document.layout)
         self.document_button.disabled = True
         if (self.file_button.disabled == True):
             self.box_wid2.remove_widget(self.files)
@@ -137,4 +143,3 @@ class SdcnController(BoxLayout):
         self.pic_button.disabled = False
         self.pdf_button.disabled = False
         self.video_button.disabled = False
-        
