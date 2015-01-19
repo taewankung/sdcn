@@ -10,6 +10,7 @@ class Finder(StackLayout):
         print(self.num)
         self.num=1
         print(self.num)
+        
     pass
 class Doc_to_text(StackLayout):
     pass

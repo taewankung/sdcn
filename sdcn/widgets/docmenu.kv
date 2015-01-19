@@ -9,20 +9,26 @@
 		text: 'Find File'
 		size_hint_x: 1
 		size_hint_y: 0.075
-		on_press: root.call_button()
+		on_press: root.call_button_finder()
 	Button:
 		text: '.Doc To Text'
 		size_hint_x: 1
 		size_hint_y: 0.075
+		on_press: root.call_button_doc_text()
 	Button:
 		text: '.Doc to .Html'
 		size_hint_x: 1
 		size_hint_y: 0.075
+		on_press: root.call_button_doc_html()
 	Button:
 		text: 'Compress Files'
 		size_hint_x: 1
 		size_hint_y: 0.075
+		on_press: root.call_button_Compress()
 	Button:
 		text: 'Hiden Files'
 		size_hint_x: 1
-		size_hint_y: 0.075 
+		size_hint_y: 0.075
+		on_press: root.call_button_hind()
+<Order_finder>
+	StackLayout:

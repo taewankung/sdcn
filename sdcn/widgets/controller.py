@@ -15,10 +15,6 @@ from .musicmenu import MusicMenu
 import os
 from kivy.uix.button import Button
 from .operation import Finder
-
-def test(s):
-    s.add_widget(Button('sss'))
-
 Builder.load_file(os.path.dirname(__file__) + '/controller.kv')
 
 class SdcnController(BoxLayout):
@@ -70,6 +66,7 @@ class SdcnController(BoxLayout):
         self.document_button.disabled = False
         self.music_button.disabled = False
         self.video_button.disabled = False
+        self.box_wid3.remove_widget(self.document.layout)
         
     def do_action_pic(self):
         self.box_wid2.add_widget(self.pic)
@@ -89,6 +86,7 @@ class SdcnController(BoxLayout):
         self.pdf_button.disabled = False
         self.music_button.disabled = False
         self.video_button.disabled = False
+        self.box_wid3.remove_widget(self.document.layout)
         
     def do_action_pdf(self):
         self.box_wid2.add_widget(self.pdfs)
@@ -108,6 +106,7 @@ class SdcnController(BoxLayout):
         self.pic_button.disabled = False
         self.music_button.disabled = False
         self.video_button.disabled = False
+        self.box_wid3.remove_widget(self.document.layout)
         
     def do_action_video(self):
         self.box_wid2.add_widget(self.video)
@@ -127,6 +126,7 @@ class SdcnController(BoxLayout):
         self.pic_button.disabled = False
         self.pdf_button.disabled = False
         self.music_button.disabled = False
+        self.box_wid3.remove_widget(self.document.layout)
         
     def do_action_music(self):
         self.box_wid2.add_widget(self.music)
@@ -146,5 +146,6 @@ class SdcnController(BoxLayout):
         self.pic_button.disabled = False
         self.pdf_button.disabled = False
         self.video_button.disabled = False
+        self.box_wid3.remove_widget(self.document.layout)
     
     
