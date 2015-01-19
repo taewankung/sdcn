@@ -49,6 +49,7 @@ class SdcnController(BoxLayout):
         self.pic_button.disabled = False
         self.music_button.disabled = False
         self.video_button.disabled = False
+        self.box_wid3.add_widget(self.document.layout)
 #     document.test
         
     def do_action_files(self):
@@ -145,10 +146,5 @@ class SdcnController(BoxLayout):
         self.pic_button.disabled = False
         self.pdf_button.disabled = False
         self.video_button.disabled = False
-        
-def auto(self):
-    if(self.document.finder_num == 0):
-        self.box3_layout.add_widget(Finder())
-    if(self.document.finder_num > 0):
-        self.box3_layout.remove_widget(Finder())
-        self.box3_layout.add_widget(Finder())
+    
+    

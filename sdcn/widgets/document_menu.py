@@ -9,19 +9,17 @@ from kivy.uix.boxlayout import BoxLayout
 from .operation import Finder
 import os
 from kivy.uix.button import Button
-from .operation import auto
+# from sdcn.widgets.operation import auto
 
 
 Builder.load_file(os.path.dirname(__file__) + '/docmenu.kv')
 class DocumentMenu(StackLayout):
     finder_num = 0
-#     layout = StackLayout(size_hint = (1,0.075))
+    layout = StackLayout()
 #     order_box = Order()
-#     num = 0
+    num = 0
     def call_button(self):
-        print(self.finder_num)
-        self.finder_num += 1
-        print(self.finder_num)
+        self.layout.add_widget(Finder())
         #auto(self)
 #         if(self.document.finder_num == 0):
 #             self.box3_layout.add_widget(Finder())

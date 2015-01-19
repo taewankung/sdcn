@@ -19,9 +19,3 @@ class Compress_file(StackLayout):
     pass
 class Hinden_file(StackLayout):
     pass
-def auto(self):
-        if(self.document.finder_num == 0):
-            self.box3_layout.add_widget(Finder())
-        if(self.document.finder_num > 0):
-            self.box3_layout.remove_widget(Finder())
-            self.box3_layout.add_widget(Finder())
