@@ -13,8 +13,14 @@ from .picturemenu import PictureMenu
 from .videomenu import VideoMenu
 from .musicmenu import MusicMenu
 import os
+from kivy.uix.button import Button
+from .operation import Finder
+
+def test(s):
+    s.add_widget(Button('sss'))
 
 Builder.load_file(os.path.dirname(__file__) + '/controller.kv')
+
 class SdcnController(BoxLayout):
     #pdf_layout = BoxLayout()
     pdfs = PdfMenu()
@@ -23,15 +29,10 @@ class SdcnController(BoxLayout):
     pic = PictureMenu()
     music = MusicMenu()
     video = VideoMenu()
-    
     #pdf_layout.add_widget(pdfs)
     def do_action_document(self):
+        print("ss" + str(self.document.finder_num))
         self.box_wid2.add_widget(self.document)
-        if(self.document.num == 0):
-            self.box_wid3.add_widget(self.document.layout)
-        if(self.document.num > 0):
-            self.box_wid3.remove_widget(self.document.layout)
-            self.box_wid3.add_widget(self.document.layout)
         self.document_button.disabled = True
         if (self.file_button.disabled == True):
             self.box_wid2.remove_widget(self.files)
@@ -48,6 +49,7 @@ class SdcnController(BoxLayout):
         self.pic_button.disabled = False
         self.music_button.disabled = False
         self.video_button.disabled = False
+#     document.test
         
     def do_action_files(self):
         self.box_wid2.add_widget(self.files)
@@ -143,3 +145,10 @@ class SdcnController(BoxLayout):
         self.pic_button.disabled = False
         self.pdf_button.disabled = False
         self.video_button.disabled = False
+        
+def auto(self):
+    if(self.document.finder_num == 0):
+        self.box3_layout.add_widget(Finder())
+    if(self.document.finder_num > 0):
+        self.box3_layout.remove_widget(Finder())
+        self.box3_layout.add_widget(Finder())

@@ -15,9 +15,10 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.image import Image
 
 from .widgets.controller import SdcnController
-from .widgets.operation_doc import Order
+
 class SdcnApplication(App):
     def build(self):
+        SdcnController()
         return SdcnController()
 #         App_layout = BoxLayout(orientation = 'vertical')
 #         logo_layout = StackLayout(orientation = 'tb-lr',size_hint = (0.2,0.2))
