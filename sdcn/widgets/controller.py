@@ -17,6 +17,9 @@ from kivy.uix.button import Button
 from .operation import Finder
 Builder.load_file(os.path.dirname(__file__) + '/controller.kv')
 
+class Layout_box3(BoxLayout):
+    count = 0
+    pass
 class SdcnController(BoxLayout):
     #pdf_layout = BoxLayout()
     pdfs = PdfMenu()
@@ -25,6 +28,8 @@ class SdcnController(BoxLayout):
     pic = PictureMenu()
     music = MusicMenu()
     video = VideoMenu()
+    layouts = Layout_box3()
+    layouts.add_widget(document.layout)
     #pdf_layout.add_widget(pdfs)
     def do_action_document(self):
         print("ss" + str(self.document.finder_num))
@@ -44,8 +49,11 @@ class SdcnController(BoxLayout):
         self.pdf_button.disabled = False
         self.pic_button.disabled = False
         self.music_button.disabled = False
-        self.video_button.disabled = False
-        self.box_wid3.add_widget(self.document.layout)
+        self.video_button.disabled = False        
+        if(self.layouts.count == 0):
+            self.box_wid3.add_widget(self.layouts)
+            self.layouts.count = 1
+    
 #     document.test
         
     def do_action_files(self):
