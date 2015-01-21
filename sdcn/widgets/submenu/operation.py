@@ -3,7 +3,7 @@ import os
 from kivy.uix.stacklayout import StackLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
-Builder.load_file(os.path.dirname(__file__) + '/operation_doc.kv')
+Builder.load_file(os.path.dirname(__file__) + '/operation.kv')
 class Finder(StackLayout):
     num = 0
     def del_finder(self):

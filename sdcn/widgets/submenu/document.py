@@ -13,10 +13,10 @@ from .operation import Compress_file
 from .operation import Hinden_file
 import os
 from kivy.uix.button import Button
-# from sdcn.widgets.operation import auto
+# from sdcn.widgets.submenu.operation import auto
 
 
-Builder.load_file(os.path.dirname(__file__) + '/docmenu.kv')
+Builder.load_file(os.path.dirname(__file__) + '/document.kv')
 
 class DocumentMenu(StackLayout):
     finder_num = 0

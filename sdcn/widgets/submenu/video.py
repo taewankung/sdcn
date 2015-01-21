@@ -8,6 +8,6 @@ from kivy.uix.stacklayout import StackLayout
 from kivy.uix.boxlayout import BoxLayout
 import os
 
-Builder.load_file(os.path.dirname(__file__) + '/musicmenu.kv')
-class MusicMenu(StackLayout):
+Builder.load_file(os.path.dirname(__file__) + '/video.kv')
+class VideoMenu(StackLayout):
     pass

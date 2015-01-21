@@ -1,8 +1,8 @@
 #:kivy 1.0
 <SdcnController>:
-	box_wid: box1
-	box_wid2: box2
-	box_wid3: box3
+	main_manu_layout: _main_manu_layout
+	sub_manu_layout: _sub_manu_layout
+	workflow_layout: _workflow_layout
 
 	pdf_button: pdf_button
 	document_button: document_button
@@ -11,73 +11,72 @@
 	music_button: music_button
 	video_button: video_button
 	padding: 20
+	orientation: 'vertical'
+	StackLayout:
+		orientation: 'tb-lr'
+		size_hint_y:0.2
+		Image:
+			source: "logo.png"
+			size_hint_x: 0.1
+			size_hint_y: 1
+		Image:
+			source: "name.png"
+			size_hint_x: 0.7
+			size_hint_y: 0.5
+		Label:
+			size_hint_x: 0.7
+			size_hint_y: 0.5
+		Button:
+			size_hint_x: 0.075
+			size_hint_y: 0.5
+			text: 'RUN'
 	BoxLayout:
-		orientation: 'vertical'
-		StackLayout:
-			orientation: 'tb-lr'
-			size_hint_y:0.2
-			Image:
-				source: "logo.png"
-				size_hint_x: 0.1
-				size_hint_y: 1
-			Image:
-				source: "name.png"
-				size_hint_x: 0.7
-				size_hint_y: 0.5
-			Label:
-				size_hint_x: 0.7
-				size_hint_y: 0.5
-			Button:
-				size_hint_x: 0.075
-				size_hint_y: 0.5
-				text: 'RUN'
 		BoxLayout:
-			BoxLayout:
-				padding: 10
-				orientation: 'vertical'
-				StackLayout:
-					id: box1
-					Button:
-						id: document_button
-						text: 'Document'
-						size_hint_x: 1
-						size_hint_y: 0.075
-						on_press: root.do_action_document()
-					Button:
-						id: pic_button
-						text: 'Picture'
-						size_hint_x: 1
-						size_hint_y: 0.075
-						on_press: root.do_action_pic()
-					Button:
-						id: file_button
-						text: 'File and Folder'
-						size_hint_x: 1
-						size_hint_y: 0.075
-						on_press: root.do_action_files()
-					Button:
-						id: pdf_button
-						text: 'PDF'
-						size_hint_x: 1
-						size_hint_y: 0.075
-						on_press: root.do_action_pdf()
-					Button:
-						id: music_button
-						text: 'Music'
-						size_hint_x: 1
-						size_hint_y: 0.075
-						on_press: root.do_action_music()
-					Button:
-						id: video_button
-						text: 'Video'
-						size_hint_x: 1
-						size_hint_y: 0.075
-						on_press: root.do_action_video()
-			BoxLayout:
-				id: box2
-				padding: 10
+			padding: 10
+			orientation: 'vertical'
 			StackLayout:
-				id: box3
-				padding: 10
+				id: _main_manu_layout
+				Button:
+					id: document_button
+					text: 'Document'
+					size_hint_x: 1
+					size_hint_y: 0.075
+					on_press: root.do_action_document()
+				Button:
+					id: pic_button
+					text: 'Picture'
+					size_hint_x: 1
+					size_hint_y: 0.075
+					on_press: root.do_action_pic()
+				Button:
+					id: file_button
+					text: 'File and Folder'
+					size_hint_x: 1
+					size_hint_y: 0.075
+					on_press: root.do_action_files()
+				Button:
+					id: pdf_button
+					text: 'PDF'
+					size_hint_x: 1
+					size_hint_y: 0.075
+					on_press: root.do_action_pdf()
+				Button:
+					id: music_button
+					text: 'Music'
+					size_hint_x: 1
+					size_hint_y: 0.075
+					on_press: root.do_action_music()
+				Button:
+					id: video_button
+					text: 'Video'
+					size_hint_x: 1
+					size_hint_y: 0.075
+					on_press: root.do_action_video()
+		BoxLayout:
+			id: _sub_manu_layout
+			padding: 10
+		StackLayout:
+			id: _workflow_layout
+			padding: 10
 <Layout_box3>:
 	
