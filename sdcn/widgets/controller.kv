@@ -1,15 +1,16 @@
 #:kivy 1.0
 <SdcnController>:
-	main_manu_layout: _main_manu_layout
-	sub_manu_layout: _sub_manu_layout
+	main_menu_layout: _main_menu_layout
+	sub_menu_layout: _sub_menu_layout
 	workflow_layout: _workflow_layout
 
-	pdf_button: pdf_button
-	document_button: document_button
-	file_button: file_button
-	pic_button: pic_button
-	music_button: music_button
-	video_button: video_button
+	pdf_button: _pdf_button
+	document_button: _document_button
+	file_button: _file_button
+	picture_button: _picture_button
+	music_button: _music_button
+	video_button: _video_button
+	
 	padding: 20
 	orientation: 'vertical'
 	StackLayout:
@@ -35,48 +36,48 @@
 			padding: 10
 			orientation: 'vertical'
 			StackLayout:
-				id: _main_manu_layout
+				id: _main_menu_layout
 				Button:
-					id: document_button
+					id: _document_button
 					text: 'Document'
 					size_hint_x: 1
 					size_hint_y: 0.075
-					on_press: root.do_action_document()
+					on_press: root.change_submenu("DocumentMenu", _document_button)
 				Button:
-					id: pic_button
+					id: _picture_button
 					text: 'Picture'
 					size_hint_x: 1
 					size_hint_y: 0.075
-					on_press: root.do_action_pic()
+					on_press: root.change_submenu("PictureMenu", _picture_button)
 				Button:
-					id: file_button
+					id: _file_button
 					text: 'File and Folder'
 					size_hint_x: 1
 					size_hint_y: 0.075
-					on_press: root.do_action_files()
+					on_press: root.change_submenu("FileAndFolderMenu", _file_button)
 				Button:
-					id: pdf_button
+					id: _pdf_button
 					text: 'PDF'
 					size_hint_x: 1
 					size_hint_y: 0.075
-					on_press: root.do_action_pdf()
+					on_press: root.change_submenu("PdfMenu", _pdf_button)
 				Button:
-					id: music_button
+					id: _music_button
 					text: 'Music'
 					size_hint_x: 1
 					size_hint_y: 0.075
-					on_press: root.do_action_music()
+					on_press: root.change_submenu("MusicMenu", _music_button)
 				Button:
-					id: video_button
+					id: _video_button
 					text: 'Video'
 					size_hint_x: 1
 					size_hint_y: 0.075
-					on_press: root.do_action_video()
+					on_press: root.change_submenu("VideoMenu", _video_button)
 		BoxLayout:
-			id: _sub_manu_layout
+			id: _sub_menu_layout
 			padding: 10
+			
 		StackLayout:
 			id: _workflow_layout
 			padding: 10
-<Layout_box3>:
 	

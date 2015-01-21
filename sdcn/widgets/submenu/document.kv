@@ -3,32 +3,30 @@
 
 <DocumentMenu>:
 	orientation: 'tb-lr'
-	test:test1
 	Button:
-		id: test1
 		text: 'Find File'
 		size_hint_x: 1
 		size_hint_y: 0.075
-		on_press: root.call_button_finder()
+		on_press: root.add_to_workflow_layout(self)
 	Button:
 		text: '.Doc To Text'
 		size_hint_x: 1
 		size_hint_y: 0.075
-		on_press: root.call_button_doc_text()
+		on_press: root.add_to_workflow_layout(self)
 	Button:
 		text: '.Doc to .Html'
 		size_hint_x: 1
 		size_hint_y: 0.075
-		on_press: root.call_button_doc_html()
+		on_press: root.add_to_workflow_layout(self)
 	Button:
 		text: 'Compress Files'
 		size_hint_x: 1
 		size_hint_y: 0.075
-		on_press: root.call_button_Compress()
+		on_press: root.add_to_workflow_layout(self)
 	Button:
 		text: 'Hiden Files'
 		size_hint_x: 1
 		size_hint_y: 0.075
-		on_press: root.call_button_hind()
+		on_press: root.add_to_workflow_layout(self)
 <Order_finder>
 	StackLayout:

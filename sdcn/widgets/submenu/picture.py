@@ -5,10 +5,10 @@ Created on Jan 14, 2015
 '''
 
 from kivy.lang import Builder
-from kivy.uix.stacklayout import StackLayout
-from kivy.uix.boxlayout import BoxLayout
+from .submenu import SubMenu
 import os
 
 Builder.load_file(os.path.dirname(__file__) + '/picture.kv')
-class PictureMenu(StackLayout):
-    pass
+class PictureMenu(SubMenu):
+    def __init__(self, workflow_layout):
+        super().__init__(workflow_layout)
