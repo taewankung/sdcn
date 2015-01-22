@@ -76,8 +76,11 @@
 		BoxLayout:
 			id: _sub_menu_layout
 			padding: 10
-			
-		StackLayout:
-			id: _workflow_layout
-			padding: 10
-	
+		ScrollView:
+			StackLayout:
+				id: _workflow_layout
+				spacing: 1
+				##cols: 1
+				size_hint_y:  None
+				height:500
+

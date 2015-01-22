@@ -13,8 +13,7 @@ from sdcn.widgets.submenu.picture import PictureMenu
 from sdcn.widgets.submenu.video import VideoMenu
 from sdcn.widgets.submenu.music import MusicMenu
 import os
-from kivy.uix.button import Button
-from sdcn.widgets.submenu.operation import Finder
+
 Builder.load_file(os.path.dirname(__file__) + '/controller.kv')
 
 
@@ -31,16 +30,21 @@ class SdcnController(BoxLayout):
         
         self.submenus = [PdfMenu(self.workflow_layout), DocumentMenu(self.workflow_layout), FileAndFolderMenu(self.workflow_layout),
                          PictureMenu(self.workflow_layout), MusicMenu(self.workflow_layout), VideoMenu(self.workflow_layout)]
+        
+        self.workflow_layout.bind(minimum_height=self.workflow_layout.setter('height'))
 
         
         
     def change_submenu(self, menu_name, button):
         for bt in self.main_menu_layout.children:
-            bt.disabled = False
+            if bt is button:
+                bt.disabled = True
+            else:
+                bt.disabled = False
             
         for submenu in self.submenus:
             if submenu.__class__.__name__ == menu_name:
-                button.disabled = True
                 self.sub_menu_layout.clear_widgets()
                 self.sub_menu_layout.add_widget(submenu)
+                break
                 
