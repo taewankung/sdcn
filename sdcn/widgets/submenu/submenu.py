@@ -25,10 +25,12 @@ class SubMenu(StackLayout):
         layout = StackLayout(size_hint = (None,None),size = (self.workflow_layout.width,self.bh*2))
         layout.add_widget(new_label)
         if new_label.text == 'Find File':
-            filechoser_layout = BoxLayout()
-            filechoser = FileChooserListView()
+            filechoser_layout = StackLayout( orientation="lr-bt")
+            filechoser = FileChooserListView( size_hint = (0.75,1), size=(1,400))
             filechoser_layout.add_widget(filechoser)
-            exit_button = Button(text = 'Exit')
+            ok_button = Button(text = 'Ok' , size_hint = (0.12,None), size=(1,25))
+            exit_button = Button(text = 'Exit' ,size_hint = (0.12,None), size=(1,25))
+            filechoser_layout.add_widget(ok_button)
             filechoser_layout.add_widget(exit_button)
             browser_button = Button(text = 'Browser', size_hint = (None,None),size = (self.workflow_layout.width, self.bh))
             popup_browser = Popup(title = 'Find file')
@@ -36,5 +38,6 @@ class SubMenu(StackLayout):
             exit_button.bind(on_press = popup_browser.dismiss)
             browser_button.bind(on_press = popup_browser.open)
             layout.add_widget(browser_button)
+           
         self.workflow_layout.add_widget(layout)
         
