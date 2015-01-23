@@ -11,6 +11,8 @@ from kivy.uix.stacklayout import StackLayout
 from kivy.uix.label import Label
 from kivy.uix.filechooser import FileChooserListView
 from kivy.uix.popup import Popup
+from kivy.uix.textinput import TextInput
+from kivy.uix.anchorlayout import AnchorLayout
 class SubMenu(StackLayout):
     def __init__(self, workflow_layout):
         super().__init__()
@@ -38,6 +40,17 @@ class SubMenu(StackLayout):
             exit_button.bind(on_press = popup_browser.dismiss)
             browser_button.bind(on_press = popup_browser.open)
             layout.add_widget(browser_button)
+            
+        elif new_label.text == 'Resize Photo':
+            
+            text_input = TextInput(text='', multiline = False , size_hint = (None,None), size = (100,25))
+            l = Label(text='Example: ....', font_size='15sp', size_hint_y=None)
+            l.bind(width=lambda s, w:
+                   s.setter('text_size')(s, (w, None)))
+            l.bind(texture_size=l.setter('size'))
+            layout.add_widget(text_input)
+            layout.add_widget(l)
            
+            
         self.workflow_layout.add_widget(layout)
         
