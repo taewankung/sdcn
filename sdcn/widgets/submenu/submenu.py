@@ -19,10 +19,13 @@ from kivy.lang import Builder
 from kivy.uix.spinner import Spinner
 Builder.load_string('''
 <Delete_button>
-    size_hint: (0.01, 0.02)
+    size_hint: (None, None)
+    size: (160, 60)
     pos_hint: {'center_x': .5, 'y': .6}
     BubbleButton:
         text: 'Delete'
+        background_color: (1,0,0,2)
+        
 ''')
 
 
@@ -45,6 +48,11 @@ class ClickRightOption(Label):
                           'right_bottom', 'bottom_left', 'bottom_mid', 'bottom_right')
                 index = values.index(self.bubb.arrow_pos)
                 self.bubb.arrow_pos = values[(index + 1) % len(values)]
+    def on_touch_up(self, touch):
+        print('up')
+#         for submenu in self.layout:
+#             if submenu.__class__.__name__ == 'delete':
+#                 self.layout.remove_widgets(submenu)
     pass
 
 class SubMenu(StackLayout):
