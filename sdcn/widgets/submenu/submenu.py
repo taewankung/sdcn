@@ -40,7 +40,7 @@ class SubMenu(StackLayout):
             exit_button.bind(on_press = popup_browser.dismiss)
             browser_button.bind(on_press = popup_browser.open)
             layout.add_widget(browser_button)
-            
+             
         elif new_label.text == 'Resize Photo':
             
             text_input = TextInput(text='', multiline = False , size_hint = (None,None), size = (100,25))
