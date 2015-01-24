@@ -50,6 +50,15 @@ class SubMenu(StackLayout):
             l.bind(texture_size=l.setter('size'))
             layout.add_widget(text_input)
             layout.add_widget(l)
+        
+        elif new_label.text == 'Rename File':
+            text_input = TextInput(text='', multiline = False , size_hint = (None,None), size = (100,25))
+            l = Label(text='Example: ....', font_size='15sp', size_hint_y = None)
+            l.bind(width=lambda s, w:
+                   s.setter('text_size')(s, (w, None)))
+            l.bind(texture_size=l.setter('size'))
+            layout.add_widget(text_input)
+            layout.add_widget(l)
            
             
         self.workflow_layout.add_widget(layout)
