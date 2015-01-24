@@ -3,21 +3,21 @@
 
 <DocumentMenu>:
 	orientation: 'tb-lr'
+	test: _test
 	Button:
+		id: _test
 		text: 'Find File'
 		size_hint_x: 1
 		size_hint_y: 0.075
 		on_press: root.add_to_workflow_layout(self)
+		background_color: (2,2,2,2)
 	Button:
-		text: '.Doc To Text'
+		text: 'Convert Files'
 		size_hint_x: 1
 		size_hint_y: 0.075
 		on_press: root.add_to_workflow_layout(self)
-	Button:
-		text: '.Doc to .Html'
-		size_hint_x: 1
-		size_hint_y: 0.075
-		on_press: root.add_to_workflow_layout(self)
+		## .doc to .html .doc to .txt .doc to .pdf
+		
 	Button:
 		text: 'Compress Files'
 		size_hint_x: 1

@@ -16,6 +16,7 @@ from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.bubble import Bubble
 from kivy.lang import Builder
+from kivy.uix.spinner import Spinner
 Builder.load_string('''
 <Delete_button>
     size_hint: (0.01, 0.02)
@@ -29,14 +30,14 @@ class Delete_button(Bubble):
     pass
 
 class ClickRightOption(Label):
-    layout = FloatLayout()
+    layout = FloatLayout(background_color = (1,0,1,2))
     def on_touch_down(self, touch):
         super().on_touch_down(touch)
         if touch.button == 'right':
             print('right')
             if not hasattr(self, 'bubb'):
-                self.bubb = bubb = Delete_button()
-                self.layout.add_widget(bubb)
+                self.bubb = Delete_button()
+                self.layout.add_widget(self.bubb)
                 self.add_widget(self.layout)
             else:
                 values = ('left_top', 'left_mid', 'left_bottom', 'top_left',
@@ -66,12 +67,14 @@ class SubMenu(StackLayout):
             exit_button = Button(text = 'Exit' ,size_hint = (0.12,None), size=(1,25))
             filechoser_layout.add_widget(ok_button)
             filechoser_layout.add_widget(exit_button)
-            browser_button = Button(text = 'Browser', size_hint = (1,None),size = (1, self.bh))
+            browser_button = Button(text = 'Browser', size_hint = (0.5,None),size = (1, self.bh))
             popup_browser = Popup(title = 'Find file')
             popup_browser.add_widget(filechoser_layout)
             exit_button.bind(on_press = popup_browser.dismiss)
             browser_button.bind(on_press = popup_browser.open)
+            input_file = TextInput(text = 'Pattern file',size_hint = (0.5,None),size = (1, self.bh))
             layout.add_widget(browser_button)
+            layout.add_widget(input_file)
              
         elif new_label.text == 'Resize Photo':
             
@@ -91,7 +94,11 @@ class SubMenu(StackLayout):
             l.bind(texture_size=l.setter('size'))
             layout.add_widget(text_input)
             layout.add_widget(l)
-           
-            
+        elif new_label.text == 'Compress Files':
+            typeFile = Spinner(text='.zip',values=('.7zip', '.Rar', '.Zip'),size_hint=(1,None),size=(1,44))
+            layout.add_widget(typeFile)   
+        elif new_label.text == 'Convert Files':
+            typeFile = Spinner(text='.7zip',values=('.7zip', '.Rar', '.Zip'),size_hint=(1,None),size=(1,44))
+            layout.add_widget(typeFile)
         self.workflow_layout.add_widget(layout)
         
