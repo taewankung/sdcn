@@ -12,7 +12,10 @@ from sdcn.widgets.submenu.fileandfolder import FileAndFolderMenu
 from sdcn.widgets.submenu.picture import PictureMenu
 from sdcn.widgets.submenu.video import VideoMenu
 from sdcn.widgets.submenu.music import MusicMenu
+from kivy.uix.filechooser import FileChooserListView
+from kivy.uix.button import Button
 import os
+from kivy.uix.popup import Popup
 
 Builder.load_file(os.path.dirname(__file__) + '/controller.kv')
 
@@ -47,4 +50,17 @@ class SdcnController(BoxLayout):
                 self.sub_menu_layout.clear_widgets()
                 self.sub_menu_layout.add_widget(submenu)
                 break
-                
+
+    def save_as(self):
+        filechoser_layout = StackLayout( orientation="lr-bt")
+        filechoser = FileChooserListView( size_hint = (0.75,1), size=(1,400))
+        filechoser_layout.add_widget(filechoser)
+        ok_button = Button(text = 'Ok' , size_hint = (0.12,None), size=(1,25))
+        cancel_button = Button(text = 'Cancel' ,size_hint = (0.12,None), size=(1,25))
+        filechoser_layout.add_widget(ok_button)
+        filechoser_layout.add_widget(cancel_button)
+        popup_browser = Popup(title = 'Save As...')
+        popup_browser.add_widget(filechoser_layout)
+        cancel_button.bind(on_press = popup_browser.dismiss)
+        popup_browser.open()
+        pass

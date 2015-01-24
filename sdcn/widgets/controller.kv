@@ -3,7 +3,7 @@
 	main_menu_layout: _main_menu_layout
 	sub_menu_layout: _sub_menu_layout
 	workflow_layout: _workflow_layout
-
+	save_button:_save_button
 	pdf_button: _pdf_button
 	document_button: _document_button
 	file_button: _file_button
@@ -28,8 +28,8 @@
 			size_hint_x: 0.7
 			size_hint_y: 0.5
 		Button:
-			background_normal: 'button_grey_last.png'
-        	background_down: 'but.png'
+			##background_normal: 'button_grey_last.png'
+        	##background_down: 'but.png'
 			size_hint_x: None
 			size_hint_y: None
 			size:(75,75)
@@ -76,6 +76,13 @@
 					size_hint_x: 1
 					size_hint_y: 0.075
 					on_press: root.change_submenu("VideoMenu", _video_button)
+				Button:
+					id: _save_button
+					text: 'Save As...'
+					size_hint_x: 1
+					size_hint_y: 0.075
+					on_press: root.save_as()
+					
 		BoxLayout:
 			id: _sub_menu_layout
 			padding: 10

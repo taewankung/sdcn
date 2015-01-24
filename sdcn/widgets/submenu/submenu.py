@@ -72,13 +72,13 @@ class SubMenu(StackLayout):
             filechoser = FileChooserListView( size_hint = (0.75,1), size=(1,400))
             filechoser_layout.add_widget(filechoser)
             ok_button = Button(text = 'Ok' , size_hint = (0.12,None), size=(1,25))
-            exit_button = Button(text = 'Exit' ,size_hint = (0.12,None), size=(1,25))
+            cancel_button = Button(text = 'Cancel' ,size_hint = (0.12,None), size=(1,25))
             filechoser_layout.add_widget(ok_button)
-            filechoser_layout.add_widget(exit_button)
+            filechoser_layout.add_widget(cancel_button)
             browser_button = Button(text = 'Browser', size_hint = (0.5,None),size = (1, self.bh))
             popup_browser = Popup(title = 'Find file')
             popup_browser.add_widget(filechoser_layout)
-            exit_button.bind(on_press = popup_browser.dismiss)
+            cancel_button.bind(on_press = popup_browser.dismiss)
             browser_button.bind(on_press = popup_browser.open)
             input_file = TextInput(text = 'Pattern file',size_hint = (0.5,None),size = (1, self.bh))
             layout.add_widget(browser_button)
@@ -103,10 +103,11 @@ class SubMenu(StackLayout):
             layout.add_widget(text_input)
             layout.add_widget(l)
         elif new_label.text == 'Compress Files':
-            typeFile = Spinner(text='.zip',values=('.7zip', '.Rar', '.Zip'),size_hint=(1,None),size=(1,44))
+            typeFile = Spinner(text='.Zip',values=('.Zip','.XZip'),size_hint=(1,None),size=(1,44))
             layout.add_widget(typeFile)   
         elif new_label.text == 'Convert Files':
-            typeFile = Spinner(text='.7zip',values=('.7zip', '.Rar', '.Zip'),size_hint=(1,None),size=(1,44))
+            typeFile = Spinner(text='.doc to text',values=('.doc to text', '.doc to html'),size_hint=(1,None),size=(1,44))
             layout.add_widget(typeFile)
+        elif new_label.text == 'Convert Files':
+            pass
         self.workflow_layout.add_widget(layout)
-        
