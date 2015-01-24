@@ -13,16 +13,48 @@ from kivy.uix.filechooser import FileChooserListView
 from kivy.uix.popup import Popup
 from kivy.uix.textinput import TextInput
 from kivy.uix.anchorlayout import AnchorLayout
+from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.bubble import Bubble
+from kivy.lang import Builder
+Builder.load_string('''
+<Delete_button>
+    size_hint: (0.01, 0.02)
+    pos_hint: {'center_x': .5, 'y': .6}
+    BubbleButton:
+        text: 'Delete'
+''')
+
+
+class Delete_button(Bubble):
+    pass
+
+class ClickRightOption(Label):
+    layout = FloatLayout()
+    def on_touch_down(self, touch):
+        super().on_touch_down(touch)
+        if touch.button == 'right':
+            print('right')
+            if not hasattr(self, 'bubb'):
+                self.bubb = bubb = Delete_button()
+                self.layout.add_widget(bubb)
+                self.add_widget(self.layout)
+            else:
+                values = ('left_top', 'left_mid', 'left_bottom', 'top_left',
+                          'top_mid', 'top_right', 'right_top', 'right_mid',
+                          'right_bottom', 'bottom_left', 'bottom_mid', 'bottom_right')
+                index = values.index(self.bubb.arrow_pos)
+                self.bubb.arrow_pos = values[(index + 1) % len(values)]
+    pass
+
 class SubMenu(StackLayout):
     def __init__(self, workflow_layout):
         super().__init__()
         self.workflow_layout = workflow_layout
-        
         self.bh = int(.075*self.workflow_layout.height)
         
         
     def add_to_workflow_layout(self, button):
-        new_label = Label(text=button.text, size_hint_x=1,
+        new_label = ClickRightOption(text=button.text, size_hint_x=1,
                             size_hint_y=0.5,)
         layout = StackLayout(size_hint = (1,None),size = (self.workflow_layout.width,self.bh*2))
         layout.add_widget(new_label)
