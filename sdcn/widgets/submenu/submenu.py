@@ -56,7 +56,7 @@ class SubMenu(StackLayout):
         
     def add_to_workflow_layout(self, button):
         new_label = ClickRightOption(text=button.text, size_hint_x=1,
-                            size_hint_y=0.5,)
+                            size_hint_y=0.5,background_color = (1,0,0,2))
         layout = StackLayout(size_hint = (1,None),size = (self.workflow_layout.width,self.bh*2))
         layout.add_widget(new_label)
         if new_label.text == 'Find File':
@@ -136,4 +136,19 @@ class SubMenu(StackLayout):
             change_file_type = Spinner(text='.jpg',values=('.png', '.gif','.tif'),size_hint=(1,None),size=(1,44))
             layout.add_widget(change_file_type)
 #END PIC*******************************************************************************************************************************END PIC
+        
+        elif new_label.text == 'Write File': 
+            pass
+        elif new_label.text == 'Add File':
+            pass
+        
+#END FILE*******************************************************************************************************************************END FILE
+
+#END PDF********************************************************************************************************************************END PDF
+        elif new_label.text == 'Convert Music Files':
+            change_file_music_type = Spinner(text='.mp3 to .wav',values=('.mp3 to .wav','.wav to.mp3','.mp4 to .mp3','.ra to .mp3','.mp3 to .ra','.mp3 to .au'),size_hint=(1,None),size=(1,44))
+            layout.add_widget(change_file_music_type)
+            pass
+#END MUSIC******************************************************************************************************************************END MUSIC
+        
         self.workflow_layout.add_widget(layout)
