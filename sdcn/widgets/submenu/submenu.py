@@ -143,12 +143,10 @@ class SubMenu(StackLayout):
             pass
         
 #END FILE*******************************************************************************************************************************END FILE
-        elif new_label.text == 'PDF to image':
+        elif new_label.text == 'Convert PDF file':
+            convert_pdf_file = Spinner(text='PDF to image',values=('doc to PDF','image to PDF'),size_hint=(1,None),size=(1,44))
+            layout.add_widget(convert_pdf_file)
             pass
-        elif new_label.text == 'doc to PDF':
-            pass
-        elif new_label.text == 'image to PDF':
-            pass        
 #END PDF********************************************************************************************************************************END PDF
         elif new_label.text == 'Convert Music Files':
             change_file_music_type = Spinner(text='.mp3 to .wav',values=('.mp3 to .wav','.wav to.mp3','.mp4 to .mp3','.ra to .mp3','.mp3 to .ra','.mp3 to .au'),size_hint=(1,None),size=(1,44))
@@ -158,5 +156,15 @@ class SubMenu(StackLayout):
         elif new_label.text == 'Convert Video Files':
             change_file_video_type = Spinner(text='.dat to .mp4',values=('.dat to .mp4','.mp4 to .dat'),size_hint=(1,None),size=(1,44))
             layout.add_widget(change_file_video_type)
+        elif new_label.text == 'Resize Video':
+            label_x = Label(text = 'X:',size_hint=(0.25,None), size = (100,self.bh))
+            text_input_x = TextInput(size_hint=(0.24,None), size = (100,self.bh))
+            label_y = Label(text = 'y:',size_hint=(0.25,None), size = (100,self.bh))
+            text_input_y= TextInput(size_hint=(0.24,None), size = (100,self.bh))
+            layout.add_widget(label_x)
+            layout.add_widget(text_input_x)
+            layout.add_widget(label_y)
+            layout.add_widget(text_input_y)    
             pass
+#END Video******************************************************************************************************************************END Video
         self.workflow_layout.add_widget(layout)
