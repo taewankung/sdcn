@@ -38,16 +38,6 @@ class ClickRightOption(Label):
         super().on_touch_down(touch)
         if touch.button == 'right':
             print('right')
-            if not hasattr(self, 'bubb'):
-                self.bubb = Delete_button()
-                self.layout.add_widget(self.bubb)
-                self.add_widget(self.layout)
-            else:
-                values = ('left_top', 'left_mid', 'left_bottom', 'top_left',
-                          'top_mid', 'top_right', 'right_top', 'right_mid',
-                          'right_bottom', 'bottom_left', 'bottom_mid', 'bottom_right')
-                index = values.index(self.bubb.arrow_pos)
-                self.bubb.arrow_pos = values[(index + 1) % len(values)]
     def on_touch_up(self, touch):
         print('up')
 #         for submenu in self.layout:
@@ -95,7 +85,7 @@ class SubMenu(StackLayout):
             layout.add_widget(l)
         
         elif new_label.text == 'Rename File':
-            text_input = TextInput(text='', multiline = False , size_hint = (None,None), size = (100,25))
+            text_input = TextInput(text='', multiline = False , size_hint = (None,None), size = (100,self.bh))
             l = Label(text='Example: ....', font_size='15sp', size_hint_y = None)
             l.bind(width=lambda s, w:
                    s.setter('text_size')(s, (w, None)))
@@ -108,6 +98,9 @@ class SubMenu(StackLayout):
         elif new_label.text == 'Convert Files':
             typeFile = Spinner(text='.doc to text',values=('.doc to text', '.doc to html'),size_hint=(1,None),size=(1,44))
             layout.add_widget(typeFile)
-        elif new_label.text == 'Convert Files':
-            pass
+        elif new_label.text == 'New Folder':
+            text_input_name = TextInput(multiline = False,size_hint = (0.5,None),size = (100,self.bh))
+            label_text_name = Label(text = 'Name:',size_hint = (0.5,None), size = (100,self.bh))
+            layout.add_widget(label_text_name)
+            layout.add_widget(text_input_name)
         self.workflow_layout.add_widget(layout)
