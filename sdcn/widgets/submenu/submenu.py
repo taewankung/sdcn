@@ -38,6 +38,8 @@ class ClickRightOption(Label):
         super().on_touch_down(touch)
         if touch.button == 'right':
             print('right')
+            new_button = Button(text = 'Delete') 
+            self.add_widget(new_button)
     def on_touch_up(self, touch):
         print('up')
 #         for submenu in self.layout:
@@ -73,25 +75,6 @@ class SubMenu(StackLayout):
             input_file = TextInput(text = 'Pattern file',size_hint = (0.5,None),size = (1, self.bh))
             layout.add_widget(browser_button)
             layout.add_widget(input_file)
-             
-        elif new_label.text == 'Resize Photo':
-            
-            text_input = TextInput(text='', multiline = False , size_hint = (None,None), size = (100,25))
-            l = Label(text='Example: ....', font_size='15sp', size_hint_y=None)
-            l.bind(width=lambda s, w:
-                   s.setter('text_size')(s, (w, None)))
-            l.bind(texture_size=l.setter('size'))
-            layout.add_widget(text_input)
-            layout.add_widget(l)
-        
-        elif new_label.text == 'Rename File':
-            text_input = TextInput(text='', multiline = False , size_hint = (None,None), size = (100,self.bh))
-            l = Label(text='Example: ....', font_size='15sp', size_hint_y = None)
-            l.bind(width=lambda s, w:
-                   s.setter('text_size')(s, (w, None)))
-            l.bind(texture_size=l.setter('size'))
-            layout.add_widget(text_input)
-            layout.add_widget(l)
         elif new_label.text == 'Compress Files':
             typeFile = Spinner(text='.Zip',values=('.Zip','.XZip'),size_hint=(1,None),size=(1,44))
             layout.add_widget(typeFile)   
@@ -103,4 +86,54 @@ class SubMenu(StackLayout):
             label_text_name = Label(text = 'Name:',size_hint = (0.5,None), size = (100,self.bh))
             layout.add_widget(label_text_name)
             layout.add_widget(text_input_name)
+#Picture Menu*****************************************************************************************************************************          PICTURE
+
+        elif new_label.text == 'Resize Photo': 
+            text_input = TextInput(text='', multiline = False , size_hint = (None,None), size = (100,25))
+            l = Label(text='Example: ....', font_size='15sp', size_hint_y=None)
+            l.bind(width=lambda s, w:
+            s.setter('text_size')(s, (w, None)))
+            l.bind(texture_size=l.setter('size'))
+            layout.add_widget(text_input)
+            layout.add_widget(l)
+        
+        elif new_label.text == 'Rename File':
+            text_input = TextInput(text='', multiline = False , size_hint = (None,None), size = (100,self.bh))
+            l = Label(text='Example: ....', font_size='15sp', size_hint_y = None)
+            l.bind(width=lambda s, w:
+            s.setter('text_size')(s, (w, None)))
+            l.bind(texture_size=l.setter('size'))
+            layout.add_widget(text_input)
+            layout.add_widget(l)
+        
+        elif new_label.text == 'Add Photo To Album':
+            filechoser_layout = StackLayout( orientation="lr-bt")
+            filechoser = FileChooserListView( size_hint = (0.75,1), size=(1,400))
+            filechoser_layout.add_widget(filechoser)
+            ok_button = Button(text = 'Ok' , size_hint = (0.12,None), size=(1,25))
+            cancel_button = Button(text = 'Cancel' ,size_hint = (0.12,None), size=(1,25))
+            filechoser_layout.add_widget(ok_button)
+            filechoser_layout.add_widget(cancel_button)
+            browser_button = Button(text = 'Browser', size_hint = (0.5,None),size = (1, self.bh))
+            popup_browser = Popup(title = 'Album')
+            popup_browser.add_widget(filechoser_layout)
+            cancel_button.bind(on_press = popup_browser.dismiss)
+            browser_button.bind(on_press = popup_browser.open)
+            input_file = TextInput(text = 'Directory file',size_hint = (0.5,None),size = (1, self.bh))
+            layout.add_widget(browser_button)
+            layout.add_widget(input_file)
+            pass
+        elif new_label.text == 'Crop Image':
+            label_x = Label(text = 'X:',size_hint=(0.25,None), size = (100,self.bh))
+            text_input_x = TextInput(size_hint=(0.24,None), size = (100,self.bh))
+            label_y = Label(text = 'y:',size_hint=(0.25,None), size = (100,self.bh))
+            text_input_y= TextInput(size_hint=(0.24,None), size = (100,self.bh))
+            layout.add_widget(label_x)
+            layout.add_widget(text_input_x)
+            layout.add_widget(label_y)
+            layout.add_widget(text_input_y)
+        elif new_label.text == 'Change File Type':
+            change_file_type = Spinner(text='.jpg',values=('.png', '.gif','.tif'),size_hint=(1,None),size=(1,44))
+            layout.add_widget(change_file_type)
+#END PIC*******************************************************************************************************************************END PIC
         self.workflow_layout.add_widget(layout)
