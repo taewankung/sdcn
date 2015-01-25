@@ -10,6 +10,7 @@
 	picture_button: _picture_button
 	music_button: _music_button
 	video_button: _video_button
+	play_button: _play_button
 	
 	padding: 20
 	orientation: 'vertical'
@@ -28,12 +29,15 @@
 			size_hint_x: 0.7
 			size_hint_y: 0.5
 		Button:
-			##background_normal: 'button_grey_last.png'
-        	##background_down: 'but.png'
+			id: _play_button
+			enable: 0
+			background_normal: 'pause.png'
+        	background_down: 'url.png'
 			size_hint_x: None
 			size_hint_y: None
-			size:(75,75)
-		
+			size:(100,100)
+			on_press: root.status_play_button()
+				
 	BoxLayout:
 		BoxLayout:
 			size_hint_x: 0.5
@@ -82,12 +86,11 @@
 					text: 'Save As...'
 					size_hint_x: 1
 					size_hint_y: 0.075
-					on_release: root.save_as()
+					on_press: root.save_as()
 					
 		BoxLayout:
+			size_hint_x: 0.8
 			id: _sub_menu_layout
-			size_hint_x: 0.5
-			padding: 10
 			padding: 10
 		ScrollView:
 			StackLayout:

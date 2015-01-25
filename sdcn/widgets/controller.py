@@ -35,9 +35,18 @@ class SdcnController(BoxLayout):
                          PictureMenu(self.workflow_layout), MusicMenu(self.workflow_layout), VideoMenu(self.workflow_layout)]
         
         self.workflow_layout.bind(minimum_height=self.workflow_layout.setter('height'))
-
+    def status_play_button(self):
+        self.play_button.enable += 1
         
+    def on_touch_down(self, touch):
+        super().on_touch_down(touch)
         
+        if self.play_button.enable%2 == 1 :
+            self.play_button.background_normal = 'url.png'
+            self.play_button.background_down = 'pause.png'
+        else:
+            self.play_button.background_normal = 'pause.png'
+            self.play_button.background_down = 'url.png'
     def change_submenu(self, menu_name, button):
         for bt in self.main_menu_layout.children:
             if bt is button:
