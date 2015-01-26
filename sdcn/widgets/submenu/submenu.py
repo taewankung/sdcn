@@ -104,13 +104,14 @@ class SubMenu(StackLayout):
 #END FILE*******************************************************************************************************************************END FILE
         elif new_label.text == 'Convert PDF file':
             new_convert = ConvertPDFFile(self.workflow_layout)
+            print("n:", new_convert)
             layout.add_widget(new_convert)
-            pass
+
 #END PDF********************************************************************************************************************************END PDF
         elif new_label.text == 'Convert Music Files':
             change_file_music_type = Spinner(text='.mp3 to .wav',values=('.mp3 to .wav','.wav to.mp3','.mp4 to .mp3','.ra to .mp3','.mp3 to .ra','.mp3 to .au'),size_hint=(1,None),size=(1,44))
             layout.add_widget(change_file_music_type)
-            pass
+
 #END MUSIC******************************************************************************************************************************END MUSIC
         elif new_label.text == 'Convert Video Files':
             change_file_video_type = Spinner(text='.dat to .mp4',values=('.dat to .mp4','.mp4 to .dat'),size_hint=(1,None),size=(1,44))
