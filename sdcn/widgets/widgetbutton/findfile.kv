@@ -1,0 +1,43 @@
+<FindFile>:
+	##filechoser_layout: _filechoser_layout
+	##popup_filechoser: _popup_filechoser
+            ##popup_browser = Popup(title = 'Find file')
+            ##popup_browser.add_widget(filechoser_layout)
+            ##cancel_button.bind(on_press = popup_browser.dismiss)
+            ##browser_button.bind(on_press = popup_browser.open)
+            ##input_file = TextInput(text = 'Pattern file',size_hint = (0.5,None),size = (1, self.bh))
+    Label:
+    	text: 'Find File'
+		size_hint: (0.89,0.5)
+	Button:
+		text: 'X'
+		size_hint:(0.1,0.3)
+	Button:
+		id: _browser_button
+		text: 'Browser'
+		size_hint: (1,0.5)
+		on_press: root.open_file_chooser()
+	##Popup:
+		##id: _popup_filechoser
+		##size_hint: (0.5,1)
+		##title:'Find file'
+		##auto_dismiss: True
+		##StackLayout:
+			##id: _filechoser_layout
+			##orientation: "lr-bt"
+	
+			##FileChooserListView:
+				##size_hint: (0.75,1)
+				##size: (1,400)
+			##Button:
+				##id: _ok_button
+				##text:'Ok'
+				##size_hint:(0.12,None)
+				##size:(1,25)
+			##Button:
+				##id: _cancel_button
+				##text: 'Cancel'
+				##size_hint: (0.12,None)
+				##size: (1,25)
+			
+    

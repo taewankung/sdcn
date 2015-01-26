@@ -47,6 +47,7 @@ class SdcnController(BoxLayout):
         else:
             self.play_button.background_normal = 'pause.png'
             self.play_button.background_down = 'url.png'
+            
     def change_submenu(self, menu_name, button):
         for bt in self.main_menu_layout.children:
             if bt is button:

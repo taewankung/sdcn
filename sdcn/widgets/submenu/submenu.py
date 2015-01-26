@@ -12,46 +12,31 @@ from kivy.uix.popup import Popup
 from kivy.uix.textinput import TextInput
 from kivy.lang import Builder
 from kivy.uix.spinner import Spinner
+from sdcn.widgets.widgetbutton.convert_pdf_file import  ConvertPDFFile
+from sdcn.widgets.widgetbutton.findfile import FindFile 
 Builder.load_string('''
 <Delete_button>
     text: 'X'
-    on_press: root.delete
     size_hint: (0.1,0.3)
 ''')
-class Delete_button(Button):
-    pass
 
+        
 class SubMenu(StackLayout):
+    
     def __init__(self, workflow_layout):
         super().__init__()
         self.workflow_layout = workflow_layout
-        self.bh = int(.075*self.workflow_layout.height)    
-        
+        self.bh = int(.075*self.workflow_layout.height)   
     def add_to_workflow_layout(self, button):
         new_label = Label(text=button.text, size_hint_x=0.89,
                             size_hint_y=0.5,background_color = (1,0,0,2))
         layout = StackLayout(size_hint = (1,None),size = (self.workflow_layout.width,self.bh*2))
-        layout.add_widget(new_label)
-        layout.add_widget(Delete_button())
+#         layout.add_widget(Delete_button())
         if new_label.text == 'Find File':
-            filechoser_layout = StackLayout( orientation="lr-bt")
-            filechoser = FileChooserListView( size_hint = (0.75,1), size=(1,400))
-            filechoser_layout.add_widget(filechoser)
-            ok_button = Button(text = 'Ok' , size_hint = (0.12,None), size=(1,25))
-            cancel_button = Button(text = 'Cancel' ,size_hint = (0.12,None), size=(1,25))
-            filechoser_layout.add_widget(ok_button)
-            filechoser_layout.add_widget(cancel_button)
-            browser_button = Button(text = 'Browser', size_hint = (0.5,None),size = (1, self.bh))
-            popup_browser = Popup(title = 'Find file')
-            popup_browser.add_widget(filechoser_layout)
-            cancel_button.bind(on_press = popup_browser.dismiss)
-            browser_button.bind(on_press = popup_browser.open)
-            input_file = TextInput(text = 'Pattern file',size_hint = (0.5,None),size = (1, self.bh))
-            layout.add_widget(browser_button)
-            layout.add_widget(input_file)
+            layout.add_widget(FindFile())
         elif new_label.text == 'Compress Files':
             typeFile = Spinner(text='.Zip',values=('.Zip','.XZip'),size_hint=(1,None),size=(1,44))
-            layout.add_widget(typeFile)   
+            layout.add_widget(typeFile)
         elif new_label.text == 'Convert Files':
             typeFile = Spinner(text='.doc to text',values=('.doc to text', '.doc to html'),size_hint=(1,None),size=(1,44))
             layout.add_widget(typeFile)
@@ -118,8 +103,8 @@ class SubMenu(StackLayout):
         
 #END FILE*******************************************************************************************************************************END FILE
         elif new_label.text == 'Convert PDF file':
-            convert_pdf_file = Spinner(text='PDF to image',values=('doc to PDF','image to PDF'),size_hint=(1,None),size=(1,44))
-            layout.add_widget(convert_pdf_file)
+            new_convert = ConvertPDFFile(self.workflow_layout)
+            layout.add_widget(new_convert)
             pass
 #END PDF********************************************************************************************************************************END PDF
         elif new_label.text == 'Convert Music Files':
@@ -139,6 +124,7 @@ class SubMenu(StackLayout):
             layout.add_widget(text_input_x)
             layout.add_widget(label_y)
             layout.add_widget(text_input_y)    
-            pass
 #END Video******************************************************************************************************************************END Video
         self.workflow_layout.add_widget(layout)
+    def delete_(self, button):
+        pass
