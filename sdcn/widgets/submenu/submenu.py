@@ -18,6 +18,7 @@ from sdcn.widgets.widgetbutton.add_photo_to_album import AddPhotoToAlbum
 from sdcn.widgets.widgetbutton.convert_file import ConvertFile
 from sdcn.widgets.widgetbutton.compress_file import CompressFile
 from sdcn.widgets.widgetbutton.hidden_file import HiddenFile
+from sdcn.widgets.widgetbutton.new_folder import NewFolder
 Builder.load_string('''
 <Delete_button>
     text: 'X'
@@ -43,13 +44,9 @@ class SubMenu(StackLayout):
         elif new_label.text == 'Convert Files':
             self.workflow_layout.add_widget(ConvertFile(self.workflow_layout))
         elif new_label.text == 'Hidden Files':
-            self.workflow_layout.add_widget()
-            pass
-#         elif new_label.text == 'New Folder':
-#             text_input_name = TextInput(multiline = False,size_hint = (0.5,None),size = (100,self.bh))
-#             label_text_name = Label(text = 'Name:',size_hint = (0.5,None), size = (100,self.bh))
-#             layout.add_widget(label_text_name)
-#             layout.add_widget(text_input_name)
+            self.workflow_layout.add_widget(HiddenFile(self.workflow_layout))
+        elif new_label.text == 'New Folder':
+            self.workflow_layout.add_widget(NewFolder(self.workflow_layout))
 # #Picture Menu*****************************************************************************************************************************          PICTURE
 # 
 #         elif new_label.text == 'Resize Photo': 
