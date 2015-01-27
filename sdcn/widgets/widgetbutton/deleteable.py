@@ -10,6 +10,5 @@ class WorkflowWidget(StackLayout):
     def __init__(self, workflow_layout):
         super().__init__()
         self.workflow_layout = workflow_layout
-    def delete_in_workflow_layout(self, menu):
-        for l in self.workflow_layout.children: 
-            l.remove_widget(menu)
+    def delete_in_workflow_layout(self, menu): 
+        self.workflow_layout.remove_widget(menu)

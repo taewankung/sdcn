@@ -1,10 +1,13 @@
 <AddPhotoToAlbum>:
+	size_hint:(1,None)
+	size:(1,100)
 	Label:
 		text: 'Add Photo To Album'
 		size_hint:(0.89,0.5)
 	Button:
 		text: 'X'
 		size_hint:(0.1,0.3)
+		on_press: root.delete_in_workflow_layout(root)
 	Button:
 		id: _browser_button
 		text: 'Browser'

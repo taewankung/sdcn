@@ -3,7 +3,7 @@ Created on Jan 27, 2015
 
 @author: progreanmer
 '''
-from kivy.uix.spinner import Spinner
+# from kivy.uix.spinner import Spinner
 from kivy.lang import Builder
 from kivy.uix.stacklayout import StackLayout
 import os
@@ -11,8 +11,12 @@ from kivy.app import App
 from kivy.uix.popup import Popup
 from kivy.uix.filechooser import FileChooserListView
 from kivy.uix.button import Button
+from sdcn.widgets.widgetbutton.deleteable import WorkflowWidget
 Builder.load_file(os.path.dirname(__file__) + '/add_photo_to_album.kv')
-class AddPhotoToAlbum(StackLayout):
+class AddPhotoToAlbum(WorkflowWidget):
+    def __init__(self, workflow_layout):
+        super().__init__(workflow_layout)
+        
     def open_file_chooser(self):
         popup_filechoser = Popup(title = 'AddPhotoToAlbum')
         filechoser_layout = StackLayout(orientation = "lr-bt")

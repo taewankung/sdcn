@@ -1,4 +1,6 @@
 <ConvertFile>:
+	size_hint: (1,None)
+	size: (1,100)
 	Label:
 		id: _label
 		text: 'Convert Files'
@@ -6,6 +8,7 @@
 	Button:
 		text: 'X'
 		size_hint:(0.1,0.3)
+		on_press: root.delete_in_workflow_layout(root)
 		
 	Spinner:
 		text: '.doc to Text'
