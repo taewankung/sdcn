@@ -1,0 +1,23 @@
+<MyFilechooser>:
+	pop: _pop
+	id: _pop
+	cancel_button: _cancel
+	ok: _ok
+	filechooser: _test
+	StackLayout:
+		orientation: 'lr-bt'
+		FileChooserListView:
+			id: _test
+			size_hint: (0.75,1)
+		Button:
+			id: _ok
+			text: 'Ok'
+			size_hint: (0.12,None)
+			size: (1,25)
+			on_press: root.okfile()
+		Button:
+			id: _cancel
+			text: 'Cancel'
+			size_hint: (0.12,None)
+			size: (1,25)
+			on_press: root.cancels()

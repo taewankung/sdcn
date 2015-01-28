@@ -12,25 +12,15 @@ from kivy.app import App
 from kivy.uix.popup import Popup
 from kivy.uix.filechooser import FileChooserListView
 from kivy.uix.button import Button
+from .my_filechooser import MyFilechooser
 Builder.load_file(os.path.dirname(__file__) + '/findfile.kv')
 class FindFile(WorkflowWidget):
     def __init__(self, workflow_layout):
         super().__init__(workflow_layout)
-    def load(self, path, filename):
-        with open(os.path.join(path, filename[0])) as stream:
-            self.text_input.text = stream.read()
+
     def open_file_chooser(self):
-        popup_filechoser = Popup(title = 'Find file')
-        filechoser_layout = StackLayout(orientation = "lr-bt")
-        filechoser = FileChooserListView(size_hint = (0.75,1),size = (1,400))
-        ok_button = Button(text = 'Ok',size_hint=(0.12,None),size = (1,25))
-        cancel_button = Button( text = 'Cancel',size_hint = (0.12,None), size=(1,25))
-        filechoser_layout.add_widget(filechoser)
-        filechoser_layout.add_widget(ok_button)
-        filechoser_layout.add_widget(cancel_button)
-        popup_filechoser.add_widget(filechoser_layout)
+        popup_filechoser = MyFilechooser(title = 'Find file')
         popup_filechoser.open()
-        cancel_button.bind(on_press = popup_filechoser.dismiss)
 class TestApp(App):
      def build(self):
          return FindFile()
