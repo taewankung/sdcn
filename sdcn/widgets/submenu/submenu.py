@@ -114,7 +114,7 @@ class SubMenu(StackLayout):
 #             change_file_music_type = Spinner(text='.mp3 to .wav',values=('.mp3 to .wav','.wav to.mp3','.mp4 to .mp3','.ra to .mp3','.mp3 to .ra','.mp3 to .au'),size_hint=(1,None),size=(1,44))
 #             layout.add_widget(change_file_music_type)
         elif new_label.text == 'Convert Music Type':
-            self.workflow_layout.add_widget(AddPhotoToAlbum(self.workflow_layout))
+            self.workflow_layout.add_widget(ConvertMusicType(self.workflow_layout))
 # 
 # #END MUSIC******************************************************************************************************************************END MUSIC
 #         elif new_label.text == 'Convert Video Files':
