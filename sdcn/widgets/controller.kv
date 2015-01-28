@@ -32,10 +32,10 @@
 			id: _play_button
 			enable: 0
 			background_normal: 'pause.png'
-        	background_down: 'url.png'
+        	background_down: 'runbutton.png'
 			size_hint_x: None
 			size_hint_y: None
-			size:(100,100)
+			size:(200,150)
 			on_press: root.status_play_button()
 				
 	BoxLayout:
@@ -57,7 +57,7 @@
 					text: 'Picture'
 					size_hint_x: 1
 					size_hint_y: 0.075
-					on_press: root.change_submenu("PictureMenu", _picture_button)
+					on_press: root.change_submenu("ImageMenu", _picture_button)
 				Button:
 					id: _file_button
 					text: 'File and Folder'

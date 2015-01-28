@@ -19,6 +19,11 @@ from sdcn.widgets.widgetbutton.convert_file import ConvertFile
 from sdcn.widgets.widgetbutton.compress_file import CompressFile
 from sdcn.widgets.widgetbutton.hidden_file import HiddenFile
 from sdcn.widgets.widgetbutton.new_folder import NewFolder
+from sdcn.widgets.widgetbutton.resize_image import ResizeImage
+from sdcn.widgets.widgetbutton.crop_image import CropImage
+from sdcn.widgets.widgetbutton.rename_image import RenameImage
+from sdcn.widgets.widgetbutton.resize_image import ResizeImage
+from sdcn.widgets.widgetbutton.change_image_type import ChangeImageType
 Builder.load_string('''
 <Delete_button>
     text: 'X'
@@ -67,8 +72,16 @@ class SubMenu(StackLayout):
 #             layout.add_widget(text_input)
 #             layout.add_widget(l)
 #         
-        elif new_label.text == 'Add Photo To Album':
+        elif new_label.text == 'Add Image To Album':
             self.workflow_layout.add_widget(AddPhotoToAlbum(self.workflow_layout))
+        elif new_label.text == 'Resize Image':
+            self.workflow_layout.add_widget(ResizeImage(self.workflow_layout))
+        elif new_label.text == 'Crop Image':
+            self.workflow_layout.add_widget(CropImage(self.workflow_layout))
+        elif new_label.text == 'Rename Image':
+            self.workflow_layout.add_widget(RenameImage(self.workflow_layout))
+        elif new_label.text == 'Change Image Type':
+            self.workflow_layout.add_widget(ChangeImageType(self.workflow_layout))
 #             pass
 #         elif new_label.text == 'Crop Image':
 #             label_x = Label(text = 'X:',size_hint=(0.25,None), size = (100,self.bh))

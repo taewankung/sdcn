@@ -1,1 +1,1 @@
-__all__ = ["document", "fileandfolder", "music", "pdf", "picture", "video"]
+__all__ = ["document", "fileandfolder", "music", "pdf", "Image", "video"]

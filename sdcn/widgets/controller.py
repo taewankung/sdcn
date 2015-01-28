@@ -9,7 +9,7 @@ from kivy.uix.boxlayout import BoxLayout
 from sdcn.widgets.submenu.pdf import PdfMenu
 from sdcn.widgets.submenu.document import DocumentMenu
 from sdcn.widgets.submenu.fileandfolder import FileAndFolderMenu
-from sdcn.widgets.submenu.picture import PictureMenu
+from sdcn.widgets.submenu.Image import ImageMenu
 from sdcn.widgets.submenu.video import VideoMenu
 from sdcn.widgets.submenu.music import MusicMenu
 from kivy.uix.filechooser import FileChooserListView
@@ -32,7 +32,7 @@ class SdcnController(BoxLayout):
         
         
         self.submenus = [PdfMenu(self.workflow_layout), DocumentMenu(self.workflow_layout), FileAndFolderMenu(self.workflow_layout),
-                         PictureMenu(self.workflow_layout), MusicMenu(self.workflow_layout), VideoMenu(self.workflow_layout)]
+                         ImageMenu(self.workflow_layout), MusicMenu(self.workflow_layout), VideoMenu(self.workflow_layout)]
         
         self.workflow_layout.bind(minimum_height=self.workflow_layout.setter('height'))
     def status_play_button(self):
@@ -42,11 +42,11 @@ class SdcnController(BoxLayout):
         super().on_touch_down(touch)
         
         if self.play_button.enable%2 == 1 :
-            self.play_button.background_normal = 'url.png'
+            self.play_button.background_normal = 'runbutton.png'
             self.play_button.background_down = 'pause.png'
         else:
             self.play_button.background_normal = 'pause.png'
-            self.play_button.background_down = 'url.png'
+            self.play_button.background_down = 'runbutton.png'
             
     def change_submenu(self, menu_name, button):
         for bt in self.main_menu_layout.children:
