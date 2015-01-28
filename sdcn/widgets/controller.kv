@@ -40,7 +40,8 @@
 				
 	BoxLayout:
 		BoxLayout:
-			size_hint_x: 0.5
+			size_hint: (None,1)
+			size: (210,1)
 			padding: 10
 			orientation: 'vertical'
 			StackLayout:
@@ -62,7 +63,7 @@
 					text: 'Picture'
 					size_hint_x: 1
 					size_hint_y: 0.075
-					on_press: root.change_submenu("PictureMenu", _picture_button)
+					on_press: root.change_submenu("ImageMenu", _picture_button)
 				Button:
 					id: _file_button
 					text: 'File and Folder'
@@ -95,7 +96,8 @@
 					on_press: root.save_as()
 					
 		StackLayout:
-			size_hint_x: 0.8
+			size_hint: (None,1)
+			size: (210,1)
 			padding: 10
 			Label:
 				text: 'Actions'
