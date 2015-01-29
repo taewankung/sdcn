@@ -43,9 +43,9 @@ class SdcnController(BoxLayout):
         
         if self.play_button.enable%2 == 1 :
             self.play_button.background_normal = 'play1.png'
-            self.play_button.background_down = 'pausee.png'
+            self.play_button.background_down = 'pause1.png'
         else:
-            self.play_button.background_normal = 'pausee.png'
+            self.play_button.background_normal = 'pause1.png'
             self.play_button.background_down = 'play1.png'
             
     def change_submenu(self, menu_name, button):
