@@ -61,7 +61,10 @@
 					id: _document_button
 					##background_color:(0,1.49,2,2)
 					background_normal: '../sdcn/data/images/doccument_icon.png'
+					
 					##text: 'Document Manager'
+					background_disabled_normal: '../sdcn/data/images/document_icon_disable.png'
+					background_disabled_down: '../sdcn/data/images/document_icon_disable.png'
 					size_hint_x: None
 					size_hint_y: None
 					size:(234,50)
@@ -70,14 +73,19 @@
 					id: _picture_button
 					background_normal: '../sdcn/data/images/image_icon.png'
 					##text: 'Picture'
+					background_disabled_normal: '../sdcn/data/images/image_icon_disable.png'
+					background_disabled_down: '../sdcn/data/images/image_icon_disable.png'
 					size_hint_x: None
 					size_hint_y: None
 					size:(234,50)
 					on_press: root.change_submenu("ImageMenu", _picture_button)
 				Button:
 					id: _file_button
-					background_normal: 'folder.png'
+					background_normal: '../sdcn/data/images/File_icon.png'
+					
 					##text: 'File and Folder'
+					background_disabled_normal: '../sdcn/data/images/File_icon_disable.png'
+					background_disabled_down: '../sdcn/data/images/File_icon_disable.png'
 					size_hint_x: None
 					size_hint_y: None
 					size:(234,50)
@@ -87,8 +95,8 @@
 					background_normal: '../sdcn/data/images/PDF_icon.png'
 					##background_down: '../sdcn/data/images/PDF_icon.png'
 					##text: 'PDF'
-					background_disabled_normal: '../sdcn/data/images/PDF_icon.png'
-					background_disabled_down: '../sdcn/data/images/PDF_icon.png'
+					background_disabled_normal: '../sdcn/data/images/PDF_icon_disable.png'
+					background_disabled_down: '../sdcn/data/images/PDF_icon_disable.png'
 					size_hint_x: None
 					size_hint_y: None
 					size:(234,50)
@@ -97,14 +105,18 @@
 					id: _music_button
 					background_normal: '../sdcn/data/images/music_icon.png'
 					##text: 'Music '
+					background_disabled_normal: '../sdcn/data/images/music_icon_disable.png'
+					background_disabled_down: '../sdcn/data/images/music_icon_disable.png'
 					size_hint_x: None
 					size_hint_y: None
 					size:(234,50)
 					on_press: root.change_submenu("MusicMenu", _music_button)
 				Button:
 					id: _video_button
-					background_normal: '../sdcn/data/images/movie_icon.png'
+					background_normal: '../sdcn/data/images/video_icon.png'
 					##text: 'Video'
+					background_disabled_normal: '../sdcn/data/images/video_icon_disable.png'
+					background_disabled_down: '../sdcn/data/images/video_icon_disable.png'
 					size_hint_x: None
 					size_hint_y: None
 					size:(234,50)
