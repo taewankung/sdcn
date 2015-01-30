@@ -18,11 +18,11 @@
 		orientation: 'tb-lr'
 		size_hint_y:0.2
 		Image:
-			source: "logo.png"
+			source: "../sdcn/data/images/logo.png"
 			size_hint_x: 0.1
 			size_hint_y: 1
 		Image:
-			source: "name.png"
+			source: "../sdcn/data/images/name.png"
 			size_hint_x: 0.7
 			size_hint_y: 0.5
 		Label:
@@ -31,7 +31,7 @@
 		Button:
 			id: _play_button
 			enable: 0
-			background_normal: 'play1.png'
+			background_normal: '../sdcn/data/images/play1.png'
         	background_down: 'pause1.png'
 			size_hint_x: None
 			size_hint_y: None
@@ -41,7 +41,7 @@
 	BoxLayout:
 		BoxLayout:
 			size_hint: (None,1)
-			size: (210,1)
+			size: (234,1)
 			padding: 10
 			orientation: 'vertical'
 			StackLayout:
@@ -53,40 +53,53 @@
 					size:(100,50)
 				Button:
 					id: _document_button
-					background_color:(0,1.49,2,2)
-					text: 'Document Manager'
-					size_hint_x: 1
-					size_hint_y: 0.075
+					##background_color:(0,1.49,2,2)
+					background_normal: '../sdcn/data/images/doccument_icon.png'
+					##text: 'Document Manager'
+					size_hint_x: None
+					size_hint_y: None
+					size:(234,50)
 					on_press: root.change_submenu("DocumentMenu", _document_button)
 				Button:
 					id: _picture_button
-					text: 'Picture'
-					size_hint_x: 1
-					size_hint_y: 0.075
+					background_normal: '../sdcn/data/images/image_icon.png'
+					##text: 'Picture'
+					size_hint_x: None
+					size_hint_y: None
+					size:(234,50)
 					on_press: root.change_submenu("ImageMenu", _picture_button)
 				Button:
 					id: _file_button
-					text: 'File and Folder'
-					size_hint_x: 1
-					size_hint_y: 0.075
+					background_normal: 'folder.png'
+					##text: 'File and Folder'
+					size_hint_x: None
+					size_hint_y: None
+					size:(234,50)
 					on_press: root.change_submenu("FileAndFolderMenu", _file_button)
 				Button:
 					id: _pdf_button
-					text: 'PDF'
-					size_hint_x: 1
-					size_hint_y: 0.075
+					background_normal: '../sdcn/data/images/PDF_icon.png'
+					##background_down: '../sdcn/data/images/PDF_icon.png'
+					##text: 'PDF'
+					size_hint_x: None
+					size_hint_y: None
+					size:(234,50)
 					on_press: root.change_submenu("PdfMenu", _pdf_button)
 				Button:
 					id: _music_button
-					text: 'Music '
-					size_hint_x: 1
-					size_hint_y: 0.075
+					background_normal: '../sdcn/data/images/music_icon.png'
+					##text: 'Music '
+					size_hint_x: None
+					size_hint_y: None
+					size:(234,50)
 					on_press: root.change_submenu("MusicMenu", _music_button)
 				Button:
 					id: _video_button
-					text: 'Video'
-					size_hint_x: 1
-					size_hint_y: 0.075
+					background_normal: '../sdcn/data/images/movie_icon.png'
+					##text: 'Video'
+					size_hint_x: None
+					size_hint_y: None
+					size:(234,50)
 					on_press: root.change_submenu("VideoMenu", _video_button)
 				Button:
 					id: _save_button

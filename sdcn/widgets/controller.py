@@ -41,12 +41,12 @@ class SdcnController(BoxLayout):
     def on_touch_down(self, touch):
         super().on_touch_down(touch)
         
-        if self.play_button.enable%2 == 1 :
-            self.play_button.background_normal = 'play1.png'
-            self.play_button.background_down = 'pause1.png'
+        if self.play_button.enable%2 == 0:
+            self.play_button.background_normal = '../sdcn/data/images/play1.png'
+            self.play_button.background_down = '../sdcn/data/images/pause1.png'
         else:
-            self.play_button.background_normal = 'pause1.png'
-            self.play_button.background_down = 'play1.png'
+            self.play_button.background_normal = '../sdcn/data/images/pause1.png'
+            self.play_button.background_down = '../sdcn/data/images/play1.png'
             
     def change_submenu(self, menu_name, button):
         for bt in self.main_menu_layout.children:
