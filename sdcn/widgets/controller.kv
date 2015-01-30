@@ -46,6 +46,12 @@
 			orientation: 'vertical'
 			StackLayout:
 				id: _main_menu_layout
+##				canvas.before:
+##    				Color:
+##    					rgb: (0.5,0.5,0.5,2) # your color here
+##    				Rectangle:
+##    					pos: self.pos
+##    					size: self.size
 				Label:
 					text: 'Menu'
 					size_hint_x: 1
@@ -81,6 +87,8 @@
 					background_normal: '../sdcn/data/images/PDF_icon.png'
 					##background_down: '../sdcn/data/images/PDF_icon.png'
 					##text: 'PDF'
+					background_disabled_normal: '../sdcn/data/images/PDF_icon.png'
+					background_disabled_down: '../sdcn/data/images/PDF_icon.png'
 					size_hint_x: None
 					size_hint_y: None
 					size:(234,50)

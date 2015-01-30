@@ -50,10 +50,9 @@ class SdcnController(BoxLayout):
             
     def change_submenu(self, menu_name, button):
         for bt in self.main_menu_layout.children:
-            if bt is button:
-                bt.disabled = True
-            else:
+            if bt.disabled == True :
                 bt.disabled = False
+        button.disabled = True
             
         for submenu in self.submenus:
             if submenu.__class__.__name__ == menu_name:
