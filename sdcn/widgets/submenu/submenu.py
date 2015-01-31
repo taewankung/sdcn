@@ -26,7 +26,7 @@ from sdcn.widgets.widgetbutton.change_image_type import ChangeImageType
 from sdcn.widgets.widgetbutton.convert_music_type import ConvertMusicType
 from sdcn.widgets.widgetbutton.workflowwidget import DraggableWidgetContainer
 
-from kivy.garden.magnet import Magnet
+from sdcn.garden.magnet import Magnet
 from kivy.uix.image import Image
 from kivy.properties import ObjectProperty
 from kivy.clock import Clock
