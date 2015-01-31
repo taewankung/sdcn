@@ -13,7 +13,6 @@ Builder.load_file(os.path.dirname(__file__) + '/compress_file.kv')
 class CompressFile(WorkflowWidget):
     def __init__(self, workflow_layout):
         super().__init__(workflow_layout)
-    pass
 class TestApp(App):
     def build(self):
         return CompressFile()
