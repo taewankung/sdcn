@@ -16,6 +16,7 @@ from kivy.uix.filechooser import FileChooserListView
 from kivy.uix.button import Button
 import os
 from kivy.uix.popup import Popup
+import subprocess
 
 Builder.load_file(os.path.dirname(__file__) + '/controller.kv')
 
@@ -37,7 +38,23 @@ class SdcnController(BoxLayout):
         self.workflow_layout.bind(minimum_height=self.workflow_layout.setter('height'))
     def status_play_button(self):
         self.play_button.enable += 1
-        
+        path_file = '..'
+        self.out_label.text = path_file
+        if self.play_button.enable % 2 == 1 :
+            for bt in reversed(self.workflow_layout.children):
+                print(bt.__class__.__name__)
+                if bt.__class__.__name__ == 'FindFile':
+                    print(bt.filechooser_in_pop.path)
+                    path_file = str(bt.filechooser_in_pop.path)
+                    self.out_label.text = path_file
+#                     os.system('ls '+str(path_file))
+                elif bt.__class__.__name__ == 'CompressFile':
+                    print(path_file)
+                    #os.system('cd '+str(path_file)+' && '+'zip data.zip *png')
+#                     x = subprocess.check_output(['find', path_file, '-name', '*.py'])
+#                     print(x)
+#                     os.system('zip /tmp/xxx.zip %s'%(" ".join(x.decode('utf-8').split('/n'))))
+                                  
     def on_touch_down(self, touch):
         super().on_touch_down(touch)
         

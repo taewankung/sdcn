@@ -131,5 +131,3 @@ class SubMenu(StackLayout):
 #             layout.add_widget(text_input_y)    
 #END Video******************************************************************************************************************************END Video
 #         self.workflow_layout.add_widget(layout)
-    def delete_(self, button):
-        pass
