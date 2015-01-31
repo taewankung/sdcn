@@ -16,6 +16,7 @@ from kivy.uix.filechooser import FileChooserListView
 from kivy.uix.button import Button
 import os
 from kivy.uix.popup import Popup
+import subprocess
 
 Builder.load_file(os.path.dirname(__file__) + '/controller.kv')
 
@@ -41,23 +42,43 @@ class SdcnController(FloatLayout):
         self.workflow_layout.bind(minimum_height=self.workflow_layout.setter('height'))
     def status_play_button(self):
         self.ids.play_button.enable += 1
-        
+        path_file = '..'
+        self.out_label.text = path_file
+        if self.play_button.enable % 2 == 1 :
+            for bt in reversed(self.workflow_layout.children):
+                print(bt.__class__.__name__)
+                if bt.__class__.__name__ == 'FindFile':
+                    print(bt.filechooser_in_pop.path)
+                    path_file = str(bt.filechooser_in_pop.path)
+                    self.out_label.text = path_file
+#                     os.system('ls '+str(path_file))
+                elif bt.__class__.__name__ == 'CompressFile':
+                    print(path_file)
+                    #os.system('cd '+str(path_file)+' && '+'zip data.zip *png')
+#                     x = subprocess.check_output(['find', path_file, '-name', '*.py'])
+#                     print(x)
+#                     os.system('zip /tmp/xxx.zip %s'%(" ".join(x.decode('utf-8').split('/n'))))
+                                  
     def on_touch_down(self, touch):
         super().on_touch_down(touch)
         
         if self.ids.play_button.enable%2 == 1 :
             self.ids.play_button.background_normal = 'play1.png'
             self.ids.play_button.background_down = 'pause1.png'
+        if self.ids.play_button.enable%2 == 0:
+            self.ids.play_button.background_normal = '../sdcn/data/images/play1.png'
+            self.ids.play_button.background_down = '../sdcn/data/images/pause1.png'
         else:
             self.ids.play_button.background_normal = 'pause1.png'
             self.ids.play_button.background_down = 'play1.png'
+            self.ids.play_button.background_normal = '../sdcn/data/images/pause1.png'
+            self.ids.play_button.background_down = '../sdcn/data/images/play1.png'
             
     def change_submenu(self, menu_name, button):
         for bt in self.main_menu_layout.children:
-            if bt is button:
-                bt.disabled = True
-            else:
+            if bt.disabled == True :
                 bt.disabled = False
+        button.disabled = True
             
         for submenu in self.submenus:
             if submenu.__class__.__name__ == menu_name:

@@ -1,7 +1,0 @@
-#!/usr/bin/env python3
-
-from sdcn import application
-
-if __name__=='__main__':
-	app = application.SdcnApplication()
-	app.run()

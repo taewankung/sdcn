@@ -7,20 +7,21 @@
 			orientation: 'tb-lr'
 			size_hint_y:0.2
 			Image:
-				source: "logo.png"
+				source: "../sdcn/data/images/logo.png"
 				size_hint_x: 0.1
 				size_hint_y: 1
 			Image:
-				source: "name.png"
+				source: "../sdcn/data/images/name.png"
 				size_hint_x: 0.7
 				size_hint_y: 0.5
 			Label:
+				id: out_label
 				size_hint_x: 0.7
 				size_hint_y: 0.5
 			Button:
 				id: play_button
 				enable: 0
-				background_normal: 'play1.png'
+				background_normal: '../sdcn/data/images/play1.png'
 	        	background_down: 'pause1.png'
 				size_hint_x: None
 				size_hint_y: None
@@ -30,11 +31,17 @@
 		BoxLayout:
 			BoxLayout:
 				size_hint: (None,1)
-				size: (210,1)
+				size: (234,1)
 				padding: 10
 				orientation: 'vertical'
 				StackLayout:
 					id: main_menu_layout
+	##				canvas.before:
+	##    				Color:
+	##    					rgb: (0.5,0.5,0.5,2) # your color here
+	##    				Rectangle:
+	##    					pos: self.pos
+	##    					size: self.size
 					Label:
 						text: 'Menu'
 						size_hint_x: 1
@@ -42,40 +49,67 @@
 						size:(100,50)
 					Button:
 						id: document_button
-						background_color:(0,1.49,2,2)
-						text: 'Document Manager'
-						size_hint_x: 1
-						size_hint_y: 0.075
+						##background_color:(0,1.49,2,2)
+						background_normal: '../sdcn/data/images/doccument_icon.png'
+						
+						##text: 'Document Manager'
+						background_disabled_normal: '../sdcn/data/images/document_icon_disable.png'
+						background_disabled_down: '../sdcn/data/images/document_icon_disable.png'
+						size_hint_x: None
+						size_hint_y: None
+						size:(234,50)
 						on_press: root.change_submenu("DocumentMenu", document_button)
 					Button:
 						id: picture_button
-						text: 'Picture'
-						size_hint_x: 1
-						size_hint_y: 0.075
+						background_normal: '../sdcn/data/images/image_icon.png'
+						##text: 'Picture'
+						background_disabled_normal: '../sdcn/data/images/image_icon_disable.png'
+						background_disabled_down: '../sdcn/data/images/image_icon_disable.png'
+						size_hint_x: None
+						size_hint_y: None
+						size:(234,50)
 						on_press: root.change_submenu("ImageMenu", picture_button)
 					Button:
 						id: file_button
-						text: 'File and Folder'
-						size_hint_x: 1
-						size_hint_y: 0.075
+						background_normal: '../sdcn/data/images/File_icon.png'
+						
+						##text: 'File and Folder'
+						background_disabled_normal: '../sdcn/data/images/File_icon_disable.png'
+						background_disabled_down: '../sdcn/data/images/File_icon_disable.png'
+						size_hint_x: None
+						size_hint_y: None
+						size:(234,50)
 						on_press: root.change_submenu("FileAndFolderMenu", file_button)
 					Button:
 						id: pdf_button
-						text: 'PDF'
-						size_hint_x: 1
-						size_hint_y: 0.075
+						background_normal: '../sdcn/data/images/PDF_icon.png'
+						##background_down: '../sdcn/data/images/PDF_icon.png'
+						##text: 'PDF'
+						background_disabled_normal: '../sdcn/data/images/PDF_icon_disable.png'
+						background_disabled_down: '../sdcn/data/images/PDF_icon_disable.png'
+						size_hint_x: None
+						size_hint_y: None
+						size:(234,50)
 						on_press: root.change_submenu("PdfMenu", pdf_button)
 					Button:
 						id: music_button
-						text: 'Music '
-						size_hint_x: 1
-						size_hint_y: 0.075
+						background_normal: '../sdcn/data/images/music_icon.png'
+						##text: 'Music '
+						background_disabled_normal: '../sdcn/data/images/music_icon_disable.png'
+						background_disabled_down: '../sdcn/data/images/music_icon_disable.png'
+						size_hint_x: None
+						size_hint_y: None
+						size:(234,50)
 						on_press: root.change_submenu("MusicMenu", music_button)
 					Button:
 						id: video_button
-						text: 'Video'
-						size_hint_x: 1
-						size_hint_y: 0.075
+						background_normal: '../sdcn/data/images/video_icon.png'
+						##text: 'Video'
+						background_disabled_normal: '../sdcn/data/images/video_icon_disable.png'
+						background_disabled_down: '../sdcn/data/images/video_icon_disable.png'
+						size_hint_x: None
+						size_hint_y: None
+						size:(234,50)
 						on_press: root.change_submenu("VideoMenu", video_button)
 					Button:
 						id: save_button

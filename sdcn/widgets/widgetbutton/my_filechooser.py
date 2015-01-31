@@ -11,8 +11,10 @@ from kivy.uix.stacklayout import StackLayout
 from kivy.uix.button import Button
 Builder.load_file(os.path.dirname(__file__) + '/my_filechooser.kv')
 class MyFilechooser(Popup):
+    path = '/'
     def okfile(self):
         print(self.filechooser.path)
+        self.path = self.filechooser.path
         self.dismiss()
         
     def cancels(self):
