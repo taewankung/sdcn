@@ -59,25 +59,23 @@ class DraggableWidgetContainer(Magnet):
         if touch.grab_current == self:
             self.widget.center = touch.pos
             if self.workflow_layout.collide_point(*touch.pos):
+                
                 self.workflow_layout.remove_widget(self)
                 #float_layout.remove_widget(self)
+                #print(self.workflow_layout.children)
 
                 for i, c in enumerate(self.workflow_layout.children):
-                    
-                    #print(i,c.children)
-                    w = c
-                    if len(c.children) > 0:
-                        w = c.children[0]
-
-                        
-                    if w.collide_point(*touch.pos):
-                        self.workflow_layout.add_widget(self, i - 1)
-                    #    print("found")
+                    print(c.children)
+                    if c.collide_point(*touch.pos):
+                        #print(i, c)
+                        #print("add:", i+1)
+                        self.workflow_layout.add_widget(self, i+1)
                         break
                 else:
-                    # print("not")
+                    #print("not")
                     self.workflow_layout.add_widget(self)
             else:
+                #print("notnot")
                 if self.parent == self.workflow_layout:
                     #self.workflow_layout.remove_widget(self)
                     #float_layout.add_widget(self)
@@ -96,8 +94,8 @@ class DraggableWidgetContainer(Magnet):
         if touch.grab_current == self:
             #self.app.root.remove_widget(self.widget)
             self.main_layout.remove_widget(self.widget)
-            if self not in self.workflow_layout.children:
-                self.workflow_layout.add_widget(self)
+#             if self not in self.workflow_layout.children:
+#                 self.workflow_layout.add_widget(self)
             self.add_widget(self.widget)
             touch.ungrab(self)
             self.workflow_layout.do_layout()
