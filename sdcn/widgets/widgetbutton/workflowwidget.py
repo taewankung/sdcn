@@ -7,7 +7,7 @@ from kivy.lang import Builder
 from kivy.uix.stacklayout import StackLayout
 
 
-from kivy.garden.magnet import Magnet
+from sdcn.garden.magnet import Magnet
 from kivy.uix.image import Image
 from kivy.properties import ObjectProperty
 from kivy.lang import Builder
