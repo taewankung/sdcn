@@ -7,7 +7,7 @@ from kivy.lang import Builder
 from kivy.uix.stacklayout import StackLayout
 import os
 from kivy.app import App
-from sdcn.widgets.widgetbutton.deleteable import WorkflowWidget
+from sdcn.widgets.widgetbutton.workflowwidget import WorkflowWidget
 Builder.load_file(os.path.dirname(__file__) + '/resize_image.kv')
 class ResizeImage(WorkflowWidget):
     def __init__(self,workflow_layout):

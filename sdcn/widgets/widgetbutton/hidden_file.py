@@ -5,7 +5,7 @@ Created on Jan 27, 2015
 '''
 from kivy.lang import Builder
 from kivy.uix.stacklayout import StackLayout
-from sdcn.widgets.widgetbutton.deleteable import WorkflowWidget
+from sdcn.widgets.widgetbutton.workflowwidget import WorkflowWidget
 import os
 from kivy.app import App
 Builder.load_file(os.path.dirname(__file__) + '/hidden_file.kv')

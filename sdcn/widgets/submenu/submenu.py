@@ -22,37 +22,129 @@ from sdcn.widgets.widgetbutton.new_folder import NewFolder
 from sdcn.widgets.widgetbutton.resize_image import ResizeImage
 from sdcn.widgets.widgetbutton.crop_image import CropImage
 from sdcn.widgets.widgetbutton.rename_image import RenameImage
-from sdcn.widgets.widgetbutton.resize_image import ResizeImage
 from sdcn.widgets.widgetbutton.change_image_type import ChangeImageType
 from sdcn.widgets.widgetbutton.convert_music_type import ConvertMusicType
+from sdcn.widgets.widgetbutton.workflowwidget import DraggableWidgetContainer
+
+from kivy.garden.magnet import Magnet
+from kivy.uix.image import Image
+from kivy.properties import ObjectProperty
+from kivy.clock import Clock
+
 Builder.load_string('''
 <Delete_button>
     text: 'X'
     size_hint: (0.1,0.3)
 ''')
 
+
+class DraggableSubmenuContainer(Magnet):
+    menu = ObjectProperty(None, allownone=True)
+    app = ObjectProperty(None)
+
+    def on_menu(self, *args):
+        self.clear_widgets()
+
+        if self.menu:
+            Clock.schedule_once(lambda *x: self.add_widget(self.menu), 0)
+
+    def on_touch_down(self, touch, *args):
+        if self.collide_point(*touch.pos):
+            touch.grab(self)
+            self.remove_widget(self.menu)
+            self.app.root.add_widget(self.menu)
+            self.center = touch.pos
+            self.menu.center = touch.pos
+            return True
+
+        return super().on_touch_down(touch, *args)
+
+    def on_touch_move(self, touch, *args):
+        grid_layout = self.app.root.ids.grid_layout
+        float_layout = self.app.root.ids.float_layout
+
+        if touch.grab_current == self:
+            self.img.center = touch.pos
+            if grid_layout.collide_point(*touch.pos):
+                grid_layout.remove_widget(self)
+                float_layout.remove_widget(self)
+
+                for i, c in enumerate(grid_layout.children):
+                    if c.collide_point(*touch.pos):
+                        grid_layout.add_widget(self, i - 1)
+                        break
+                else:
+                    grid_layout.add_widget(self)
+            else:
+                if self.parent == grid_layout:
+                    grid_layout.remove_widget(self)
+                    float_layout.add_widget(self)
+
+                self.center = touch.pos
+
+        return super().on_touch_move(touch, *args)
+
+    def on_touch_up(self, touch, *args):
+        if touch.grab_current == self:
+            self.app.root.remove_widget(self.menu)
+            self.add_widget(self.menu)
+            touch.ungrab(self)
+            return True
+
+        return super().on_touch_up(touch, *args)
+
+
         
 class SubMenu(StackLayout):
     
-    def __init__(self, workflow_layout):
+    def __init__(self, workflow_layout, main_layout):
         super().__init__()
         self.workflow_layout = workflow_layout
+        self.main_layout = main_layout
         self.bh = int(.075*self.workflow_layout.height)   
+        
     def add_to_workflow_layout(self, button):
         new_label = Label(text=button.text, size_hint_x=0.89,
                             size_hint_y= 0.5)
 #         layout = StackLayout(size_hint = (1,None),size = (self.workflow_layout.width,self.bh*2))
 #         layout.add_widget(Delete_button())
         if new_label.text == 'Find File':
-            self.workflow_layout.add_widget(FindFile(self.workflow_layout))
+            dw = DraggableWidgetContainer(widget=FindFile(self.workflow_layout),
+                                          workflow_layout=self.workflow_layout,
+                                          main_layout=self.main_layout,
+                                          size_hint=(1,None),
+                                          size=(1,100))
+            self.workflow_layout.add_widget(dw)
         elif new_label.text == 'Compress Files':
-            self.workflow_layout.add_widget(CompressFile(self.workflow_layout))
+            dw = DraggableWidgetContainer(widget=CompressFile(self.workflow_layout),
+                                          workflow_layout=self.workflow_layout,
+                                          main_layout=self.main_layout,
+                                          size_hint=(1,None),
+                                          size=(1,100))
+            self.workflow_layout.add_widget(dw)
+            
         elif new_label.text == 'Convert Files':
-            self.workflow_layout.add_widget(ConvertFile(self.workflow_layout))
+            dw = DraggableWidgetContainer(widget=ConvertFile(self.workflow_layout),
+                                          workflow_layout=self.workflow_layout,
+                                          main_layout=self.main_layout,
+                                          size_hint=(1,None),
+                                          size=(1,100))
+            self.workflow_layout.add_widget(dw)
         elif new_label.text == 'Hidden Files':
-            self.workflow_layout.add_widget(HiddenFile(self.workflow_layout))
+            dw = DraggableWidgetContainer(widget=HiddenFile(self.workflow_layout),
+                                          workflow_layout=self.workflow_layout,
+                                          main_layout=self.main_layout,
+                                          size_hint=(1,None),
+                                          size=(1,100))
+            self.workflow_layout.add_widget(dw)
+
         elif new_label.text == 'New Folder':
-            self.workflow_layout.add_widget(NewFolder(self.workflow_layout))
+            dw = DraggableWidgetContainer(widget=NewFolder(self.workflow_layout),
+                                          workflow_layout=self.workflow_layout,
+                                          main_layout=self.main_layout,
+                                          size_hint=(1,None),
+                                          size=(1,100))
+            self.workflow_layout.add_widget(dw)
 # #Picture Menu*****************************************************************************************************************************          PICTURE
 # 
 #         elif new_label.text == 'Resize Photo': 

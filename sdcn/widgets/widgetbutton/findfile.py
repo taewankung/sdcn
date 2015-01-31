@@ -3,7 +3,7 @@ Created on Jan 26, 2015
 
 @author: aran
 '''
-from sdcn.widgets.widgetbutton.deleteable import WorkflowWidget
+from sdcn.widgets.widgetbutton.workflowwidget import WorkflowWidget
 # from kivy.uix.spinner import Spinner
 from kivy.lang import Builder
 from kivy.uix.stacklayout import StackLayout

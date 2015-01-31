@@ -1,124 +1,113 @@
 #:kivy 1.0
 <SdcnController>:
-	main_menu_layout: _main_menu_layout
-	sub_menu_layout: _sub_menu_layout
-	workflow_layout: _workflow_layout
-	save_button:_save_button
-	pdf_button: _pdf_button
-	document_button: _document_button
-	file_button: _file_button
-	picture_button: _picture_button
-	music_button: _music_button
-	video_button: _video_button
-	play_button: _play_button
-	
-	padding: 20
-	orientation: 'vertical'
-	StackLayout:
-		orientation: 'tb-lr'
-		size_hint_y:0.2
-		Image:
-			source: "logo.png"
-			size_hint_x: 0.1
-			size_hint_y: 1
-		Image:
-			source: "name.png"
-			size_hint_x: 0.7
-			size_hint_y: 0.5
-		Label:
-			size_hint_x: 0.7
-			size_hint_y: 0.5
-		Button:
-			id: _play_button
-			enable: 0
-			background_normal: 'play1.png'
-        	background_down: 'pause1.png'
-			size_hint_x: None
-			size_hint_y: None
-			size:(60,60)
-			on_press: root.status_play_button()
-				
 	BoxLayout:
+		padding: 20
+		orientation: 'vertical'
+		StackLayout:
+			orientation: 'tb-lr'
+			size_hint_y:0.2
+			Image:
+				source: "logo.png"
+				size_hint_x: 0.1
+				size_hint_y: 1
+			Image:
+				source: "name.png"
+				size_hint_x: 0.7
+				size_hint_y: 0.5
+			Label:
+				size_hint_x: 0.7
+				size_hint_y: 0.5
+			Button:
+				id: play_button
+				enable: 0
+				background_normal: 'play1.png'
+	        	background_down: 'pause1.png'
+				size_hint_x: None
+				size_hint_y: None
+				size:(60,60)
+				on_press: root.status_play_button()
+					
 		BoxLayout:
-			size_hint: (None,1)
-			size: (210,1)
-			padding: 10
-			orientation: 'vertical'
+			BoxLayout:
+				size_hint: (None,1)
+				size: (210,1)
+				padding: 10
+				orientation: 'vertical'
+				StackLayout:
+					id: main_menu_layout
+					Label:
+						text: 'Menu'
+						size_hint_x: 1
+						size_hint_y: None
+						size:(100,50)
+					Button:
+						id: document_button
+						background_color:(0,1.49,2,2)
+						text: 'Document Manager'
+						size_hint_x: 1
+						size_hint_y: 0.075
+						on_press: root.change_submenu("DocumentMenu", document_button)
+					Button:
+						id: picture_button
+						text: 'Picture'
+						size_hint_x: 1
+						size_hint_y: 0.075
+						on_press: root.change_submenu("ImageMenu", picture_button)
+					Button:
+						id: file_button
+						text: 'File and Folder'
+						size_hint_x: 1
+						size_hint_y: 0.075
+						on_press: root.change_submenu("FileAndFolderMenu", file_button)
+					Button:
+						id: pdf_button
+						text: 'PDF'
+						size_hint_x: 1
+						size_hint_y: 0.075
+						on_press: root.change_submenu("PdfMenu", pdf_button)
+					Button:
+						id: music_button
+						text: 'Music '
+						size_hint_x: 1
+						size_hint_y: 0.075
+						on_press: root.change_submenu("MusicMenu", music_button)
+					Button:
+						id: video_button
+						text: 'Video'
+						size_hint_x: 1
+						size_hint_y: 0.075
+						on_press: root.change_submenu("VideoMenu", video_button)
+					Button:
+						id: save_button
+						text: 'Save As...'
+						size_hint_x: 1
+						size_hint_y: 0.075
+						on_press: root.save_as()
+						
 			StackLayout:
-				id: _main_menu_layout
+				size_hint: (None,1)
+				size: (210,1)
+				padding: 10
 				Label:
-					text: 'Menu'
+					text: 'Actions'
 					size_hint_x: 1
 					size_hint_y: None
 					size:(100,50)
-				Button:
-					id: _document_button
-					background_color:(0,1.49,2,2)
-					text: 'Document Manager'
-					size_hint_x: 1
-					size_hint_y: 0.075
-					on_press: root.change_submenu("DocumentMenu", _document_button)
-				Button:
-					id: _picture_button
-					text: 'Picture'
-					size_hint_x: 1
-					size_hint_y: 0.075
-					on_press: root.change_submenu("ImageMenu", _picture_button)
-				Button:
-					id: _file_button
-					text: 'File and Folder'
-					size_hint_x: 1
-					size_hint_y: 0.075
-					on_press: root.change_submenu("FileAndFolderMenu", _file_button)
-				Button:
-					id: _pdf_button
-					text: 'PDF'
-					size_hint_x: 1
-					size_hint_y: 0.075
-					on_press: root.change_submenu("PdfMenu", _pdf_button)
-				Button:
-					id: _music_button
-					text: 'Music '
-					size_hint_x: 1
-					size_hint_y: 0.075
-					on_press: root.change_submenu("MusicMenu", _music_button)
-				Button:
-					id: _video_button
-					text: 'Video'
-					size_hint_x: 1
-					size_hint_y: 0.075
-					on_press: root.change_submenu("VideoMenu", _video_button)
-				Button:
-					id: _save_button
-					text: 'Save As...'
-					size_hint_x: 1
-					size_hint_y: 0.075
-					on_press: root.save_as()
-					
-		StackLayout:
-			size_hint: (None,1)
-			size: (210,1)
-			padding: 10
-			Label:
-				text: 'Actions'
-				size_hint_x: 1
-				size_hint_y: None
-				size:(100,50)
-			StackLayout:
-				id: _sub_menu_layout
-		StackLayout:
-			Label:
-				text: 'New'
-				size_hint_x: 1
-				size_hint_y: None
-				size:(100,65)
-			ScrollView:
-				bar_color:(2,0,0,1)
 				StackLayout:
-					id: _workflow_layout
-					spacing: 1
-					##cols: 1
-					size_hint_y:  None
-					height:500
-				
-				
+					id: sub_menu_layout
+			StackLayout:
+				Label:
+					text: 'New'
+					size_hint_x: 1
+					size_hint_y: None
+					size:(100,65)
+				ScrollView:
+					bar_color:(2,0,0,1)
+					GridLayout:
+						id: workflow_layout
+						spacing: 1
+						cols: 1
+						size_hint_y:  None
+						height:500
+					
+					

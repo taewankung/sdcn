@@ -5,7 +5,7 @@ Created on Jan 14, 2015
 '''
 from kivy.lang import Builder
 from kivy.uix.stacklayout import StackLayout
-from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.floatlayout import FloatLayout
 from sdcn.widgets.submenu.pdf import PdfMenu
 from sdcn.widgets.submenu.document import DocumentMenu
 from sdcn.widgets.submenu.fileandfolder import FileAndFolderMenu
@@ -20,7 +20,7 @@ from kivy.uix.popup import Popup
 Builder.load_file(os.path.dirname(__file__) + '/controller.kv')
 
 
-class SdcnController(BoxLayout):
+class SdcnController(FloatLayout):
     def __init__(self):
         super().__init__()
 #         self.pdf_menu = PdfMenu()
@@ -29,24 +29,28 @@ class SdcnController(BoxLayout):
 #         self.picture_menu = PictureMenu()
 #         self.music_menu = MusicMenu()
 #         self.video_menu = VideoMenu()
+        self.main_menu_layout = self.ids.main_menu_layout
+        self.sub_menu_layout = self.ids.sub_menu_layout
+        self.workflow_layout = self.ids.workflow_layout
         
+        self.submenus = [PdfMenu(self.workflow_layout, self), DocumentMenu(self.workflow_layout, self), 
+                         FileAndFolderMenu(self.workflow_layout, self), ImageMenu(self.workflow_layout, self), 
+                         MusicMenu(self.workflow_layout, self), VideoMenu(self.workflow_layout, self)]
         
-        self.submenus = [PdfMenu(self.workflow_layout), DocumentMenu(self.workflow_layout), FileAndFolderMenu(self.workflow_layout),
-                         ImageMenu(self.workflow_layout), MusicMenu(self.workflow_layout), VideoMenu(self.workflow_layout)]
         
         self.workflow_layout.bind(minimum_height=self.workflow_layout.setter('height'))
     def status_play_button(self):
-        self.play_button.enable += 1
+        self.ids.play_button.enable += 1
         
     def on_touch_down(self, touch):
         super().on_touch_down(touch)
         
-        if self.play_button.enable%2 == 1 :
-            self.play_button.background_normal = 'play1.png'
-            self.play_button.background_down = 'pause1.png'
+        if self.ids.play_button.enable%2 == 1 :
+            self.ids.play_button.background_normal = 'play1.png'
+            self.ids.play_button.background_down = 'pause1.png'
         else:
-            self.play_button.background_normal = 'pause1.png'
-            self.play_button.background_down = 'play1.png'
+            self.ids.play_button.background_normal = 'pause1.png'
+            self.ids.play_button.background_down = 'play1.png'
             
     def change_submenu(self, menu_name, button):
         for bt in self.main_menu_layout.children:

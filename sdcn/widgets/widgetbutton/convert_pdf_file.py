@@ -4,7 +4,7 @@
 
 # from kivy.app import App
 from kivy.lang import Builder
-from sdcn.widgets.widgetbutton.deleteable import WorkflowWidget
+from sdcn.widgets.widgetbutton.workflowwidget import WorkflowWidget
 import os
 Builder.load_file(os.path.dirname(__file__) + '/convert_pdf_file.kv')
 class ConvertPDFFile(WorkflowWidget):

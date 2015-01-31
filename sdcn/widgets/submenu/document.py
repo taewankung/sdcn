@@ -12,6 +12,6 @@ from .submenu import SubMenu
 Builder.load_file(os.path.dirname(__file__) + '/document.kv')
 
 class DocumentMenu(SubMenu):
-    def __init__(self, workflow_layout):
-        super().__init__(workflow_layout)
+    def __init__(self, workflow_layout, main_layout):
+        super().__init__(workflow_layout, main_layout)
    

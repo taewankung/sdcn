@@ -11,7 +11,8 @@ from kivy.app import App
 from kivy.uix.popup import Popup
 from kivy.uix.filechooser import FileChooserListView
 from kivy.uix.button import Button
-from sdcn.widgets.widgetbutton.deleteable import WorkflowWidget
+from sdcn.widgets.widgetbutton.workflowwidget import WorkflowWidget
+
 Builder.load_file(os.path.dirname(__file__) + '/add_photo_to_album.kv')
 class AddPhotoToAlbum(WorkflowWidget):
     def __init__(self, workflow_layout):
