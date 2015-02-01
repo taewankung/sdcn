@@ -52,9 +52,9 @@ class DraggableSubmenuContainer(Magnet):
         if self.collide_point(*touch.pos):
             touch.grab(self)
             self.remove_widget(self.menu)
-            self.app.root.add_widget(self.menu)
             self.center = touch.pos
             self.menu.center = touch.pos
+            self.app.root.add_widget(self.menu)
             return True
 
         return super().on_touch_down(touch, *args)

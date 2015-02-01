@@ -42,15 +42,15 @@ class SdcnController(FloatLayout):
         self.workflow_layout.bind(minimum_height=self.workflow_layout.setter('height'))
     def status_play_button(self):
         self.ids.play_button.enable += 1
-        path_file = '..'
-        self.out_label.text = path_file
-        if self.play_button.enable % 2 == 1 :
+        if self.ids.play_button.enable % 2 == 1 :
+            path_file = '..'
+            self.ids.out_label.text = path_file
             for bt in reversed(self.workflow_layout.children):
-                print(bt.__class__.__name__)
-                if bt.__class__.__name__ == 'FindFile':
-                    print(bt.filechooser_in_pop.path)
-                    path_file = str(bt.filechooser_in_pop.path)
-                    self.out_label.text = path_file
+                print(bt.widget.__class__.__name__)
+                if bt.widget.__class__.__name__ == 'FindFile':
+                    print(bt.widget.filechooser_in_pop.path)
+                    path_file = str(bt.widget.filechooser_in_pop.path)
+                    self.ids.out_label.text = path_file
 #                     os.system('ls '+str(path_file))
                 elif bt.__class__.__name__ == 'CompressFile':
                     print(path_file)
