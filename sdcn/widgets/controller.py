@@ -54,12 +54,16 @@ class SdcnController(FloatLayout):
                 elif bt.widget.__class__.__name__ == 'ConvertFile':
                     print(bt.widget.ids.type.text)
                     if bt.widget.ids.type.text == '.doc to Text':
-                        print('555')
+                        print('doc to text')
                     elif bt.widget.ids.type.text == '.doc to Html':
-                        print('666')
+                        print('doc to html')
                 elif bt.widget.__class__.__name__ == 'CompressFile':
-                    print('com')
-                
+                    print(bt.widget.ids.type.text)
+                    if bt.widget.ids.type.text == '.Zip':
+                        print('Zip')
+                    elif bt.widget.ids.type.text == '.XZip':
+                        print('XZip')
+               
 #1                     os.system('ls '+str(path_file))
 #                 elif bt.widget.__class__.__name__ == 'NewFolder':
 # #                     print((bt.widget.ids.text_folder.text))
