@@ -51,13 +51,20 @@ class SdcnController(FloatLayout):
                     print(bt.widget.filechooser_in_pop.path)
                     path_file = str(bt.widget.filechooser_in_pop.path)
                     self.ids.out_label.text = path_file
-#                     os.system('ls '+str(path_file))
-                elif bt.__class__.__name__ == 'CompressFile':
-                    print(path_file)
-                    #os.system('cd '+str(path_file)+' && '+'zip data.zip *png')
-#                     x = subprocess.check_output(['find', path_file, '-name', '*.py'])
-#                     print(x)
-#                     os.system('zip /tmp/xxx.zip %s'%(" ".join(x.decode('utf-8').split('/n'))))
+                elif bt.widget.__class__.__name__ == 'ConvertFile':
+                    print(bt.widget.ids.type.text)
+                    if bt.widget.ids.type.text == '.doc to Text':
+                        print('555')
+                    elif bt.widget.ids.type.text == '.doc to Html':
+                        print('666')
+                elif bt.widget.__class__.__name__ == 'CompressFile':
+                    print('com')
+                
+#1                     os.system('ls '+str(path_file))
+#                 elif bt.widget.__class__.__name__ == 'NewFolder':
+# #                     print((bt.widget.ids.text_folder.text))
+#                     subprocess.call(["mkdir", str(bt.widget.ids.text_folder.text)])
+#                     subprocess.call(['ls'])
                                   
     def on_touch_down(self, touch):
         super().on_touch_down(touch)
