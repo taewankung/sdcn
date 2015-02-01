@@ -63,7 +63,8 @@ class SdcnController(FloatLayout):
                         print('Zip')
                     elif bt.widget.ids.type.text == '.XZip':
                         print('XZip')
-               
+                elif bt.widget.__class__.__name__ == 'HiddenFile':
+                    print('hiddenfile')
 #1                     os.system('ls '+str(path_file))
 #                 elif bt.widget.__class__.__name__ == 'NewFolder':
 # #                     print((bt.widget.ids.text_folder.text))
