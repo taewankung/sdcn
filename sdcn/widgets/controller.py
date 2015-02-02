@@ -90,6 +90,10 @@ class SdcnController(FloatLayout):
                         print('XZip')
                 elif bt.widget.__class__.__name__ == 'HiddenFile':
                     print('hiddenfile')
+                elif bt.widget.__class__.__name__ == 'ConvertPDFFile':
+                    print(bt.widget.ids.type.text)
+                    if bt.widget.ids.type.text == 'image to PDF':
+                        subprocess.call(['convert','*.png',str(bt.widget.ids.nameinput.text+'.pdf')])
 #1                     os.system('ls '+str(path_file))
 #                 elif bt.widget.__class__.__name__ == 'NewFolder':
 # #                     print((bt.widget.ids.text_folder.text))
