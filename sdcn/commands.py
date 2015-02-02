@@ -28,6 +28,10 @@ class ConvertFileCommand(Command):
     def build(self):
         #return ['pandoc', '-s', self.kwargs['source'], '-o', self.kwargs['target']]
         return ['convert', self.kwargs['source'], self.kwargs['target']]
+class ChangImageTypeCommand(Command):
+    
+    def build(self):
+        return ['convert', self.kwargs['source'], self.kwargs['target']]
     
     
 class CommandRunner(threading.Thread):
