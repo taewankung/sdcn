@@ -5,39 +5,46 @@
 
 	orientation: 'tb-lr'
 	test: _test
-	Label:
-		text: 'DocumentMenu'
-		size_hint_x: 1
-		size_hint_y: 0.075
+	
 		
 	Button:
 		id: _test
+		background_normal: '../sdcn/data/images/icon1.png'
 		text: 'Find File'
 		size_hint_x: 1
-		size_hint_y: 0.075
+		size_hint_y: None
+		size:(1,40)
 		on_press: root.add_to_workflow_layout(self)
-		background_color: (2,2,2,2)
+	
 	Button:
 		text: 'Convert Files'
+		background_normal: '../sdcn/data/images/icon1.png'
 		size_hint_x: 1
-		size_hint_y: 0.075
+		size_hint_y: None
+		size:(1,40)
 		on_press: root.add_to_workflow_layout(self)
 		## .doc to .html .doc to .txt .doc to .pdf
 		
 	Button:
 		text: 'Compress Files'
+		background_normal: '../sdcn/data/images/icon1.png'
 		size_hint_x: 1
-		size_hint_y: 0.075
+		size_hint_y: None
+		size:(1,40)
 		on_press: root.add_to_workflow_layout(self)
 	Button:
 		text: 'Hidden Files'
+		background_normal: '../sdcn/data/images/icon1.png'
 		size_hint_x: 1
-		size_hint_y: 0.075
+		size_hint_y: None
+		size:(1,40)
 		on_press: root.add_to_workflow_layout(self)
 	Button:
 		text: 'New Folder'
+		background_normal: '../sdcn/data/images/icon1.png'
 		size_hint_x: 1
-		size_hint_y: 0.075
+		size_hint_y: None
+		size:(1,40)
 		on_press: root.add_to_workflow_layout(self)
 <Order_finder>
 	StackLayout:

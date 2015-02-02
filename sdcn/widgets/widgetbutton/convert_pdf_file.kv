@@ -1,17 +1,26 @@
 <ConvertPDFFile>:
 	size_hint: (None,None)
-	size: (1,100)
+	size: (1,300)
 	Label:
 		id: workflow_header
 		text: 'Convert_PDF_file'
-		size_hint:(0.89,0.5)
+		size_hint:(0.89,0.50)
 	Button:
 		text: 'X'
-		size_hint:(0.1,0.3)
+		size_hint:(0.1,0.15)
 		on_press: root.delete_in_workflow_layout(root)
 		
 	Spinner:
+		id: type
 		text: 'PDF to image'
 		values: ('doc to PDF','image to PDF')
-		size_hint: (1,0.5)
+		size_hint: (0.40,0.5)
 		size:  (1,44)
+	Label:
+		size_hint:(0.30,0.5)
+		text:'Name new file'
+	TextInput:
+		id:nameinput
+		size_hint:(0.29,0.5)
+		
+	
