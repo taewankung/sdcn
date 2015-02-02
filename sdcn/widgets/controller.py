@@ -17,6 +17,7 @@ from kivy.uix.button import Button
 import os
 from kivy.uix.popup import Popup
 import subprocess
+from sdcn import commands
 
 Builder.load_file(os.path.dirname(__file__) + '/controller.kv')
 
@@ -45,18 +46,42 @@ class SdcnController(FloatLayout):
         if self.ids.play_button.enable % 2 == 1 :
             path_file = '..'
             self.ids.out_label.text = path_file
+            
+            
+            command_output = None
             for bt in reversed(self.workflow_layout.children):
                 print(bt.widget.__class__.__name__)
                 if bt.widget.__class__.__name__ == 'FindFile':
-                    print(bt.widget.filechooser_in_pop.path)
+#                     print(bt.widget.filechooser_in_pop.path)
                     path_file = str(bt.widget.filechooser_in_pop.path)
                     self.ids.out_label.text = path_file
+                    # print(bt.widget.ids.file_input.text)
+                    #test1 = ['find', str(path_file) ,  '-name',str(bt.widget.ids.file_input.text)]
+                    #test = subprocess.check_output(test1)
+                    #print(test)
+                    
+                    cmd = commands.FindCommand(path=path_file, pattern=bt.widget.ids.file_input.text)
+                    cmd_runner = commands.CommandRunner(cmd.build())
+                    cmd_runner.start()
+                    cmd_runner.join()
+                    print("output:", cmd_runner.output)
+                    command_output = cmd_runner.output
+                    
                 elif bt.widget.__class__.__name__ == 'ConvertFile':
                     print(bt.widget.ids.type.text)
                     if bt.widget.ids.type.text == '.doc to Text':
-                        print('doc to text')
-                    elif bt.widget.ids.type.text == '.doc to Html':
-                        print('doc to html')
+#                         subprocess.call(['libreoffice', '--invisible', '--convert-to', 'txt:text', 'file1.docx']) 
+#                     elif bt.widget.ids.type.text == '.doc to Html':
+#                         print('doc to html')
+                        if type(command_output) is list:
+                            for i in command_output:
+                                cmd = commands.ConvertFileCommand(source = i, target=i.replace(".doc","")+".pdf")
+                                cmd_runner = commands.CommandRunner(cmd.build())
+                                cmd_runner.start()
+                                cmd_runner.join()
+                                print(cmd_runner.output)
+                                command_output = cmd_runner.output
+                            
                 elif bt.widget.__class__.__name__ == 'CompressFile':
                     print(bt.widget.ids.type.text)
                     if bt.widget.ids.type.text == '.Zip':

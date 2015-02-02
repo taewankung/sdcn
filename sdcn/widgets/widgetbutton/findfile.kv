@@ -2,7 +2,7 @@
 	size_hint: (None,None)
 	##size: (100,100)
     Label:
-    	id: workflow_header
+    	id: workflow_header 
     	text: 'Find File'
 		size_hint: (0.89,0.5)
 	Button:
@@ -12,5 +12,11 @@
 	Button:
 		id: _browser_button
 		text: 'Browser'
-		size_hint: (1,0.5)
+		size_hint: (0.5,0.5)
 		on_press: root.open_file_chooser()
+	Label:
+		text: 'find'
+		size_hint: (0.25,0.5)
+	TextInput:
+		id: file_input
+		size_hint: (0.25,0.5)
