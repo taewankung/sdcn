@@ -18,6 +18,7 @@ import os
 from kivy.uix.popup import Popup
 import subprocess
 from sdcn import commands
+from kivy.core.audio import SoundLoader
 
 Builder.load_file(os.path.dirname(__file__) + '/controller.kv')
 
@@ -134,6 +135,8 @@ class SdcnController(FloatLayout):
             
         for submenu in self.submenus:
             if submenu.__class__.__name__ == menu_name:
+                sound = SoundLoader.load('/home/progreanmer/workspace/sdcn/sdcn/data/audio/button.wav')
+                sound.play()
                 self.sub_menu_layout.clear_widgets()
                 self.sub_menu_layout.add_widget(submenu)
                 break
