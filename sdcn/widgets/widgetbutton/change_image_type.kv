@@ -1,6 +1,14 @@
 <ChangeImageType>:
 	size_hint: (None,None)
 	size: (1,100)
+	padding: [10, 0, 10, 10]
+	canvas.before:
+        # red color
+        Color:
+            rgb: 1, 0, 0
+        Rectangle:
+            pos: self.pos
+            size: self.size
 	Label:
 		id: workflow_header
 		text: 'Change Image Type'
@@ -14,3 +22,4 @@
 		values: ('.png','.jpg','.gif','.tif')
 		size_hint: (1,0.5)
 		size:  (1,44)
+		
