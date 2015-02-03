@@ -18,6 +18,7 @@ import os
 from kivy.uix.popup import Popup
 import subprocess
 from sdcn import commands
+from kivy.core.audio import SoundLoader
 
 Builder.load_file(os.path.dirname(__file__) + '/controller.kv')
 
@@ -102,6 +103,17 @@ class SdcnController(FloatLayout):
                                 print(cmd_runner.output)
                                 command_output = cmd_runner.output
 #                         subprocess.call(['convert','*.png',str(bt.widget.ids.nameinput.text+'.pdf')])
+                elif bt.widget.__class__.__name__ == 'ChangeImageType':
+                    if type(command_output) is list:
+                            for i in command_output:
+                                cmd = commands.ChangImageTypeCommand(source = i, target=i[:i.rfind('.')]+".jpg")
+                                cmd_runner = commands.CommandRunner(cmd.build())
+                                cmd_runner.start()
+                                cmd_runner.join()
+                                print(cmd_runner.output)
+                                command_output = cmd_runner.output
+                        
+                        ##subprocess.call(['convert','*.png',str(bt.widget.ids.nameinput.text+'.pdf')])
 #1                     os.system('ls '+str(path_file))
 #                 elif bt.widget.__class__.__name__ == 'NewFolder':
 # #                     print((bt.widget.ids.text_folder.text))
@@ -131,6 +143,8 @@ class SdcnController(FloatLayout):
             
         for submenu in self.submenus:
             if submenu.__class__.__name__ == menu_name:
+                sound = SoundLoader.load('/home/progreanmer/workspace/sdcn/sdcn/data/audio/button.wav')
+                sound.play()
                 self.sub_menu_layout.clear_widgets()
                 self.sub_menu_layout.add_widget(submenu)
                 break
