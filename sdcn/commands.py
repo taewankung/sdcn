@@ -28,7 +28,16 @@ class ConvertFileCommand(Command):
     def build(self):
         #return ['pandoc', '-s', self.kwargs['source'], '-o', self.kwargs['target']]
         return ['convert', self.kwargs['source'], self.kwargs['target']]
-    
+class ConvertFilePDFImageCommand(Command):
+    #command_pattern = 'pandoc -s %s -o %s'
+    def build(self):
+        #return ['pandoc', '-s', self.kwargs['source'], '-o', self.kwargs['target']]
+        return ['convert', self.kwargs['source'], self.kwargs['target']]
+class ConvertFileImagePDFCommand(Command):
+    #command_pattern = 'pandoc -s %s -o %s'
+    def build(self):
+        #return ['pandoc', '-s', self.kwargs['source'], '-o', self.kwargs['target']]
+        return ['convert', self.kwargs['source'], self.kwargs['target']]
     
 class CommandRunner(threading.Thread):
     def __init__(self, command):

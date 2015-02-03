@@ -75,7 +75,7 @@ class SdcnController(FloatLayout):
 #                         print('doc to html')
                         if type(command_output) is list:
                             for i in command_output:
-                                cmd = commands.ConvertFileCommand(source = i, target=i.replace(".doc","")+".pdf")
+                                cmd = commands.ConvertFileCommand(source = i, target=i[:i.rfind(".")]+".pdf")
                                 cmd_runner = commands.CommandRunner(cmd.build())
                                 cmd_runner.start()
                                 cmd_runner.join()
@@ -93,7 +93,15 @@ class SdcnController(FloatLayout):
                 elif bt.widget.__class__.__name__ == 'ConvertPDFFile':
                     print(bt.widget.ids.type.text)
                     if bt.widget.ids.type.text == 'image to PDF':
-                        subprocess.call(['convert','*.png',str(bt.widget.ids.nameinput.text+'.pdf')])
+                        if type(command_output) is list:
+                            for i in command_output:
+                                cmd = commands.ConvertFilePDFImageCommand(source = '/home/taewankung/Pictures/12.png', target=i[:i.rfind("/")]+"/out.pdf")
+                                cmd_runner = commands.CommandRunner(cmd.build())
+                                cmd_runner.start()
+                                cmd_runner.join()
+                                print(cmd_runner.output)
+                                command_output = cmd_runner.output
+#                         subprocess.call(['convert','*.png',str(bt.widget.ids.nameinput.text+'.pdf')])
 #1                     os.system('ls '+str(path_file))
 #                 elif bt.widget.__class__.__name__ == 'NewFolder':
 # #                     print((bt.widget.ids.text_folder.text))
