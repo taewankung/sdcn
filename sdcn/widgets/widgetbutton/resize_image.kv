@@ -9,7 +9,20 @@
 		text: 'X'
 		size_hint:(0.1,0.3)
 		on_press: root.delete_in_workflow_layout(root)
-	
+	Label:
+		text: 'size:'
+		size_hint: (0.2,0.5)
 	TextInput:
+		id: size_per
 		multiline: False
-		size_hint: (0.5,0.5)
+		size_hint: (0.2,0.5)
+	Label:
+		text: '%'
+		size_hint: (0.1,0.5)
+	Label:
+		text: 'Type:'
+		size_hint: (0.2,0.5)
+	TextInput:
+		id: type_name
+		multiline: False
+		size_hint: (0.2,0.5)

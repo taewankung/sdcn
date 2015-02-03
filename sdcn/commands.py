@@ -32,8 +32,11 @@ class ChangImageTypeCommand(Command):
     
     def build(self):
         return ['convert', self.kwargs['source'], self.kwargs['target']]
+class resize(Command):
+    def build(self):
+        return ['convert', self.kwargs['source'],'-resize',self.kwargs['percent'],self.kwargs['target']]
     
-    
+
 class CommandRunner(threading.Thread):
     def __init__(self, command):
         super().__init__()
