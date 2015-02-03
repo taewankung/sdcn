@@ -15,10 +15,11 @@ class MyFilechooser(Popup):
     def okfile(self):
         print(self.filechooser.path)
         self.path = self.filechooser.path
+        self.selection = self.filechooser.selection
         self.dismiss()
         
     def cancels(self):
-        self.dismiss()
+        self.dismiss()#                     print(selection_file)
     pass
 
 class TestApp(App):
