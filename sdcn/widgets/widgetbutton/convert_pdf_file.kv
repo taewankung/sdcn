@@ -1,13 +1,23 @@
 <ConvertPDFFile>:
 	size_hint: (None,None)
 	size: (1,300)
+	canvas.before:
+        Rectangle:
+        	source: '../sdcn/data/images/gray1.png'
+            pos: self.pos
+            size: self.size
 	Label:
 		id: workflow_header
 		text: 'Convert_PDF_file'
 		size_hint:(0.89,0.50)
+		canvas.before:
+			Rectangle:
+				source: '../sdcn/data/images/gray2.png'
+				pos: self.pos
+            	size: self.size
 	Button:
 		text: 'X'
-		size_hint:(0.1,0.15)
+		size_hint:(0.1,0.5)
 		on_press: root.delete_in_workflow_layout(root)
 		
 	Spinner:
@@ -18,7 +28,7 @@
 		size:  (1,44)
 	Label:
 		size_hint:(0.30,0.5)
-		text:'Name new file'
+		text:'New file\'s name'
 	TextInput:
 		id:nameinput
 		size_hint:(0.29,0.5)

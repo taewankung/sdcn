@@ -12,6 +12,7 @@ from kivy.uix.popup import Popup
 from kivy.uix.filechooser import FileChooserListView
 from kivy.uix.button import Button
 from sdcn.widgets.widgetbutton.workflowwidget import WorkflowWidget
+from kivy.graphics import Color, Rectangle
 
 Builder.load_file(os.path.dirname(__file__) + '/add_photo_to_album.kv')
 class AddPhotoToAlbum(WorkflowWidget):
