@@ -158,7 +158,7 @@ class SdcnController(FloatLayout):
             
         for submenu in self.submenus:
             if submenu.__class__.__name__ == menu_name:
-                sound = SoundLoader.load('/home/progreanmer/workspace/sdcn/sdcn/data/audio/button.wav')
+                sound = SoundLoader.load('../sdcn/data/audio/button.wav')
                 sound.play()
                 self.sub_menu_layout.clear_widgets()
                 self.sub_menu_layout.add_widget(submenu)
