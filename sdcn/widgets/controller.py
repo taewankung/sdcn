@@ -144,6 +144,19 @@ class SdcnController(FloatLayout):
                                 cmd_runner.start()
                                 cmd_runner.join()
                                 print(cmd_runner.output)
+                                
+                elif bt.widget.__class__.__name__ == 'ConvertMusicType':
+                    print("command_output:",command_output)
+                    cmd = commands.ConvertMusicCommands(source = command_output, target="/tmp/out.wav")
+                    cmd_runner = commands.CommandRunner(cmd.build())
+                    cmd_runner.start()
+                    cmd_runner.join()
+                    command_output = cmd_runner.output
+                    print(cmd_runner.output)
+                    command_output = ['/tmp/out.wav']
+                    print(cmd_runner.output)
+                    
+            
 #                                 command_output = cmd_runner.output
                         
                         ##subprocess.call(['convert','*.png',str(bt.widget.ids.nameinput.text+'.pdf')])

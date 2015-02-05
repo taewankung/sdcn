@@ -5,6 +5,7 @@ Created on Feb 2, 2015
 '''
 import threading
 import subprocess
+import cmd
 
 class Command:
     command_pattern = ''
@@ -39,6 +40,13 @@ class PDFMergging(Command):
         cmd.extend(self.kwargs['source'])
         cmd.append(self.kwargs['target'])
         return cmd
+class ConvertMusicCommands(Command):
+    def build(self):
+        cmd = ['mpg123','-w']
+        cmd.append(self.kwargs['target'])
+        cmd.extend(self.kwargs['source'])
+        return cmd
+        
 
 class CompressFileZip(Command):
     def build(self):
