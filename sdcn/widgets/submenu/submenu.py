@@ -31,13 +31,6 @@ from kivy.uix.image import Image
 from kivy.properties import ObjectProperty
 from kivy.clock import Clock
 
-Builder.load_string('''
-<Delete_button>
-    text: 'X'
-    size_hint: (0.1,0.3)
-''')
-
-
 class DraggableSubmenuContainer(Magnet):
     menu = ObjectProperty(None, allownone=True)
     app = ObjectProperty(None)
@@ -113,7 +106,7 @@ class SubMenu(StackLayout):
                                           workflow_layout=self.workflow_layout,
                                           main_layout=self.main_layout,
                                           size_hint=(1,None),
-                                          size=(1,100))
+                                          size=(1,150))
             self.workflow_layout.add_widget(dw)
         elif new_label.text == 'Compress Files':
             dw = DraggableWidgetContainer(widget=CompressFile(self.workflow_layout),

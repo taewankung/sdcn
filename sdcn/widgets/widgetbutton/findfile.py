@@ -21,7 +21,8 @@ class FindFile(WorkflowWidget):
 
     def open_file_chooser(self):
         popup_filechoser = MyFilechooser(title = 'Find file')
-        popup_filechoser.filechooser.path = '/home'
+#         popup_filechoser.filechooser.path = self.ids.path_input.text
+        self.ids.path_input.text = str(popup_filechoser.path)
         popup_filechoser.filechooser.multiselect = True
         popup_filechoser.open()
         self.filechooser_in_pop = popup_filechoser

@@ -48,8 +48,7 @@ class SdcnController(FloatLayout):
             self.ids.play_button.background_normal = '../sdcn/data/images/play1.png'
             self.ids.play_button.background_down = '../sdcn/data/images/pause1.png'
         if self.ids.play_button.enable % 2 == 1 :
-            path_file = '..'
-            self.ids.out_label.text = path_file
+
             self.ids.play_button.background_normal = '../sdcn/data/images/pause1.png'
             self.ids.play_button.background_down = '../sdcn/data/images/play1.png'
             command_output = None
@@ -58,21 +57,24 @@ class SdcnController(FloatLayout):
                 if bt.widget.__class__.__name__ == 'FindFile':
 
                     path_file = str(bt.widget.filechooser_in_pop.path)
-                    selection_file = str(bt.widget.filechooser_in_pop.filechooser.selection)
-                    print(selection_file)
+                    selection_file = bt.widget.filechooser_in_pop.filechooser.selection
                     self.ids.out_label.text = path_file
-#                     print(selection_file)
 #                     print(bt.widget.filechooser_in_pop.path)
 #                     print(bt.widget.ids.file_input.text)
 #                     test1 = ['find', str(path_file) ,  '-name',str(bt.widget.ids.file_input.text)]
 #                     test = subprocess.check_output(test1)
 #                     print(test)
+                    print(selection_file)
+#                     cmd = commands.FindCommand(path=path_file, pattern = str(selection_file[0]))
+                    
                     cmd = commands.FindCommand(path=path_file, pattern = bt.widget.ids.file_input.text)
                     cmd_runner = commands.CommandRunner(cmd.build())
                     cmd_runner.start()
                     cmd_runner.join()
-                    print("output:", cmd_runner.output)
                     command_output = cmd_runner.output
+                    if bt.widget.ids.file_input.text == '':
+                        command_output = selection_file
+                    print("output:", command_output)
                     
                 elif bt.widget.__class__.__name__ == 'ConvertFile':
                     print(bt.widget.ids.type.text)
