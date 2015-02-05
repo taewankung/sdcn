@@ -56,18 +56,18 @@ class SdcnController(FloatLayout):
             for bt in reversed(self.workflow_layout.children):
                 print(bt.widget.__class__.__name__)
                 if bt.widget.__class__.__name__ == 'FindFile':
-#                     print(bt.widget.filechooser_in_pop.path)
+
                     path_file = str(bt.widget.filechooser_in_pop.path)
-                    selection_file = str(bt.widget.filechooser_in_pop.selection)
-#                     print(selection_file)
+                    selection_file = str(bt.widget.filechooser_in_pop.filechooser.selection)
+                    print(selection_file)
                     self.ids.out_label.text = path_file
-                    
-                    # print(bt.widget.ids.file_input.text)
-                    #test1 = ['find', str(path_file) ,  '-name',str(bt.widget.ids.file_input.text)]
-                    #test = subprocess.check_output(test1)
-                    #print(test)
-                    
-                    cmd = commands.FindCommand(path=path_file, pattern=bt.widget.ids.file_input.text)
+#                     print(selection_file)
+#                     print(bt.widget.filechooser_in_pop.path)
+#                     print(bt.widget.ids.file_input.text)
+#                     test1 = ['find', str(path_file) ,  '-name',str(bt.widget.ids.file_input.text)]
+#                     test = subprocess.check_output(test1)
+#                     print(test)
+                    cmd = commands.FindCommand(path=path_file, pattern = bt.widget.ids.file_input.text)
                     cmd_runner = commands.CommandRunner(cmd.build())
                     cmd_runner.start()
                     cmd_runner.join()
@@ -92,20 +92,33 @@ class SdcnController(FloatLayout):
                 elif bt.widget.__class__.__name__ == 'CompressFile':
                     print(bt.widget.ids.type.text)
                     if bt.widget.ids.type.text == '.Zip':
-                        print('Zip')
+                        cmd = commands.CompressFileZip(source=command_output, target="/tmp/xx.zip")
+                        cmd_runner = commands.CommandRunner(cmd.build())
+                        cmd_runner.start()
+                        cmd_runner.join()
+                        print(cmd_runner.output)
+                        command_output = ['/tmp/xx.zip']
                     elif bt.widget.ids.type.text == '.XZip':
                         print('XZip')
+                
                 elif bt.widget.__class__.__name__ == 'HiddenFile':
                     print('hiddenfile')
+                
                 elif bt.widget.__class__.__name__ == 'ConvertPDFFile':
                     print(bt.widget.ids.type.text)
                     if bt.widget.ids.type.text == 'image to PDF':
-                         pass
+                        print("command_output:",command_output)
+                        cmd = commands.PDFMergging(source=command_output, target= path_file+'/'+bt.widget.ids.nameinput.text+'.pdf')
+                        cmd_runner = commands.CommandRunner(cmd.build())
+                        cmd_runner.start()
+                        cmd_runner.join()
+                        command_output = [path_file+'/'+bt.widget.ids.nameinput.text+'.pdf']
+                        print(command_output)
                 elif bt.widget.__class__.__name__ == 'ResizeImage':
                     print(bt.widget.ids.size_per.text)
                     if type(command_output) is list:
                             for i in command_output:
-                                cmd = commands.resize(source = i, percent= str(bt.widget.ids.size_per.text)+'%' ,target=i[:i.rfind('.')]+str(bt.widget.ids.type_name.text))
+                                cmd = commands.Resize(source = i, percent= str(bt.widget.ids.size_per.text)+'%' ,target=i[:i.rfind('.')]+str(bt.widget.ids.type_name.text))
                                 cmd_runner = commands.CommandRunner(cmd.build())
                                 cmd_runner.start()
                                 cmd_runner.join()
@@ -129,7 +142,7 @@ class SdcnController(FloatLayout):
                                 cmd_runner.start()
                                 cmd_runner.join()
                                 print(cmd_runner.output)
-                                command_output = cmd_runner.output
+#                                 command_output = cmd_runner.output
                         
                         ##subprocess.call(['convert','*.png',str(bt.widget.ids.nameinput.text+'.pdf')])
 #1                     os.system('ls '+str(path_file))
@@ -158,7 +171,7 @@ class SdcnController(FloatLayout):
             
         for submenu in self.submenus:
             if submenu.__class__.__name__ == menu_name:
-                sound = SoundLoader.load('/home/progreanmer/workspace/sdcn/sdcn/data/audio/button.wav')
+                sound = SoundLoader.load('../sdcn/data/audio/button.wav')
                 sound.play()
                 self.sub_menu_layout.clear_widgets()
                 self.sub_menu_layout.add_widget(submenu)

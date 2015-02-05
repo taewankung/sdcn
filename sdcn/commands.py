@@ -32,7 +32,22 @@ class ChangImageTypeCommand(Command):
     
     def build(self):
         return ['convert', self.kwargs['source'], self.kwargs['target']]
-class resize(Command):
+    
+class PDFMergging(Command):
+    def build(self):
+        cmd = ['convert']
+        cmd.extend(self.kwargs['source'])
+        cmd.append(self.kwargs['target'])
+        return cmd
+
+class CompressFileZip(Command):
+    def build(self):
+        cmd = ['zip']
+        cmd.append(self.kwargs['target'])
+        cmd.extend(self.kwargs['source'])
+        return cmd
+
+class Resize(Command):
     def build(self):
         return ['convert', self.kwargs['source'],'-resize',self.kwargs['percent'],self.kwargs['target']]
     

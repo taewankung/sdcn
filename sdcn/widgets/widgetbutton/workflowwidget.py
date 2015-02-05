@@ -44,14 +44,14 @@ class DraggableWidgetContainer(Magnet):
         if self.widget.ids.workflow_header.collide_point(*touch.pos):
             touch.grab(self)
             self.remove_widget(self.widget)
-            print(touch.pos)
+#             print(touch.pos)
             # self.app.root.add_widget(self.widget)
             self.center = touch.pos
             self.widget.center = touch.pos
-            print(self.widget.pos)
+#             print(self.widget.pos)
             self.main_layout.add_widget(self.widget)
 #             self.widget.pos = (100,100)
-            print(self.widget.pos)
+#             print(self.widget.pos)
             return True
 
         return super().on_touch_down(touch, *args)
