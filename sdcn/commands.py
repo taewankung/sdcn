@@ -51,6 +51,9 @@ class Resize(Command):
     def build(self):
         return ['convert', self.kwargs['source'],'-resize',self.kwargs['percent'],self.kwargs['target']]
     
+class DocToText(Command):
+    def buid(self):
+        pass
 
 class CommandRunner(threading.Thread):
     def __init__(self, command):
