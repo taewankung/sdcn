@@ -82,14 +82,13 @@ class SdcnController(FloatLayout):
 #                         subprocess.call(['libreoffice', '--invisible', '--convert-to', 'txt:text', 'file1.docx']) 
 #                     elif bt.widget.ids.type.text == '.doc to Html':
 #                         print('doc to html')
-                        if type(command_output) is list:
-                            for i in command_output:
-                                cmd = commands.ConvertFileCommand(source = i, target=i[:i.rfind('.')]+".pdf")
-                                cmd_runner = commands.CommandRunner(cmd.build())
-                                cmd_runner.start()
-                                cmd_runner.join()
-                                print(cmd_runner.output)
-                                command_output = cmd_runner.output
+                        for i in command_output:
+                            cmd = commands.ConvertFileCommand(source = i, target=i[:i.rfind('.')]+".pdf")
+                            cmd_runner = commands.CommandRunner(cmd.build())
+                            cmd_runner.start()
+                            cmd_runner.join()
+                            print(cmd_runner.output)
+                            command_output = cmd_runner.output
                             
                 elif bt.widget.__class__.__name__ == 'CompressFile':
                     print(bt.widget.ids.type.text)
@@ -127,35 +126,31 @@ class SdcnController(FloatLayout):
                                 print('this')
                                 print(cmd_runner.output)
                                 command_output = cmd_runner.output
-#                 elif bt.widget.__class__.__name__ == 'AddPhotoToAlbum':
-#                     if type(command_output) is list:
-#                             for i in command_output:
-#                                 cmd = commands.resize(source = i, target=i[:i.rfind('.')]+".jpg")
-#                                 cmd_runner = commands.CommandRunner(cmd.build())
-#                                 cmd_runner.start()
-#                                 cmd_runner.join()
-#                                 print(cmd_runner.output)
-#                                 command_output = cmd_runner.output
+                elif bt.widget.__class__.__name__ == 'AddPhotoToAlbum':
+                    pass
                 elif bt.widget.__class__.__name__ == 'ChangeImageType':
-                    if type(command_output) is list:
-                            for i in command_output:
-                                cmd = commands.ChangImageTypeCommand(source = i, target=i[:i.rfind('.')]+".jpg")
-                                cmd_runner = commands.CommandRunner(cmd.build())
-                                cmd_runner.start()
-                                cmd_runner.join()
-                                print(cmd_runner.output)
+                    for i in command_output:
+                        cmd = commands.ChangImageTypeCommand(source = i, target=i[:i.rfind('.')]+".jpg")
+                        cmd_runner = commands.CommandRunner(cmd.build())
+                        cmd_runner.start()
+                        cmd_runner.join()
+                        print(cmd_runner.output)
                                 
                 elif bt.widget.__class__.__name__ == 'ConvertMusicType':
                     print("command_output:",command_output)
-                    cmd = commands.ConvertMusicCommands(source = command_output, target="/tmp/out.wav")
-                    cmd_runner = commands.CommandRunner(cmd.build())
-                    cmd_runner.start()
-                    cmd_runner.join()
-                    command_output = cmd_runner.output
-                    print(cmd_runner.output)
-                    command_output = ['/tmp/out.wav']
-                    print(cmd_runner.output)
-                    
+                    print(bt.widget.ids.type.text)
+                    output = []
+                    for i in command_output:
+                        cmd = commands.ConvertMusicFile(source = i[:i.rfind('.')]+bt.widget.ids.type.text, target= i )
+                        cmd_runner = commands.CommandRunner(cmd.build())
+                        cmd_runner.start()
+                        cmd_runner.join()
+                        command_output = cmd_runner.output
+                        output.append(i[:i.rfind('.')]+bt.widget.ids.type.text, target= i )
+                        print(cmd_runner.output)
+                    command_output = output
+                    print(command_output)
+                        
             
 #                                 command_output = cmd_runner.output
                         

@@ -46,8 +46,9 @@ class ConvertMusicCommands(Command):
         cmd.append(self.kwargs['target'])
         cmd.extend(self.kwargs['source'])
         return cmd
-        
-
+class ConvertMusicFile(Command):
+        def build(self):
+             return ['mpg123', '-w', self.kwargs['source'], self.kwargs['target']]
 class CompressFileZip(Command):
     def build(self):
         cmd = ['zip']
@@ -68,10 +69,8 @@ class CommandRunner(threading.Thread):
         super().__init__()
         self.command = command
         self.output = []
-        
     def run(self):
         print("command:", self.command)
-
         output = subprocess.check_output(self.command)
         print("outputs:", output)
         self.output = output.decode('utf-8').split('\n')

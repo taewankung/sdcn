@@ -20,7 +20,6 @@ class FindFile(WorkflowWidget):
         super().__init__(workflow_layout)
     popup_filechoser = MyFilechooser(title = 'Find file')
     popup_filechoser.filechooser.multiselect = True
-
     def open_file_chooser(self):
         self.popup_filechoser.open()
         self.filechooser_in_pop = self.popup_filechoser
