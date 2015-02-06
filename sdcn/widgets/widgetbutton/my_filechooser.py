@@ -19,8 +19,6 @@ class MyFilechooser(Popup):
         self.path = self.filechooser.path
         self.selection = self.filechooser.selection
         self.dismiss()
-    def getpath(self):
-        return self.path
     def cancels(self):
         self.dismiss()#                     print(selection_file)
     pass
