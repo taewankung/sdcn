@@ -14,13 +14,13 @@ class MyFilechooser(Popup):
     def __init__(self,title):
         super().__init__()
         self.title = title
-        self.path = self.ids._filechooser.path
     def okfile(self):
         print(self.filechooser.path)
         self.path = self.filechooser.path
         self.selection = self.filechooser.selection
         self.dismiss()
-        
+    def getpath(self):
+        return self.path
     def cancels(self):
         self.dismiss()#                     print(selection_file)
     pass
