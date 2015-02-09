@@ -135,7 +135,7 @@ class SdcnController(FloatLayout):
                     pass
                 elif bt.widget.__class__.__name__ == 'ChangeImageType':
                     for i in command_output:
-                        cmd = commands.ChangImageTypeCommand(source = i, target=i[:i.rfind('.')]+".jpg")
+                        cmd = commands.ChangImageTypeCommand(source = i, target=i[:i.rfind('.')] + bt.widget.ids.type.text)
                         cmd_runner = commands.CommandRunner(cmd.build())
                         cmd_runner.start()
                         cmd_runner.join()
