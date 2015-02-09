@@ -21,6 +21,7 @@ from sdcn import commands
 from kivy.core.audio import SoundLoader 
 from kivy.uix.label import Label
 
+
 Builder.load_file(os.path.dirname(__file__) + '/controller.kv')
 
 
@@ -140,6 +141,7 @@ class SdcnController(FloatLayout):
 #                                 print(cmd_runner.output)
 #                                 command_output = cmd_runner.output
                 elif bt.widget.__class__.__name__ == 'ChangeImageType':
+
                     for i in command_output:
                         cmd = commands.ChangImageTypeCommand(source = i, target=i[:i.rfind('.')] + bt.widget.ids.type.text)
                         cmd_runner = commands.CommandRunner(cmd.build())
@@ -149,6 +151,7 @@ class SdcnController(FloatLayout):
                                 
                 elif bt.widget.__class__.__name__ == 'ConvertMusicType':
                     print("command_output:",command_output)
+
                     print(bt.widget.ids.type.text)
                     output = []
                     for i in command_output:
@@ -171,6 +174,7 @@ class SdcnController(FloatLayout):
                     print(cmd_runner.output)
                     command_output = ['/tmp/out.wav']
                     print(cmd_runner.output)
+
             self.complete.open()
                 
 #                                 command_output = cmd_runner.output
