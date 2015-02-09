@@ -19,6 +19,8 @@ from kivy.uix.popup import Popup
 import subprocess
 from sdcn import commands
 from kivy.core.audio import SoundLoader
+from kivy.uix.popup import Popup
+from kivy.uix.label import Label
 
 Builder.load_file(os.path.dirname(__file__) + '/controller.kv')
 
@@ -43,6 +45,9 @@ class SdcnController(FloatLayout):
         
         self.workflow_layout.bind(minimum_height=self.workflow_layout.setter('height'))
     def status_play_button(self):
+        complete_popup = Popup(title = 'complete', size_hint=(0.5,0.5))
+        complete_Label = Label(text = 'Complete')
+        complete_popup.add_widget(complete_Label)
         self.ids.play_button.enable += 1
         if self.ids.play_button.enable % 2 == 0:
             self.ids.play_button.background_normal = '../sdcn/data/images/play1.png'
@@ -150,8 +155,7 @@ class SdcnController(FloatLayout):
                         print(cmd_runner.output)
                     command_output = output
                     print(command_output)
-                        
-            
+            complete_popup.open()
 #                                 command_output = cmd_runner.output
                         
                         ##subprocess.call(['convert','*.png',str(bt.widget.ids.nameinput.text+'.pdf')])
