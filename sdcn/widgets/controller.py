@@ -155,7 +155,7 @@ class SdcnController(FloatLayout):
                     print(bt.widget.ids.type.text)
                     output = []
                     for i in command_output:
-                        cmd = commands.ChangImageTypeCommand(source = i, target=i[:i.rfind('.')]+ str(bt.widget.ids.type.text))
+                        cmd = commands.ConvertMusicFile(source = i[:i.rfind('.')]+ str(bt.widget.ids.type.text), target = i)
                         cmd_runner = commands.CommandRunner(cmd.build())
                         cmd_runner.start()
                         cmd_runner.join()

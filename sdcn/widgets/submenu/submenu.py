@@ -24,6 +24,8 @@ from sdcn.widgets.widgetbutton.crop_image import CropImage
 from sdcn.widgets.widgetbutton.rename_image import RenameImage
 from sdcn.widgets.widgetbutton.change_image_type import ChangeImageType
 from sdcn.widgets.widgetbutton.convert_music_type import ConvertMusicType
+from sdcn.widgets.widgetbutton.convert_video import ConvertVideoType
+from sdcn.widgets.widgetbutton.resize_video import ResizeVideo
 from sdcn.widgets.widgetbutton.workflowwidget import DraggableWidgetContainer
 
 from sdcn.garden.magnet import Magnet
@@ -214,7 +216,7 @@ class SubMenu(StackLayout):
 #             pass
 #         
 #END FILE*******************************************************************************************************************************END FILE
-        elif new_label.text == 'Convert PDF file':
+        elif new_label.text == 'Convert PDF File':
             dw = DraggableWidgetContainer(widget=ConvertPDFFile(self.workflow_layout),
                                           workflow_layout=self.workflow_layout,
                                           main_layout=self.main_layout,
@@ -234,7 +236,21 @@ class SubMenu(StackLayout):
                                           size_hint=(1,None),
                                           size=(1,100))
             self.workflow_layout.add_widget(dw)
-# 
+        elif new_label.text == 'Resize Video':
+            dw = DraggableWidgetContainer(widget=ConvertVideoType(self.workflow_layout),
+                                          workflow_layout=self.workflow_layout,
+                                          main_layout=self.main_layout,
+                                          size_hint=(1,None),
+                                          size=(1,100))
+            self.workflow_layout.add_widget(dw)
+        elif new_label.text == 'Convert Video Files':
+            dw = DraggableWidgetContainer(widget=ResizeVideo(self.workflow_layout),
+                                          workflow_layout=self.workflow_layout,
+                                          main_layout=self.main_layout,
+                                          size_hint=(1,None),
+                                          size=(1,100))
+            self.workflow_layout.add_widget(dw)
+#     
 # #END MUSIC******************************************************************************************************************************END MUSIC
 #         elif new_label.text == 'Convert Video Files':
 #             change_file_video_type = Spinner(text='.dat to .mp4',values=('.dat to .mp4','.mp4 to .dat'),size_hint=(1,None),size=(1,44))
