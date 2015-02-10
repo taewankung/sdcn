@@ -1,0 +1,45 @@
+<ResizeVideo>:
+	size_hint: (1,None)
+	size: (1,100)
+	canvas.before:
+		Color:
+			rgba: (0.8,0.8,0.8,0.9)
+		Rectangle:
+			pos: self.pos
+            size: self.size
+	Label:
+		id: workflow_header
+		size_hint:(0.8999,0.5)
+		text: 'Resize Video'
+		canvas.before:
+			Color:
+				rgba: (0.5,0.5,0.5,1)
+			Rectangle:
+				pos: self.pos
+            	size: self.size
+        color: (0,0,0,1)
+	Button:
+		text: 'X'
+		size_hint: (0.1,0.5)
+		on_press: root.delete_in_workflow_layout(root)
+	Label:
+		text: 'size:'
+		size_hint: (0.2,0.5)
+		color: (0,0,0,1)
+		
+	TextInput:
+		id: size_per
+		multiline: False
+		size_hint: (0.2,0.5)
+	Label:
+		text: '%'
+		size_hint: (0.1,0.5)
+		color: (0,0,0,1)
+	Label:
+		text: 'Type:'
+		size_hint: (0.2,0.5)
+		color: (0,0,0,1)
+	TextInput:
+		id: type_name
+		multiline: False
+		size_hint: (0.2,0.5)

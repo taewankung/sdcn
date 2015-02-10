@@ -98,51 +98,60 @@ class SubMenu(StackLayout):
         self.main_layout = main_layout
         self.bh = int(.075*self.workflow_layout.height)   
         
+        
     def add_to_workflow_layout(self, button):
-        new_label = Label(text=button.text, size_hint_x=0.89,
-                            size_hint_y= 0.5)
+        self.add_widget_to_workflow_layout(button.text)
+        
+    def add_widget_to_workflow_layout(self, text):
+
 #         layout = StackLayout(size_hint = (1,None),size = (self.workflow_layout.width,self.bh*2))
 #         layout.add_widget(Delete_button())
-        if new_label.text == 'Find File':
+        dw = None
+        if text == 'Find File':
             dw = DraggableWidgetContainer(widget=FindFile(self.workflow_layout),
                                           workflow_layout=self.workflow_layout,
                                           main_layout=self.main_layout,
                                           size_hint=(1,None),
                                           size=(1,150))
+            dw.widget.ids.workflow_header.text = text
             self.workflow_layout.add_widget(dw)
-        elif new_label.text == 'Compress Files':
+        elif text == 'Compress Files':
             dw = DraggableWidgetContainer(widget=CompressFile(self.workflow_layout),
                                           workflow_layout=self.workflow_layout,
                                           main_layout=self.main_layout,
                                           size_hint=(1,None),
                                           size=(1,100))
+            dw.widget.ids.workflow_header.text = text
             self.workflow_layout.add_widget(dw)
             
-        elif new_label.text == 'Convert Files':
+        elif text == 'Convert Files':
             dw = DraggableWidgetContainer(widget=ConvertFile(self.workflow_layout),
                                           workflow_layout=self.workflow_layout,
                                           main_layout=self.main_layout,
                                           size_hint=(1,None),
                                           size=(1,100))
+            dw.widget.ids.workflow_header.text = text
             self.workflow_layout.add_widget(dw)
-        elif new_label.text == 'Hidden Files':
+        elif text == 'Hidden Files':
             dw = DraggableWidgetContainer(widget=HiddenFile(self.workflow_layout),
                                           workflow_layout=self.workflow_layout,
                                           main_layout=self.main_layout,
                                           size_hint=(1,None),
                                           size=(1,100))
+            dw.widget.ids.workflow_header.text = text
             self.workflow_layout.add_widget(dw)
 
-        elif new_label.text == 'New Folder':
+        elif text == 'New Folder':
             dw = DraggableWidgetContainer(widget=NewFolder(self.workflow_layout),
                                           workflow_layout=self.workflow_layout,
                                           main_layout=self.main_layout,
                                           size_hint=(1,None),
                                           size=(1,100))
+            dw.widget.ids.workflow_header.text = text
             self.workflow_layout.add_widget(dw)
 # #Picture Menu*****************************************************************************************************************************          PICTURE
 # 
-#         elif new_label.text == 'Resize Photo': 
+#         elif text == 'Resize Photo': 
 #             text_input = TextInput(text='', multiline = False , size_hint = (None,None), size = (100,25))
 #             l = Label(text='Example: ....', font_size='15sp', size_hint_y=None)
 #             l.bind(width=lambda s, w:
@@ -151,7 +160,7 @@ class SubMenu(StackLayout):
 #             layout.add_widget(text_input)
 #             layout.add_widget(l)
 #         
-#         elif new_label.text == 'Rename File':
+#         elif text == 'Rename File':
 #             text_input = TextInput(text='', multiline = False , size_hint = (None,None), size = (100,self.bh))
 #             l = Label(text='Example: ....', font_size='15sp', size_hint_y = None)
 #             l.bind(width=lambda s, w:
@@ -160,43 +169,48 @@ class SubMenu(StackLayout):
 #             layout.add_widget(text_input)
 #             layout.add_widget(l)
 #         
-        elif new_label.text == 'Add Image To Album':
+        elif text == 'Add Image To Album':
             dw = DraggableWidgetContainer(widget=AddPhotoToAlbum(self.workflow_layout),
                                           workflow_layout=self.workflow_layout,
                                           main_layout=self.main_layout,
                                           size_hint=(1,None),
                                           size=(1,100))
+            dw.widget.ids.workflow_header.text = text
             self.workflow_layout.add_widget(dw)
-        elif new_label.text == 'Resize Image':
+        elif text == 'Resize Image':
             dw = DraggableWidgetContainer(widget=ResizeImage(self.workflow_layout),
                                           workflow_layout=self.workflow_layout,
                                           main_layout=self.main_layout,
                                           size_hint=(1,None),
                                           size=(1,100))
+            dw.widget.ids.workflow_header.text = text
             self.workflow_layout.add_widget(dw)
-        elif new_label.text == 'Crop Image':
+        elif text == 'Crop Image':
             dw = DraggableWidgetContainer(widget=CropImage(self.workflow_layout),
                                           workflow_layout=self.workflow_layout,
                                           main_layout=self.main_layout,
                                           size_hint=(1,None),
                                           size=(1,100))
+            dw.widget.ids.workflow_header.text = text
             self.workflow_layout.add_widget(dw)
-        elif new_label.text == 'Rename Image':
+        elif text == 'Rename Image':
             dw = DraggableWidgetContainer(widget=RenameImage(self.workflow_layout),
                                           workflow_layout=self.workflow_layout,
                                           main_layout=self.main_layout,
                                           size_hint=(1,None),
                                           size=(1,100))
+            dw.widget.ids.workflow_header.text = text
             self.workflow_layout.add_widget(dw)
-        elif new_label.text == 'Change Image Type':
+        elif text == 'Change Image Type':
             dw = DraggableWidgetContainer(widget=ChangeImageType(self.workflow_layout),
                                           workflow_layout=self.workflow_layout,
                                           main_layout=self.main_layout,
                                           size_hint=(1,None),
                                           size=(1,100))
+            dw.widget.ids.workflow_header.text = text
             self.workflow_layout.add_widget(dw)
 #             pass
-#         elif new_label.text == 'Crop Image':
+#         elif text == 'Crop Image':
 #             label_x = Label(text = 'X:',size_hint=(0.25,None), size = (100,self.bh))
 #             text_input_x = TextInput(size_hint=(0.24,None), size = (100,self.bh))
 #             label_y = Label(text = 'y:',size_hint=(0.25,None), size = (100,self.bh))
@@ -205,45 +219,48 @@ class SubMenu(StackLayout):
 #             layout.add_widget(text_input_x)
 #             layout.add_widget(label_y)
 #             layout.add_widget(text_input_y)
-#         elif new_label.text == 'Change File Type':
+#         elif text == 'Change File Type':
 #             change_file_type = Spinner(text='.jpg',values=('.png', '.gif','.tif'),size_hint=(1,None),size=(1,44))
 #             layout.add_widget(change_file_type)
 # #END PIC*******************************************************************************************************************************END PIC
 #         
-#         elif new_label.text == 'Write File': 
+#         elif text == 'Write File': 
 #             pass
-#         elif new_label.text == 'Add File':
+#         elif text == 'Add File':
 #             pass
 #         
 #END FILE*******************************************************************************************************************************END FILE
-        elif new_label.text == 'Convert PDF File':
+
+        elif text == 'Convert PDF file':
             dw = DraggableWidgetContainer(widget=ConvertPDFFile(self.workflow_layout),
                                           workflow_layout=self.workflow_layout,
                                           main_layout=self.main_layout,
                                           size_hint=(1,None),
                                           size=(1,100))
+            dw.widget.ids.workflow_header.text = text
             self.workflow_layout.add_widget(dw)
 
 
 #END PDF********************************************************************************************************************************END PDF
-#         elif new_label.text == 'Convert Music Files':
+#         elif text == 'Convert Music Files':
 #             change_file_music_type = Spinner(text='.mp3 to .wav',values=('.mp3 to .wav','.wav to.mp3','.mp4 to .mp3','.ra to .mp3','.mp3 to .ra','.mp3 to .au'),size_hint=(1,None),size=(1,44))
 #             layout.add_widget(change_file_music_type)
-        elif new_label.text == 'Convert Music Type':
+        elif text == 'Convert Music Type':
             dw = DraggableWidgetContainer(widget=ConvertMusicType(self.workflow_layout),
                                           workflow_layout=self.workflow_layout,
                                           main_layout=self.main_layout,
                                           size_hint=(1,None),
                                           size=(1,100))
+            dw.widget.ids.workflow_header.text = text
             self.workflow_layout.add_widget(dw)
-        elif new_label.text == 'Resize Video':
+        elif text == 'Resize Video':
             dw = DraggableWidgetContainer(widget=ConvertVideoType(self.workflow_layout),
                                           workflow_layout=self.workflow_layout,
                                           main_layout=self.main_layout,
                                           size_hint=(1,None),
                                           size=(1,100))
             self.workflow_layout.add_widget(dw)
-        elif new_label.text == 'Convert Video Files':
+        elif text == 'Convert Video Files':
             dw = DraggableWidgetContainer(widget=ResizeVideo(self.workflow_layout),
                                           workflow_layout=self.workflow_layout,
                                           main_layout=self.main_layout,
@@ -252,10 +269,10 @@ class SubMenu(StackLayout):
             self.workflow_layout.add_widget(dw)
 #     
 # #END MUSIC******************************************************************************************************************************END MUSIC
-#         elif new_label.text == 'Convert Video Files':
+#         elif text == 'Convert Video Files':
 #             change_file_video_type = Spinner(text='.dat to .mp4',values=('.dat to .mp4','.mp4 to .dat'),size_hint=(1,None),size=(1,44))
 #             layout.add_widget(change_file_video_type)
-#         elif new_label.text == 'Resize Video':
+#         elif text == 'Resize Video':
 #             label_x = Label(text = 'X:',size_hint=(0.25,None), size = (100,self.bh))
 #             text_input_x = TextInput(size_hint=(0.24,None), size = (100,self.bh))
 #             label_y = Label(text = 'y:',size_hint=(0.25,None), size = (100,self.bh))
@@ -266,3 +283,4 @@ class SubMenu(StackLayout):
 #             layout.add_widget(text_input_y)    
 #END Video******************************************************************************************************************************END Video
 #         self.workflow_layout.add_widget(layout)
+        return dw

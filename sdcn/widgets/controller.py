@@ -21,6 +21,10 @@ from sdcn import commands
 from kivy.core.audio import SoundLoader 
 from kivy.uix.label import Label
 
+import json
+from io import StringIO
+from sdcn.widgets.submenu.submenu import SubMenu
+
 
 Builder.load_file(os.path.dirname(__file__) + '/controller.kv')
 
@@ -211,6 +215,51 @@ class SdcnController(FloatLayout):
                 self.sub_menu_layout.clear_widgets()
                 self.sub_menu_layout.add_widget(submenu)
                 break
+            
+    def save_workflow(self):
+        workflow=[]
+
+        for wf_widget in reversed(self.workflow_layout.children):
+            wf = dict()
+            if wf_widget.widget.ids.workflow_header.text == 'Find File':
+                wf = dict(name=wf_widget.widget.ids.workflow_header.text ,
+                          path_file = wf_widget.widget.ids.path_input.text,
+                          pattern = wf_widget.widget.ids.file_input.text
+                        )
+            elif wf_widget.widget.ids.workflow_header.text == 'Convert PDF File':
+                wf = dict(name=wf_widget.widget.ids.workflow_header.text ,
+                          type = wf_widget.widget.ids.type.text,
+                          target = wf_widget.widget.ids.nameinput.text
+                        )
+            workflow.append(wf)
+
+        workflow_file = dict(workflow=workflow)
+        
+        with open('/tmp/work_flow.json', 'w') as f:
+            json.dump(workflow_file, f)
+        
+        f.close()
+
+    def open_workflow(self):
+        workflow_file = None
+        with open('/tmp/work_flow.json', 'r') as f:
+            workflow_file = json.load(f, workflow_file)
+        f.close()
+    
+        self.workflow_layout.clear_widgets()
+        submenu = SubMenu(self.workflow_layout, self.main_menu_layout)
+        for wf_dict in workflow_file['workflow']:
+            if wf_dict['name'] == "Find File":
+                dw = submenu.add_widget_to_workflow_layout(wf_dict['name'])
+                widget = dw.widget
+                widget.ids.path_input.text = wf_dict['path_file']
+                widget.ids.file_input.text = wf_dict['pattern']
+            elif wf_dict['name'] == "Convert PDF file":
+                dw = submenu.add_widget_to_workflow_layout(wf_dict['name'])
+                widget = dw.widget
+                widget.ids.type.text = wf_dict['type']
+                widget.ids.nameinput.text = wf_dict['target']
+
 
     def save_as(self):
         filechoser_layout = StackLayout( orientation="lr-bt")
