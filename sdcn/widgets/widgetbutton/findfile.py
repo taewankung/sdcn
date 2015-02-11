@@ -15,11 +15,10 @@ from kivy.uix.button import Button
 from .my_filechooser import MyFilechooser
 Builder.load_file(os.path.dirname(__file__) + '/findfile.kv')
 class FindFile(WorkflowWidget):
-    filechooser_in_pop = MyFilechooser(title = 'Find file')
-    def __init__(self, workflow_layout):
-        super().__init__(workflow_layout)
     popup_filechoser = MyFilechooser(title = 'Find file')
     popup_filechoser.filechooser.multiselect = True
+    def __init__(self, workflow_layout):
+        super().__init__(workflow_layout)
     def open_file_chooser(self):
         self.popup_filechoser.open()
         self.filechooser_in_pop = self.popup_filechoser

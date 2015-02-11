@@ -1,6 +1,6 @@
-<RenameImage>:
+<ConvertVideoType>:
 	size_hint: (None,None)
-	size: (1,100)
+	size: (1,300)
 	canvas.before:
 		Color:
 			rgba: (0.8,0.8,0.8,0.9)
@@ -9,8 +9,8 @@
             size: self.size
 	Label:
 		id: workflow_header
-		text: 'Rename Image'
-		size_hint: (0.8999,0.5)
+		text: 'Convert Video Type'
+		size_hint:(0.8999,0.50)
 		canvas.before:
 			Color:
 				rgba: (0.5,0.5,0.5,1)
@@ -19,11 +19,18 @@
             	size: self.size
 	Button:
 		text: 'X'
-		size_hint: (0.1,0.5)
+		size_hint:(0.1,0.5)
 		on_press: root.delete_in_workflow_layout(root)
+		
+	Spinner:
+		id: type
+		text: '.mp4'
+		values: ('.mp4','.dat','.mov','.mpeg')
+		size_hint: (0.40,0.5)
+		size:  (1,44)
 	Label:
-		text: 'name'
-		size_hint: (0.5,0.5)
+		size_hint:(0.30,0.5)
+		text:'name'
 	TextInput:
-		multiline: False
-		size_hint: (0.5,0.5)
+		id: nameinput
+		size_hint:(0.29,0.5)
