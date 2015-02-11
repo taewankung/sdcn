@@ -35,7 +35,7 @@ Builder.load_string("""
                 text: 'Cancel'
                 size_hint: (None,None)
                 size: (100,25)
-                on_press: 
+                on_press: root.dismiss()
         
 """)
 class SavePopup(Popup):
@@ -63,8 +63,7 @@ class SavePopup(Popup):
             json.dump(workflow_file, f)
         f.close()            
         workflow_file = dict(workflow=workflow)
-        self.dismiss()
-        pass
+
 # class TestApp(App):
 #      def build(self):
 #          return SavePopup(title = 'save file')

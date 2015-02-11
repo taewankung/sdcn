@@ -48,8 +48,6 @@ class SdcnController(FloatLayout):
         self.submenus = [PdfMenu(self.workflow_layout, self), DocumentMenu(self.workflow_layout, self), 
                          FileAndFolderMenu(self.workflow_layout, self), ImageMenu(self.workflow_layout, self), 
                          MusicMenu(self.workflow_layout, self), VideoMenu(self.workflow_layout, self)]
-        self.save_popup = SavePopup(title = 'Save',workflow_layout = self.workflow_layout)
-        self.open_popup = OpenPopup(title = 'Open',workflow_layout = self.workflow_layout,main_menu_layout = self.main_menu_layout)
         self.workflow_layout.bind(minimum_height=self.workflow_layout.setter('height'))
    
     def status_play_button(self):
@@ -229,10 +227,12 @@ class SdcnController(FloatLayout):
                 break
             
     def save_workflow(self):
-        self.save_popup.open()
+        save_popup = SavePopup(title = 'Save',workflow_layout = self.workflow_layout)
+        save_popup.open()
 
     def open_workflow(self):
-        self.open_popup.open()
+        open_popup = OpenPopup(title = 'Open',workflow_layout = self.workflow_layout,main_menu_layout = self.main_menu_layout)
+        open_popup.open()
 #         workflow_file = None
 #         with open('/tmp/work_flow.json', 'r') as f:
 #             workflow_file = json.load(f, workflow_file)
