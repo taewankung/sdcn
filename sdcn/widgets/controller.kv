@@ -16,7 +16,6 @@
 				size_hint_y: 0.5
 			Label:
 				id: out_label
-				text: '/home'
 				size_hint_x: 0.7
 				size_hint_y: 0.5
 			Button:
@@ -72,17 +71,6 @@
 						size:(234,50)
 						on_press: root.change_submenu("ImageMenu", picture_button)
 					Button:
-						id: file_button
-						background_normal: '../sdcn/data/images/File_icon.png'
-						
-						##text: 'File and Folder'
-						background_disabled_normal: '../sdcn/data/images/File_icon_disable.png'
-						background_disabled_down: '../sdcn/data/images/File_icon_disable.png'
-						size_hint_x: None
-						size_hint_y: None
-						size:(234,50)
-						on_press: root.change_submenu("FileAndFolderMenu", file_button)
-					Button:
 						id: pdf_button
 						background_normal: '../sdcn/data/images/PDF_icon.png'
 						##background_down: '../sdcn/data/images/PDF_icon.png'
@@ -113,27 +101,7 @@
 						size_hint_y: None
 						size:(234,50)
 						on_press: root.change_submenu("VideoMenu", video_button)
-					Button:
-						id: save_button
-						##background_normal: '../sdcn/data/images/video_icon.png'
-						text: 'Save'
-						##background_disabled_normal: '../sdcn/data/images/video_icon_disable.png'
-						##background_disabled_down: '../sdcn/data/images/video_icon_disable.png'
-						size_hint_x: None
-						size_hint_y: None
-						size:(234,50)
-						on_press: root.save_workflow()
-					Button:
-						id: open_button
-						##background_normal: '../sdcn/data/images/video_icon.png'
-						text: 'Open'
-						##background_disabled_normal: '../sdcn/data/images/video_icon_disable.png'
-						##background_disabled_down: '../sdcn/data/images/video_icon_disable.png'
-						size_hint_x: None
-						size_hint_y: None
-						size:(234,50)
-						on_press: root.open_workflow()
-						
+					
 				#	Button:
 				#		id: save_button
 				#		text: 'Save As...'
@@ -169,6 +137,23 @@
 						height:500
 		BoxLayout:
 			size_hint: (1,0.1)
-			Label:
-					
-					
+			Button:
+				id: save_button
+				##background_normal: '../sdcn/data/images/video_icon.png'
+				text: 'Save'
+				##background_disabled_normal: '../sdcn/data/images/video_icon_disable.png'
+				##background_disabled_down: '../sdcn/data/images/video_icon_disable.png'
+				size_hint_x: None
+				size_hint_y: None
+				size:(234,50)
+				on_press: root.save_workflow()
+			Button:
+				id: open_button
+				##background_normal: '../sdcn/data/images/video_icon.png'
+				text: 'Open'
+				##background_disabled_normal: '../sdcn/data/images/video_icon_disable.png'
+				##background_disabled_down: '../sdcn/data/images/video_icon_disable.png'
+				size_hint_x: None
+				size_hint_y: None
+				size:(234,50)
+				on_press: root.open_workflow()

@@ -55,6 +55,9 @@ class CompressFileZip(Command):
         cmd.append(self.kwargs['target'])
         cmd.extend(self.kwargs['source'])
         return cmd
+class ConvertVideoFile(Command):
+    def build(self):
+        return ['ffmpeg', '-i', self.kwargs['source'], self.kwargs['target']]
 
 class Resize(Command):
     def build(self):

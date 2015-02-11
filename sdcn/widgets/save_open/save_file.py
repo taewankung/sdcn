@@ -13,7 +13,7 @@ Builder.load_string("""
     StackLayout:
         orientation: 'tb-lr'
         FileChooserIconView:
-            id: _filechooser
+            id: save_filechooser
             size_hint: (1,0.9)
             path:'/home'
         BoxLayout:
@@ -22,6 +22,7 @@ Builder.load_string("""
                 text: 'Name'
                 size_hint: (0.24,0.5)
             TextInput:
+                id: name
                 size_hint: (0.75,0.75)
             Button:
                 id: _ok
@@ -58,10 +59,11 @@ class SavePopup(Popup):
                         )
             workflow.append(wf)
         workflow_file = dict(workflow=workflow)
-        with open('/tmp/work_flow.json', 'w') as f:
+        with open(str(self.ids.save_filechooser.path)+'/'+self.ids.name.text+'.json', 'w') as f:
             json.dump(workflow_file, f)
         f.close()            
         workflow_file = dict(workflow=workflow)
+        self.dismiss()
         pass
 # class TestApp(App):
 #      def build(self):

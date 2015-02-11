@@ -21,7 +21,7 @@ from sdcn import commands
 from kivy.core.audio import SoundLoader 
 from kivy.uix.label import Label
 from sdcn.widgets.save_open.save_file import SavePopup
-
+from sdcn.widgets.save_open.open_file import OpenPopup
 import json
 from io import StringIO
 from sdcn.widgets.submenu.submenu import SubMenu
@@ -49,6 +49,7 @@ class SdcnController(FloatLayout):
                          FileAndFolderMenu(self.workflow_layout, self), ImageMenu(self.workflow_layout, self), 
                          MusicMenu(self.workflow_layout, self), VideoMenu(self.workflow_layout, self)]
         self.save_popup = SavePopup(title = 'Save',workflow_layout = self.workflow_layout)
+        self.open_popup = OpenPopup(title = 'Open',workflow_layout = self.workflow_layout,main_menu_layout = self.main_menu_layout)
         self.workflow_layout.bind(minimum_height=self.workflow_layout.setter('height'))
    
     def status_play_button(self):
@@ -56,8 +57,7 @@ class SdcnController(FloatLayout):
         if self.ids.play_button.enable % 2 == 0:
             self.ids.play_button.background_normal = '../sdcn/data/images/play1.png'
             self.ids.play_button.background_down = '../sdcn/data/images/pause1.png'
-        if self.ids.play_button.enable % 2 == 1 :
-
+        elif self.ids.play_button.enable % 2 == 1 :
             self.ids.play_button.background_normal = '../sdcn/data/images/pause1.png'
             self.ids.play_button.background_down = '../sdcn/data/images/play1.png'
             command_output = None
@@ -65,15 +65,14 @@ class SdcnController(FloatLayout):
                 print(bt.widget.__class__.__name__)
                 if bt.widget.__class__.__name__ == 'FindFile':
 
-                    path_file = str(bt.widget.filechooser_in_pop.path)
-                    selection_file = bt.widget.filechooser_in_pop.filechooser.selection
+                    path_file = str(bt.widget.popup_filechoser.filechooser.path)
+                    selection_file = bt.widget.popup_filechoser.filechooser.selection
                     self.ids.out_label.text = path_file
 #                     print(bt.widget.filechooser_in_pop.path)
 #                     print(bt.widget.ids.file_input.text)
 #                     test1 = ['find', str(path_file) ,  '-name',str(bt.widget.ids.file_input.text)]
 #                     test = subprocess.check_output(test1)
 #                     print(test)
-                    print(type(selection_fisave_popuple))
 #                     cmd = commands.FindCommand(path=path_file, pattern = str(selection_file[0]))
                     
                     cmd = commands.FindCommand(path=path_file, pattern = bt.widget.ids.file_input.text)
@@ -168,17 +167,29 @@ class SdcnController(FloatLayout):
                     command_output = output
                     print(command_output)
                  
-                                
-                elif bt.widget.__class__.__name__ == 'ConvertMusicType':
+                elif bt.widget.__class__.__name__ == 'ConvertVideoType':
                     print("command_output:",command_output)
-                    cmd = commands.ConvertMusicCommands(source = command_output, target="/tmp/out.wav")
-                    cmd_runner = commands.CommandRunner(cmd.build())
-                    cmd_runner.start()
-                    cmd_runner.join()
-                    command_output = cmd_runner.output
-                    print(cmd_runner.output)
-                    command_output = ['/tmp/out.wav']
-                    print(cmd_runner.output)
+                    print(bt.widget.ids.type.text)
+                    output = []
+                    for i in command_output:
+                        cmd = commands.ConvertVideoFile(source = i , target = i[:i.rfind('.')]+ str(bt.widget.ids.type.text))
+                        cmd_runner = commands.CommandRunner(cmd.build())
+                        cmd_runner.start()
+                        cmd_runner.join()
+#                         output.append(i[:i.rfind('.')]+ str(bt.widget.ids.type.text))
+                    command_output = output
+                    print(command_output)
+                                
+#                 elif bt.widget.__class__.__name__ == 'ConvertMusicType':
+#                     print("command_output:",command_output)
+#                     cmd = commands.ConvertMusicCommands(source = command_output, target="/tmp/out.wav")
+#                     cmd_runner = commands.CommandRunner(cmd.build())
+#                     cmd_runner.start()
+#                     cmd_runner.join()
+#                     command_output = cmd_runner.output
+#                     print(cmd_runner.output)
+#                     command_output = ['/tmp/out.wav']
+#                     print(cmd_runner.output)
 
             self.complete.open()
                 
@@ -219,46 +230,25 @@ class SdcnController(FloatLayout):
             
     def save_workflow(self):
         self.save_popup.open()
-#         workflow=[]
-# 
-#         for wf_widget in reversed(self.workflow_layout.children):
-#             wf = dict()
-#             if wf_widget.widget.ids.workflow_header.text == 'Find File':
-#                 wf = dict(name=wf_widget.widget.ids.workflow_header.text ,
-#                           path_file = wf_widget.widget.ids.path_input.text,
-#                           pattern = wf_widget.widget.ids.file_input.text
-#                         )
-#             elif wf_widget.widget.ids.workflow_header.text == 'Convert PDF File':
-#                 wf = dict(name=wf_widget.widget.ids.workflow_header.text ,
-#                           type = wf_widget.widget.ids.type.text,
-#                           target = wf_widget.widget.ids.nameinput.text
-#                         )
-#             workflow.append(wf)
-# 
-#         workflow_file = dict(workflow=workflow)
-#          
-#         with open('/tmp/work_flow.json', 'w') as f:
-#             json.dump(workflow_file, f)
-#          
-#         f.close()
 
     def open_workflow(self):
-        workflow_file = None
-        with open('/tmp/work_flow.json', 'r') as f:
-            workflow_file = json.load(f, workflow_file)
-        f.close()
-    
-        self.workflow_layout.clear_widgets()
-        submenu = SubMenu(self.workflow_layout, self.main_menu_layout)
-        for wf_dict in workflow_file['workflow']:
-            if wf_dict['name'] == "Find File":
-                dw = submenu.add_widget_to_workflow_layout(wf_dict['name'])
-                widget = dw.widget
-                widget.ids.path_input.text = wf_dict['path_file']
-                widget.ids.file_input.text = wf_dict['pattern']
-            elif wf_dict['name'] == "Convert PDF File":
-                dw = submenu.add_widget_to_workflow_layout(wf_dict['name'])
-                widget = dw.widget
-                widget.ids.type.text = wf_dict['type']
-                widget.ids.nameinput.text = wf_dict['target']
+        self.open_popup.open()
+#         workflow_file = None
+#         with open('/tmp/work_flow.json', 'r') as f:
+#             workflow_file = json.load(f, workflow_file)
+#         f.close()
+#     
+#         self.workflow_layout.clear_widgets()
+#         submenu = SubMenu(self.workflow_layout, self.main_menu_layout)
+#         for wf_dict in workflow_file['workflow']:
+#             if wf_dict['name'] == "Find File":
+#                 dw = submenu.add_widget_to_workflow_layout(wf_dict['name'])
+#                 widget = dw.widget
+#                 widget.ids.path_input.text = wf_dict['path_file']
+#                 widget.ids.file_input.text = wf_dict['pattern']
+#             elif wf_dict['name'] == "Convert PDF File":
+#                 dw = submenu.add_widget_to_workflow_layout(wf_dict['name'])
+#                 widget = dw.widget
+#                 widget.ids.type.text = wf_dict['type']
+#                 widget.ids.nameinput.text = wf_dict['target']
 
