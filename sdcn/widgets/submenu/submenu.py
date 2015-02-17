@@ -33,6 +33,8 @@ from kivy.uix.image import Image
 from kivy.properties import ObjectProperty
 from kivy.clock import Clock
 
+import os
+
 class DraggableSubmenuContainer(Magnet):
     menu = ObjectProperty(None, allownone=True)
     app = ObjectProperty(None)
@@ -91,12 +93,14 @@ class DraggableSubmenuContainer(Magnet):
 
         
 class SubMenu(StackLayout):
+#     menu_path = os.path.dirname(__file__)
     
     def __init__(self, workflow_layout, main_layout):
         super().__init__()
         self.workflow_layout = workflow_layout
         self.main_layout = main_layout
-        self.bh = int(.075*self.workflow_layout.height)   
+        self.bh = int(.075*self.workflow_layout.height)
+        
         
         
     def add_to_workflow_layout(self, button):
@@ -118,7 +122,7 @@ class SubMenu(StackLayout):
                                           workflow_layout=self.workflow_layout,
                                           main_layout=self.main_layout,
                                           size_hint=(1,None),
-                                          size=(1,100))
+                                          size=(1,150))
             dw.widget.ids.workflow_header.text = text
             self.workflow_layout.add_widget(dw)
             

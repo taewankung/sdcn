@@ -10,7 +10,7 @@
 	Label:
 		id: workflow_header
 		text: 'Compress File'
-		size_hint:(0.8999,0.5)
+		size_hint:(0.8999,0.25)
 		canvas.before:
 			Color:
 				rgba: (0.5,0.5,0.5,1)
@@ -20,12 +20,18 @@
         color: (0,0,0,1)
 	Button:
 		text: 'X'
-		size_hint:(0.1,0.5)
+		size_hint:(0.1,0.25)
 		on_press: root.delete_in_workflow_layout(root)
 	
 	Spinner:
 		id: type
 		text: '.choose'
 		values: ('.Zip','.XZip')
-		size_hint: (1,0.5)
+		size_hint: (1,0.50)
 		size:  (1,44)
+	Label:
+		text: 'output_name'
+		size_hint: (0.5,0.25)
+	TextInput:
+		id: name
+		size_hint: (0.5,0.25)

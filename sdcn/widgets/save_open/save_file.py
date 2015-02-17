@@ -42,6 +42,7 @@ class SavePopup(Popup):
     def __init__(self,title,workflow_layout):
         super().__init__()
         self.workflow_layout = workflow_layout
+        self.title = title
     def ok_path(self):
         workflow=[]
   
@@ -57,13 +58,45 @@ class SavePopup(Popup):
                           type = wf_widget.widget.ids.type.text,
                           target = wf_widget.widget.ids.nameinput.text
                         )
+                           
+            elif wf_widget.widget.ids.workflow_header.text == 'Convert Music Type':
+                wf = dict(name=wf_widget.widget.ids.workflow_header.text ,
+                          type = wf_widget.widget.ids.type.text,
+                          target = wf_widget.widget.ids.nameinput.text
+                        )
+                
+                           
+            elif wf_widget.widget.ids.workflow_header.text == 'Convert Video Type':
+                wf = dict(name=wf_widget.widget.ids.workflow_header.text ,
+                         type = wf_widget.widget.ids.type.text,
+                         target = wf_widget.widget.ids.nameinput.text
+                        )
+                           
+            elif wf_widget.widget.ids.workflow_header.text == 'Compress Files':
+                wf = dict(name=wf_widget.widget.ids.workflow_header.text ,
+                          type = wf_widget.widget.ids.type.text,
+                        )
+            
+                           
+            elif wf_widget.widget.ids.workflow_header.text == 'Change Image Type':
+                wf = dict(name=wf_widget.widget.ids.workflow_header.text ,
+                          type = wf_widget.widget.ids.type.text,
+                        )
+            elif wf_widget.widget.ids.workflow_header.text == 'Resize Image':
+                wf = dict(name=wf_widget.widget.ids.workflow_header.text ,
+                          type_name = wf_widget.widget.ids.type_name.text,
+                          size_per = wf_widget.widget.ids.size_per.text,
+                        )
+                pass
+                              
             workflow.append(wf)
         workflow_file = dict(workflow=workflow)
-        with open(str(self.ids.save_filechooser.path)+'/'+self.ids.name.text+'.json', 'w') as f:
-            json.dump(workflow_file, f)
-        f.close()            
-        workflow_file = dict(workflow=workflow)
-
+        if(str(self.ids.save_filechooser.path) != ''):
+            with open(str(self.ids.save_filechooser.path)+'/'+self.ids.name.text+'.json', 'w') as f:
+                json.dump(workflow_file, f)
+            f.close()            
+            workflow_file = dict(workflow=workflow)
+        self.dismiss()
 # class TestApp(App):
 #      def build(self):
 #          return SavePopup(title = 'save file')
