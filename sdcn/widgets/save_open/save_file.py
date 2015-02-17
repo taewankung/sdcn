@@ -15,7 +15,7 @@ Builder.load_string("""
         FileChooserIconView:
             id: save_filechooser
             size_hint: (1,0.9)
-            path:'/home'
+            path:'~/'
         BoxLayout:
             size_hint: (1,0.09)
             Label:
