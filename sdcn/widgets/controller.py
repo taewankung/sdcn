@@ -33,7 +33,7 @@ Builder.load_file(os.path.dirname(__file__) + '/controller.kv')
 class SdcnController(FloatLayout):
     complete = Popup(title = 'Complete',size_hint=(0.5,0.5))
     complete.add_widget(Label(text = 'Complete'))
-    complete_sound = SoundLoader.load(os.path.dirname(__file__)+'/../data/audio/button.wav')
+    complete_sound = SoundLoader.load(os.path.dirname(__file__)+'/../data/audio/popup.mp3')
     menu_path = os.path.dirname(__file__)
     def __init__(self):
         super().__init__()
