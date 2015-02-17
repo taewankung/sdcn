@@ -7,7 +7,8 @@ README = open(os.path.join(here, 'README.md')).read()
 CHANGES = open(os.path.join(here, 'CHANGES.md')).read()
 
 requires = [
-    'kivy',
+    'Cython',
+    'kivy'
     ]
 
 SCRIPT_NAME = 'sdcn'
@@ -23,10 +24,10 @@ setup(name='sdcn',
       author_email='taewankung@gmail.com, alunnice2537@gmail.com, greanmer.tm@gmail.com',
       scripts = ['bin/%s' % SCRIPT_NAME],
       license = 'License',
-      packages = find_packages(),
       url='https://github.com/taewankung/sdcn',
       keywords='sdcn',
-#      packages=find_packages(),
+      packages=find_packages(),
+      package_data={'sdcn': ['widgets/*.kv', 'widgets/submenu/*.kv', 'widgets/widgetbutton/*.kv', 'data/images/*.png', 'data/audio/*.wav']},
       include_package_data=True,
       zip_safe=False,
       install_requires=requires,
