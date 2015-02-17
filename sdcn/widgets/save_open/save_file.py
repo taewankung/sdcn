@@ -71,7 +71,11 @@ class SavePopup(Popup):
                          type = wf_widget.widget.ids.type.text,
                          target = wf_widget.widget.ids.nameinput.text
                         )
-                           
+            elif wf_widget.widget.ids.workflow_header.text == 'Convert Files':
+                wf = dict(name=wf_widget.widget.ids.workflow_header.text ,
+                         type = wf_widget.widget.ids.type.text,
+                        )
+                              
             elif wf_widget.widget.ids.workflow_header.text == 'Compress Files':
                 wf = dict(name=wf_widget.widget.ids.workflow_header.text ,
                           type = wf_widget.widget.ids.type.text,
@@ -82,6 +86,7 @@ class SavePopup(Popup):
                 wf = dict(name=wf_widget.widget.ids.workflow_header.text ,
                           type = wf_widget.widget.ids.type.text,
                         )
+            
             elif wf_widget.widget.ids.workflow_header.text == 'Resize Image':
                 wf = dict(name=wf_widget.widget.ids.workflow_header.text ,
                           type_name = wf_widget.widget.ids.type_name.text,

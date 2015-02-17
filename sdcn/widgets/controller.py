@@ -183,6 +183,19 @@ class SdcnController(FloatLayout):
 #                         output.append(i[:i.rfind('.')]+ str(bt.widget.ids.type.text))
                     command_output = output
                     print(command_output)
+                
+                elif bt.widget.__class__.__name__ == 'RotateImage':
+                    print("command_output:",command_output)
+
+                    output = []
+                    for i in command_output:
+                        cmd = commands.Rotate( target = i[:i.rfind('/')] +'/'+ str(bt.widget.ids.name.text)+ i[i.rfind('.'):], source = i,degree = bt.widget.ids.degree.text)
+                        cmd_runner = commands.CommandRunner(cmd.build())
+                        cmd_runner.start()
+                        cmd_runner.join()
+                        output.append(i[:i.rfind('.')]+ str(bt.widget.ids.name.text))
+                    command_output = output
+                    print(command_output) 
                                 
 #                 elif bt.widget.__class__.__name__ == 'ConvertMusicType':
 #                     print("command_output:",command_output)

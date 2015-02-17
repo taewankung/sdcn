@@ -63,6 +63,10 @@ class Resize(Command):
     def build(self):
         return ['convert', self.kwargs['source'],'-resize',self.kwargs['percent'],self.kwargs['target']]
     
+class Rotate(Command):
+    def build(self):
+        return ['convert', self.kwargs['source'], '-rotate',self.kwargs['degree'], self.kwargs['target']]
+    
 class DocToText(Command):
     def buid(self):
         pass

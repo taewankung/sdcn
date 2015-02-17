@@ -34,6 +34,7 @@ from kivy.properties import ObjectProperty
 from kivy.clock import Clock
 
 import os
+from sdcn.widgets.widgetbutton.rotate_image import RotateImage
 
 class DraggableSubmenuContainer(Magnet):
     menu = ObjectProperty(None, allownone=True)
@@ -93,7 +94,7 @@ class DraggableSubmenuContainer(Magnet):
 
         
 class SubMenu(StackLayout):
-#     menu_path = os.path.dirname(__file__)
+    menu_path = os.path.dirname(__file__)
     
     def __init__(self, workflow_layout, main_layout):
         super().__init__()
@@ -214,6 +215,15 @@ class SubMenu(StackLayout):
                                           size_hint=(1,None),
                                           size=(1,100))
             self.workflow_layout.add_widget(dw)
+        
+        elif text == 'Rotate Image':
+            dw = DraggableWidgetContainer(widget=RotateImage(self.workflow_layout),
+                                          workflow_layout=self.workflow_layout,
+                                          main_layout=self.main_layout,
+                                          size_hint=(1,None),
+                                          size=(1,100))
+            self.workflow_layout.add_widget(dw)
+        
         elif text == 'Convert Video Files':
             dw = DraggableWidgetContainer(widget=ConvertVideoType(self.workflow_layout),
                                           workflow_layout=self.workflow_layout,
