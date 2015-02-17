@@ -100,13 +100,19 @@ class SdcnController(FloatLayout):
                 elif bt.widget.__class__.__name__ == 'CompressFile':
                     print(bt.widget.ids.type.text)
                     if bt.widget.ids.type.text == '.Zip':
-                        cmd = commands.CompressFileZip(source=command_output, target="/tmp/xx.zip")
+                        if(bt.widget.ids.name.text == ''):
+                            cmd = commands.CompressFileZip(source = command_output, target= command_output[0][0:command_output[0].rfind("/")]+'/out.zip')
+                        else: cmd = commands.CompressFileZip(source = command_output, target= command_output[0][0:command_output[0].rfind("/")]+'/'+bt.widget.ids.name.text+'.zip')
                         cmd_runner = commands.CommandRunner(cmd.build())
                         cmd_runner.start()
                         cmd_runner.join()
                         print(cmd_runner.output)
                         command_output = ['/tmp/xx.zip']
                     elif bt.widget.ids.type.text == '.XZip':
+                        print('ss')
+                        if(bt.widget.ids.name.text == ''):
+                            cmd = commands.CompressFileZip(source = command_output, target= command_output[0][0:command_output[0].rfind("/")]+'/out.xzip')
+                        else: cmd = commands.CompressFileZip(source = command_output, target= command_output[0][0:command_output[0].rfind("/")]+'/'+bt.widget.ids.name.text+'.xzip')
                         print('XZip')
                 
                 elif bt.widget.__class__.__name__ == 'HiddenFile':

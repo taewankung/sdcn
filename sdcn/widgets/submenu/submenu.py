@@ -118,7 +118,7 @@ class SubMenu(StackLayout):
                                           workflow_layout=self.workflow_layout,
                                           main_layout=self.main_layout,
                                           size_hint=(1,None),
-                                          size=(1,100))
+                                          size=(1,150))
             dw.widget.ids.workflow_header.text = text
             self.workflow_layout.add_widget(dw)
             
