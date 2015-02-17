@@ -6,7 +6,7 @@ Created on Jan 26, 2015
 from kivy.lang import Builder
 from kivy.uix.stacklayout import StackLayout
 
-
+import os
 from sdcn.garden.magnet import Magnet
 from kivy.uix.image import Image
 from kivy.properties import ObjectProperty
@@ -15,6 +15,7 @@ from kivy.clock import Clock
 
 
 class WorkflowWidget(StackLayout):
+    menu_path = os.path.dirname(__file__)
     def __init__(self, workflow_layout):
         super().__init__()
         self.workflow_layout = workflow_layout
