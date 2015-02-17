@@ -35,6 +35,7 @@ class SdcnController(FloatLayout):
     complete.add_widget(Label(text = 'Complete'))
     complete_sound = SoundLoader.load(os.path.dirname(__file__)+'/../data/audio/popup.mp3')
     menu_path = os.path.dirname(__file__)
+    #credit: sfx from http://www.freesfx.co.uk
     def __init__(self):
         super().__init__()
 #         self.pdf_menu = PdfMenu()
