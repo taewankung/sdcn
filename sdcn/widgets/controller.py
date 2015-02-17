@@ -33,7 +33,8 @@ Builder.load_file(os.path.dirname(__file__) + '/controller.kv')
 class SdcnController(FloatLayout):
     complete = Popup(title = 'Complete',size_hint=(0.5,0.5))
     complete.add_widget(Label(text = 'Complete'))
-    
+    complete_sound = SoundLoader.load(os.path.dirname(__file__)+'/../data/audio/button.wav')
+    menu_path = os.path.dirname(__file__)
     def __init__(self):
         super().__init__()
 #         self.pdf_menu = PdfMenu()
@@ -53,11 +54,11 @@ class SdcnController(FloatLayout):
     def status_play_button(self):
         self.ids.play_button.enable += 1
         if self.ids.play_button.enable % 2 == 0:
-            self.ids.play_button.background_normal = '../sdcn/data/images/play1.png'
-            self.ids.play_button.background_down = '../sdcn/data/images/pause1.png'
+            self.ids.play_button.background_normal = os.path.dirname(__file__)+'/../data/images/play1.png'
+            self.ids.play_button.background_down = os.path.dirname(__file__)+'/../data/images/pause1.png'
         elif self.ids.play_button.enable % 2 == 1 :
-            self.ids.play_button.background_normal = '../sdcn/data/images/pause1.png'
-            self.ids.play_button.background_down = '../sdcn/data/images/play1.png'
+            self.ids.play_button.background_normal = os.path.dirname(__file__)+'/../data/images/pause1.png'
+            self.ids.play_button.background_down = os.path.dirname(__file__)+'/../data/images/play1.png'
             command_output = None
             for bt in reversed(self.workflow_layout.children):
                 print(bt.widget.__class__.__name__)
@@ -196,6 +197,7 @@ class SdcnController(FloatLayout):
 #                     print(cmd_runner.output)
 
             self.complete.open()
+            self.complete_sound.play()
                 
 #                                 command_output = cmd_runner.output
                         
@@ -226,7 +228,7 @@ class SdcnController(FloatLayout):
             
         for submenu in self.submenus:
             if submenu.__class__.__name__ == menu_name:
-                sound = SoundLoader.load('../sdcn/data/audio/button.wav')
+                sound = SoundLoader.load(os.path.dirname(__file__)+'/../data/audio/button.wav')
                 sound.play()
                 self.sub_menu_layout.clear_widgets()
                 self.sub_menu_layout.add_widget(submenu)

@@ -93,7 +93,7 @@ class DraggableSubmenuContainer(Magnet):
 
         
 class SubMenu(StackLayout):
-#     menu_path = os.path.dirname(__file__)
+    menu_path = os.path.dirname(__file__)
     
     def __init__(self, workflow_layout, main_layout):
         super().__init__()

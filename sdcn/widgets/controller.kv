@@ -7,11 +7,11 @@
 			orientation: 'tb-lr'
 			size_hint_y:0.2
 			Image:
-				source: "../sdcn/data/images/logo.png"
+				source: root.menu_path +'/../data/images/logo.png'
 				size_hint_x: 0.1
 				size_hint_y: 1
 			Image:
-				source: "../sdcn/data/images/name.png"
+				source: root.menu_path +'/../data/images/name.png'
 				size_hint_x: 0.7
 				size_hint_y: 0.5
 			Label:
@@ -21,8 +21,8 @@
 			Button:
 				id: play_button
 				enable: 0
-				background_normal: '../sdcn/data/images/play1.png'
-	        	background_down: 'pause1.png'
+				background_normal: root.menu_path +'/../data/images/play1.png'
+	        	background_down: root.menu_path +'/../data/images/pause.png'
 				size_hint_x: None
 				size_hint_y: None
 				size:(60,60)
@@ -51,52 +51,52 @@
 					Button:
 						id: document_button
 						##background_color:(0,1.49,2,2)
-						background_normal: '../sdcn/data/images/doccument_icon.png'
+						background_normal: root.menu_path +'/../data/images/doccument_icon.png'
 						
 						##text: 'Document Manager'
-						background_disabled_normal: '../sdcn/data/images/document_icon_disable.png'
-						background_disabled_down: '../sdcn/data/images/document_icon_disable.png'
+						background_disabled_normal: root.menu_path +'/../data/images/document_icon_disable.png'
+						background_disabled_down: root.menu_path +'/../data/images/document_icon_disable.png'
 						size_hint_x: None
 						size_hint_y: None
 						size:(234,50)
 						on_press: root.change_submenu("DocumentMenu", document_button)
 					Button:
 						id: picture_button
-						background_normal: '../sdcn/data/images/image_icon.png'
+						background_normal: root.menu_path +'/../data/images/image_icon.png'
 						##text: 'Picture'
-						background_disabled_normal: '../sdcn/data/images/image_icon_disable.png'
-						background_disabled_down: '../sdcn/data/images/image_icon_disable.png'
+						background_disabled_normal: root.menu_path +'/../data/images/image_icon_disable.png'
+						background_disabled_down: root.menu_path +'/../data/images/image_icon_disable.png'
 						size_hint_x: None
 						size_hint_y: None
 						size:(234,50)
 						on_press: root.change_submenu("ImageMenu", picture_button)
 					Button:
 						id: pdf_button
-						background_normal: '../sdcn/data/images/PDF_icon.png'
-						##background_down: '../sdcn/data/images/PDF_icon.png'
+						background_normal: root.menu_path +'/../data/images/PDF_icon.png'
+						##background_down: root.menu_path +'/../../data/images/PDF_icon.png'
 						##text: 'PDF'
-						background_disabled_normal: '../sdcn/data/images/PDF_icon_disable.png'
-						background_disabled_down: '../sdcn/data/images/PDF_icon_disable.png'
+						background_disabled_normal: root.menu_path +'/../data/images/PDF_icon_disable.png'
+						background_disabled_down: root.menu_path +'/../data/images/PDF_icon_disable.png'
 						size_hint_x: None
 						size_hint_y: None
 						size:(234,50)
 						on_press: root.change_submenu("PdfMenu", pdf_button)
 					Button:
 						id: music_button
-						background_normal: '../sdcn/data/images/music_icon.png'
+						background_normal: root.menu_path +'/../data/images/music_icon.png'
 						##text: 'Music '
-						background_disabled_normal: '../sdcn/data/images/music_icon_disable.png'
-						background_disabled_down: '../sdcn/data/images/music_icon_disable.png'
+						background_disabled_normal: root.menu_path +'/../data/images/music_icon_disable.png'
+						background_disabled_down: root.menu_path +'/../data/images/music_icon_disable.png'
 						size_hint_x: None
 						size_hint_y: None
 						size:(234,50)
 						on_press: root.change_submenu("MusicMenu", music_button)
 					Button:
 						id: video_button
-						background_normal: '../sdcn/data/images/video_icon.png'
+						background_normal: root.menu_path +'/../data/images/video_icon.png'
 						##text: 'Video'
-						background_disabled_normal: '../sdcn/data/images/video_icon_disable.png'
-						background_disabled_down: '../sdcn/data/images/video_icon_disable.png'
+						background_disabled_normal: root.menu_path +'/../data/images/video_icon_disable.png'
+						background_disabled_down: root.menu_path +'/../data/images/video_icon_disable.png'
 						size_hint_x: None
 						size_hint_y: None
 						size:(234,50)
@@ -139,20 +139,20 @@
 			size_hint: (1,0.1)
 			Button:
 				id: save_button
-				##background_normal: '../sdcn/data/images/video_icon.png'
+				##background_normal: root.menu_path +'/../data/images/video_icon.png'
 				text: 'Save'
-				##background_disabled_normal: '../sdcn/data/images/video_icon_disable.png'
-				##background_disabled_down: '../sdcn/data/images/video_icon_disable.png'
+				##background_disabled_normal: root.menu_path +'/../data/images/video_icon_disable.png'
+				##background_disabled_down: root.menu_path +'/../data/images/video_icon_disable.png'
 				size_hint_x: None
 				size_hint_y: None
 				size:(234,50)
 				on_press: root.save_workflow()
 			Button:
 				id: open_button
-				##background_normal: '../sdcn/data/images/video_icon.png'
+				##background_normal: root.menu_path +'/../data/images/video_icon.png'
 				text: 'Open'
-				##background_disabled_normal: '../sdcn/data/images/video_icon_disable.png'
-				##background_disabled_down: '../sdcn/data/images/video_icon_disable.png'
+				##background_disabled_normal: root.menu_path +'/../data/images/video_icon_disable.png'
+				##background_disabled_down: root.menu_path +'/../data/images/video_icon_disable.png'
 				size_hint_x: None
 				size_hint_y: None
 				size:(234,50)
