@@ -102,19 +102,19 @@ class SdcnController(FloatLayout):
                 elif bt.widget.__class__.__name__ == 'CompressFile':
                     print(bt.widget.ids.type.text)
                     if bt.widget.ids.type.text == '.Zip':
-                        if(bt.widget.ids.name.text == ''):
+                        if(bt.widget.ids.output_name.text == ''):
                             cmd = commands.CompressFileZip(source = command_output, target= command_output[0][0:command_output[0].rfind("/")]+'/out.zip')
-                        else: cmd = commands.CompressFileZip(source = command_output, target= command_output[0][0:command_output[0].rfind("/")]+'/'+bt.widget.ids.name.text+'.zip')
+                        else: cmd = commands.CompressFileZip(source = command_output, target= command_output[0][0:command_output[0].rfind("/")]+'/'+bt.widget.ids.output_name.text+'.zip')
                         cmd_runner = commands.CommandRunner(cmd.build())
                         cmd_runner.start()
                         cmd_runner.join()
                         print(cmd_runner.output)
                         command_output = ['/tmp/xx.zip']
-                    elif bt.widget.ids.type.text == '.XZip':
+                    elif bt.widget.ids.type.text == '.gzip':
                         print('ss')
-                        if(bt.widget.ids.name.text == ''):
+                        if(bt.widget.ids.output_name.text == ''):
                             cmd = commands.CompressFileZip(source = command_output, target= command_output[0][0:command_output[0].rfind("/")]+'/out.xzip')
-                        else: cmd = commands.CompressFileZip(source = command_output, target= command_output[0][0:command_output[0].rfind("/")]+'/'+bt.widget.ids.name.text+'.xzip')
+                        else: cmd = commands.CompressFileZip(source = command_output, target= command_output[0][0:command_output[0].rfind("/")]+'/'+bt.widget.ids.output_name.text+'.xzip')
                         print('XZip')
                 
                 elif bt.widget.__class__.__name__ == 'HiddenFile':
@@ -191,11 +191,11 @@ class SdcnController(FloatLayout):
 
                     output = []
                     for i in command_output:
-                        cmd = commands.Rotate( target = i[:i.rfind('/')] +'/'+ str(bt.widget.ids.name.text)+ i[i.rfind('.'):], source = i,degree = bt.widget.ids.degree.text)
+                        cmd = commands.Rotate( target = i[:i.rfind('/')] +'/'+ str(bt.widget.ids.name_input.text)+ i[i.rfind('.'):], source = i,degree = bt.widget.ids.degree.text)
                         cmd_runner = commands.CommandRunner(cmd.build())
                         cmd_runner.start()
                         cmd_runner.join()
-                        output.append(i[:i.rfind('.')]+ str(bt.widget.ids.name.text))
+                        output.append(i[:i.rfind('.')]+ str(bt.widget.ids.name_input.text))
                     command_output = output
                     print(command_output) 
                                 
