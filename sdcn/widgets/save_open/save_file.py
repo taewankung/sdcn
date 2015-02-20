@@ -98,10 +98,6 @@ class SavePopup(Popup):
                 wf = dict(name=wf_widget.widget.ids.workflow_header.text ,
                           name_input = wf_widget.widget.ids.name_input.text,
                         )
-            elif wf_widget.widget.ids.workflow_header.text == 'Rename Image':
-                wf = dict(name=wf_widget.widget.ids.workflow_header.text ,
-                          name_input = wf_widget.widget.ids.name_input.text,
-                        )
             elif wf_widget.widget.ids.workflow_header.text == 'Rotate Image':
                 wf = dict(name=wf_widget.widget.ids.workflow_header.text ,
                           degree = wf_widget.widget.ids.degree.text,

@@ -67,6 +67,10 @@ class Rotate(Command):
     def build(self):
         return ['convert', self.kwargs['source'], '-rotate',self.kwargs['degree'], self.kwargs['target']]
     
+class NewFolders(Command):
+    def build(self):
+            return ['mkdir' , self.kwargs['target']]
+    
 class DocToText(Command):
     def buid(self):
         pass
