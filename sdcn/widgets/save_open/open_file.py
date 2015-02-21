@@ -59,6 +59,7 @@ class OpenPopup(Popup):
                 dw = submenu.add_widget_to_workflow_layout(wf_dict['name'])
                 widget = dw.widget
                 widget.ids.path_input.text = wf_dict['path_file']
+                widget.popup_filechoser.filechooser.path = widget.ids.path_input.text
                 widget.ids.file_input.text = wf_dict['pattern']
             elif wf_dict['name'] == "Compress Files":
                 dw = submenu.add_widget_to_workflow_layout(wf_dict['name'])

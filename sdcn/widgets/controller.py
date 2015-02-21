@@ -4,7 +4,7 @@ Created on Jan 14, 2015
 @author: taewankung
 '''
 from kivy.lang import Builder
-from kivy.uix.stacklayout import StackLayout
+
 from kivy.uix.floatlayout import FloatLayout
 from sdcn.widgets.submenu.pdf import PdfMenu
 from sdcn.widgets.submenu.document import DocumentMenu
@@ -12,8 +12,7 @@ from sdcn.widgets.submenu.fileandfolder import FileAndFolderMenu
 from sdcn.widgets.submenu.Image import ImageMenu
 from sdcn.widgets.submenu.video import VideoMenu
 from sdcn.widgets.submenu.music import MusicMenu
-from kivy.uix.filechooser import FileChooserListView
-from kivy.uix.button import Button
+from os.path import expanduser
 import os
 from kivy.uix.popup import Popup
 
@@ -22,10 +21,13 @@ from kivy.core.audio import SoundLoader
 from kivy.uix.label import Label
 from sdcn.widgets.save_open.save_file import SavePopup
 from sdcn.widgets.save_open.open_file import OpenPopup
-import json
-from io import StringIO
-from sdcn.widgets.submenu.submenu import SubMenu
 
+# import json
+# from io import StringIO
+# from sdcn.widgets.submenu.submenu import SubMenu
+# from kivy.uix.filechooser import FileChooserListView
+# from kivy.uix.button import Button
+# from kivy.uix.stacklayout import StackLayout
 
 Builder.load_file(os.path.dirname(__file__) + '/controller.kv')
 
@@ -189,14 +191,31 @@ class SdcnController(FloatLayout):
                     
                 elif bt.widget.__class__.__name__ == 'NewFolder':
                     print("command_output:",command_output)
-                    print(bt.widget.ids.type.text)
                     output = []
-                    for i in command_output:
-                        cmd = commands.NewFolders(source = i , target = i[:i.rfind('.')]+ str(bt.widget.ids.type.text))
+                    if(command_output == None):
+                        cmd = commands.NewFolders(target = bt.widget.ids.text_folder.text,mode = 0)
+                        print(cmd)
                         cmd_runner = commands.CommandRunner(cmd.build())
                         cmd_runner.start()
                         cmd_runner.join()
-#                         output.append(i[:i.rfind('.')]+ str(bt.widget.ids.type.text))
+                        output.append(expanduser('~') + '/' + cmd.target +'/')
+                    else:
+                        x = 0
+                        for i in command_output:
+                            x+=1
+                            if(x==1):
+                                cmd = commands.NewFolders(target = i[:i.rfind('/')]+'/'+bt.widget.ids.text_folder.text ,mode = 1,source = i)
+                                print(cmd)
+                                cmd_runner = commands.CommandRunner(cmd.build())
+                                cmd_runner.start()
+                                cmd_runner.join()
+                            else:
+                                cmd = commands.NewFolders(target = i[:i.rfind('/')]+'/'+bt.widget.ids.text_folder.text ,mode = 2,source = i)
+                                print(cmd)
+                                cmd_runner = commands.CommandRunner(cmd.build())
+                                cmd_runner.start()
+                                cmd_runner.join()
+#                             output.append(i[:i.rfind('.')]+ str(bt.widget.ids.type.text))
                     command_output = output
                     print(command_output)
                 
@@ -204,6 +223,8 @@ class SdcnController(FloatLayout):
                     print("command_output:",command_output)
 
                     output = []
+                    if():
+                        pass
                     for i in command_output:
                         cmd = commands.Rotate( target = i[:i.rfind('/')] +'/'+ str(bt.widget.ids.name_input.text)+ i[i.rfind('.'):], source = i,degree = bt.widget.ids.degree.text)
                         cmd_runner = commands.CommandRunner(cmd.build())

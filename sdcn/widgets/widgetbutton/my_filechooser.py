@@ -9,8 +9,10 @@ from kivy.lang import Builder
 import os
 from kivy.uix.stacklayout import StackLayout
 from kivy.uix.button import Button
+from os.path import expanduser
 Builder.load_file(os.path.dirname(__file__) + '/my_filechooser.kv')
 class MyFilechooser(Popup):
+    default = expanduser('~')
     def __init__(self,title):
         super().__init__()
         self.title = title
