@@ -86,7 +86,7 @@ class NewFolders(Command):
             return ['mv',self.kwargs['source'],self.target]
         elif(self.kwargs['mode'] == 1):
             self.target = self.kwargs['target']
-            return ['mkdir',self.target,'&&','mv',self.kwargs['source'],self.target]
+            return ['mkdir',self.target]
         elif (self.kwargs['mode'] == 0):
             self.target = self.kwargs['target']
             return ['mkdir' , expanduser('~')+'/'+self.target]

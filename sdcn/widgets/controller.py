@@ -19,6 +19,7 @@ from kivy.uix.popup import Popup
 from sdcn import commands
 from kivy.core.audio import SoundLoader 
 from kivy.uix.label import Label
+
 from sdcn.widgets.save_open.save_file import SavePopup
 from sdcn.widgets.save_open.open_file import OpenPopup
 
@@ -34,7 +35,9 @@ Builder.load_file(os.path.dirname(__file__) + '/controller.kv')
 
 class SdcnController(FloatLayout):
     complete = Popup(title = 'Complete',size_hint=(0.5,0.5))
+    
     complete.add_widget(Label(text = 'Complete'))
+    
     complete_sound = SoundLoader.load(os.path.dirname(__file__)+'/../data/audio/popup.mp3')
     menu_path = os.path.dirname(__file__)
     #credit: sfx from http://www.freesfx.co.uk
@@ -106,12 +109,15 @@ class SdcnController(FloatLayout):
                     if bt.widget.ids.type.text == '.Zip':
                         if(bt.widget.ids.output_name.text == ''):
                             cmd = commands.CompressFileZip(source = command_output, target= command_output[0][0:command_output[0].rfind("/")]+'/out.zip')
-                        else: cmd = commands.CompressFileZip(source = command_output, target= command_output[0][0:command_output[0].rfind("/")]+'/'+bt.widget.ids.output_name.text+'.zip')
+                            command_output = [command_output[0][0:command_output[0].rfind("/")]+'/out.zip']
+                        else:
+                            cmd = commands.CompressFileZip(source = command_output, target= command_output[0][0:command_output[0].rfind("/")]+'/'+bt.widget.ids.output_name.text+'.zip')
+                            command_output = [command_output[0][0:command_output[0].rfind("/")]+'/'+bt.widget.ids.output_name.text+'.zip']
                         cmd_runner = commands.CommandRunner(cmd.build())
                         cmd_runner.start()
                         cmd_runner.join()
                         print(cmd_runner.output)
-                        command_output = ['/tmp/xx.zip']
+                        
                     elif bt.widget.ids.type.text == '.gzip':
                         print('ss')
                         if(bt.widget.ids.output_name.text == ''):
@@ -206,6 +212,10 @@ class SdcnController(FloatLayout):
                             if(x==1):
                                 cmd = commands.NewFolders(target = i[:i.rfind('/')]+'/'+bt.widget.ids.text_folder.text ,mode = 1,source = i)
                                 print(cmd)
+                                cmd_runner = commands.CommandRunner(cmd.build())
+                                cmd_runner.start()
+                                cmd_runner.join()
+                                cmd = commands.NewFolders(target = i[:i.rfind('/')]+'/'+bt.widget.ids.text_folder.text ,mode = 2,source = i)
                                 cmd_runner = commands.CommandRunner(cmd.build())
                                 cmd_runner.start()
                                 cmd_runner.join()
