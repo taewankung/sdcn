@@ -91,9 +91,10 @@ class NewFolders(Command):
             self.target = self.kwargs['target']
             return ['mkdir' , expanduser('~')+'/'+self.target]
 
-class DocToText(Command):
+class DocToPDF(Command):
     def buid(self):
-        pass
+        cmd = ['soffice', '--convert-to', 'pdf', self.kwargs['source'],  '--headless']
+        return cmd
 
 
 class CommandRunner(threading.Thread):

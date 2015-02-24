@@ -60,8 +60,11 @@ class SavePopup(Popup):
                           type = wf_widget.widget.ids.type.text,
                           target = wf_widget.widget.ids.nameinput.text
                         )
-                
-                           
+            elif wf_widget.widget.ids.workflow_header.text == 'Convert PDF File':
+                 wf = dict(name=wf_widget.widget.ids.workflow_header.text ,
+                          type = wf_widget.widget.ids.type.text,
+                          target = wf_widget.widget.ids.nameinput.text
+                        )                           
             elif wf_widget.widget.ids.workflow_header.text == 'Convert Video Type':
                 wf = dict(name=wf_widget.widget.ids.workflow_header.text ,
                          type = wf_widget.widget.ids.type.text,

@@ -132,12 +132,22 @@ class SdcnController(FloatLayout):
                     print(bt.widget.ids.type.text)
                     if bt.widget.ids.type.text == 'image to PDF':
                         print("command_output:",command_output)
-                        cmd = commands.PDFMergging(source=command_output, target= path_file+'/'+bt.widget.ids.nameinput.text+'.pdf')
+                        cmd = commands.PDFMergging(source = command_output, target= path_file+'/'+bt.widget.ids.nameinput.text+'.pdf')
                         cmd_runner = commands.CommandRunner(cmd.build())
                         cmd_runner.start()
                         cmd_runner.join()
                         command_output = [path_file+'/'+bt.widget.ids.nameinput.text+'.pdf']
                         print(command_output)
+                    elif bt.widget.ids.type.text == 'doc to PDF':
+                        print("command_output:",command_output)
+                        cmd = commands.DocToPDF(source = command_output)
+                        print(cmd.build())
+                        cmd_runner = commands.CommandRunner(cmd.build())
+                        cmd_runner.start()
+                        cmd_runner.join()
+                        command_output = [path_file+'/'+bt.widget.ids.nameinput.text+'.pdf']
+                        print(command_output)
+                        
                 elif bt.widget.__class__.__name__ == 'ResizeImage':
                     print(bt.widget.ids.size_per.text)
                     if type(command_output) is list:
