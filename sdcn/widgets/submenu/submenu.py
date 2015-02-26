@@ -224,7 +224,7 @@ class SubMenu(StackLayout):
                                           size=(1,100))
             self.workflow_layout.add_widget(dw)
         
-        elif text == 'Convert Video Files':
+        elif text == 'Convert Video Type':
             dw = DraggableWidgetContainer(widget=ConvertVideoType(self.workflow_layout),
                                           workflow_layout=self.workflow_layout,
                                           main_layout=self.main_layout,

@@ -131,6 +131,9 @@ class SdcnController(FloatLayout):
                 
                 elif bt.widget.__class__.__name__ == 'HiddenFile':
                     print('hiddenfile')
+                    if(bt.widget.ids.output_name.text == ''):
+                        print('Error')
+                    else: cmd = commands.hindenfile(souce = command_output)
                 
                 elif bt.widget.__class__.__name__ == 'ConvertPDFFile':
                     print(bt.widget.ids.type.text)

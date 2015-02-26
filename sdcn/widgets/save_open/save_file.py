@@ -62,10 +62,9 @@ class SavePopup(Popup):
             elif wf_widget.widget.ids.workflow_header.text == 'Convert Music Type':
                 wf = dict(name=wf_widget.widget.ids.workflow_header.text ,
                           type=wf_widget.widget.ids.type.text,
-                          target=wf_widget.widget.ids.nameinput.text
                         )
             elif wf_widget.widget.ids.workflow_header.text == 'Convert PDF File':
-                 wf = dict(name=wf_widget.widget.ids.workflow_header.text ,
+                wf = dict(name=wf_widget.widget.ids.workflow_header.text ,
                           type=wf_widget.widget.ids.type.text,
                           target=wf_widget.widget.ids.nameinput.text
                         )                           
@@ -101,9 +100,10 @@ class SavePopup(Popup):
                           type_name=wf_widget.widget.ids.type_name.text,
                           size_per=wf_widget.widget.ids.size_per.text,
                         )
-            elif wf_widget.widget.ids.workflow_header.text == 'Rename Image':
+            elif wf_widget.widget.ids.workflow_header.text == 'Resize Video':
                 wf = dict(name=wf_widget.widget.ids.workflow_header.text ,
-                          name_input=wf_widget.widget.ids.name_input.text,
+                          type_name=wf_widget.widget.ids.type_name.text,
+                          size_per=wf_widget.widget.ids.size_per.text,
                         )
             elif wf_widget.widget.ids.workflow_header.text == 'Rotate Image':
                 wf = dict(name=wf_widget.widget.ids.workflow_header.text ,

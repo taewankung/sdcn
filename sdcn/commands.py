@@ -20,7 +20,10 @@ class FindCommand(Command):
     def build(self):
         return ['find', self.kwargs['path'], '-name', self.kwargs['pattern']]
 
-
+class hindenfile(Command):        
+    def build(self):
+        return ['mv', '.', self.kwargs['source']]
+    
 class ConvertFileCommand(Command):
     #command_pattern = 'pandoc -s %s -o %s'
     

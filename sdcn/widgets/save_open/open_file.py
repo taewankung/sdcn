@@ -100,12 +100,17 @@ class OpenPopup(Popup):
                 dw = submenu.add_widget_to_workflow_layout(wf_dict['name'])
                 widget = dw.widget
                 widget.ids.type.text = wf_dict['type']
-                widget.ids.nameinput.text = wf_dict['target']
+                
             elif wf_dict['name'] == "Convert Video Type":
                 dw = submenu.add_widget_to_workflow_layout(wf_dict['name'])
+                print(dw.widget)
                 widget = dw.widget
                 widget.ids.type.text = wf_dict['type']
                 widget.ids.nameinput.text = wf_dict['target']
-            
+            elif wf_dict['name'] == "Resize Video":
+                dw = submenu.add_widget_to_workflow_layout(wf_dict['name'])
+                widget = dw.widget
+                widget.ids.type_name.text = wf_dict['type_name']
+                widget.ids.size_per.text = wf_dict['size_per']
         self.dismiss()
         
