@@ -42,16 +42,13 @@
 					size:(100,50)
 					font_size: 30
 				Button:
-					id: save_button
-				##background_normal: root.menu_path +'/../data/images/video_icon.png'
-					text: 'Save'
-				##background_disabled_normal: root.menu_path +'/../data/images/video_icon_disable.png'
-				##background_disabled_down: root.menu_path +'/../data/images/video_icon_disable.png'
+					id: new
+					text: 'New'
 					size_hint_x: None
 					size_hint_y: None
 					size:(234,50)
-					on_press: root.save_workflow()
 					font_size: 30
+					on_press: root.new()
 				Button:
 					id: open_button
 					##background_normal: root.menu_path +'/../data/images/video_icon.png'
@@ -64,13 +61,16 @@
 					on_press: root.open_workflow()
 					font_size: 30
 				Button:
-					id: new
-					text: 'New'
+					id: save_button
+				##background_normal: root.menu_path +'/../data/images/video_icon.png'
+					text: 'Save'
+				##background_disabled_normal: root.menu_path +'/../data/images/video_icon_disable.png'
+				##background_disabled_down: root.menu_path +'/../data/images/video_icon_disable.png'
 					size_hint_x: None
 					size_hint_y: None
 					size:(234,50)
+					on_press: root.save_workflow()
 					font_size: 30
-					on_press: root.new()
 				Button:
 					id: exit
 					text: 'Exit'
