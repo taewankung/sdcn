@@ -11,17 +11,21 @@
 			size_hint: (0.75,1)
 			path: root.default
 			font_size: 20
-		Button:
-			id: _ok
-			text: 'Ok'
-			size_hint: (0.12,None)
-			size: (1,25)
-			on_press: root.okfile()
-			font_size: 20
-		Button:
-			id: _cancel
-			text: 'Cancel'
-			size_hint: (0.12,None)
-			size: (1,25)
-			on_press: root.cancels()
-			font_size: 20
+		StackLayout:
+			size_hint: (0.24,1)
+			orientation: 'lr-bt'
+			Button:
+				id: _ok
+				text: 'Ok'
+				size_hint: (0.5,None)
+				size: (1,25)
+				on_press: root.okfile()
+				font_size: 20
+			Button:
+				id: _cancel
+				text: 'Cancel'
+				size_hint: (0.5,None)
+				size: (1,25)
+				on_press: root.cancels()
+				font_size: 20
+		

@@ -62,110 +62,105 @@ class SdcnController(FloatLayout):
         self.ids.workflow_layout.clear_widgets()
         
     def status_play_button(self):
-        self.ids.play_button.enable += 1
-        if self.ids.play_button.enable % 2 == 0:
-            self.ids.play_button.background_normal = os.path.dirname(__file__)+'/../data/images/play1.png'
-            self.ids.play_button.background_down = os.path.dirname(__file__)+'/../data/images/pause1.png'
-        elif self.ids.play_button.enable % 2 == 1 :
-            self.ids.play_button.background_normal = os.path.dirname(__file__)+'/../data/images/pause1.png'
-            self.ids.play_button.background_down = os.path.dirname(__file__)+'/../data/images/play1.png'
-            command_output = None
-            for bt in reversed(self.workflow_layout.children):
-                print(bt.widget.__class__.__name__)
-                if bt.widget.__class__.__name__ == 'FindFile':
+        self.ids.play_button.background_normal = os.path.dirname(__file__)+'/../data/images/play1.png'
+        self.ids.play_button.background_down = os.path.dirname(__file__)+'/../data/images/play1.png'
+        command_output = None
+        for bt in reversed(self.workflow_layout.children):
+            print(bt.widget.__class__.__name__)
+            if bt.widget.__class__.__name__ == 'FindFile':
 
-                    path_file = str(bt.widget.popup_filechoser.filechooser.path)
-                    selection_file = bt.widget.popup_filechoser.filechooser.selection
-                    self.ids.out_label.text = path_file
+                path_file = str(bt.widget.popup_filechoser.filechooser.path)
+                selection_file = bt.widget.popup_filechoser.filechooser.selection
+                self.ids.out_label.text = path_file
 #                     print(bt.widget.filechooser_in_pop.path)
 #                     print(bt.widget.ids.file_input.text)
 #                     test1 = ['find', str(path_file) ,  '-name',str(bt.widget.ids.file_input.text)]
 #                     test = subprocess.check_output(test1)
 #                     print(test)
 #                     cmd = commands.FindCommand(path=path_file, pattern = str(selection_file[0]))
-                    
-                    cmd = commands.FindCommand(path=path_file, pattern = bt.widget.ids.file_input.text)
-                    cmd_runner = commands.CommandRunner(cmd.build())
-                    cmd_runner.start()
-                    cmd_runner.join()
-                    command_output = cmd_runner.output
-                    if bt.widget.ids.file_input.text == '':
-                        command_output = selection_file
-                    print("output:", command_output)
-                    
-                elif bt.widget.__class__.__name__ == 'ConvertFile':
-                    print(bt.widget.ids.type.text)
-                    if bt.widget.ids.type.text == '.doc to Text':
+                
+                cmd = commands.FindCommand(path=path_file, pattern = bt.widget.ids.file_input.text)
+                cmd_runner = commands.CommandRunner(cmd.build())
+                cmd_runner.start()
+                cmd_runner.join()
+                command_output = cmd_runner.output
+                if bt.widget.ids.file_input.text == '':
+                    command_output = selection_file
+                print("output:", command_output)
+                
+            elif bt.widget.__class__.__name__ == 'ConvertFile':
+                print(bt.widget.ids.type.text)
+                if bt.widget.ids.type.text == '.doc to Text':
 #                         subprocess.call(['libreoffice', '--invisible', '--convert-to', 'txt:text', 'file1.docx']) 
 #                     elif bt.widget.ids.type.text == '.doc to Html':
 #                         print('doc to html')
-                        if type(command_output) is list:
-                            for i in command_output:
-                                cmd = commands.ConvertFileCommand(source = i, target=i[:i.rfind('.')]+".pdf")
-                                cmd_runner = commands.CommandRunner(cmd.build())
-                                cmd_runner.start()
-                                cmd_runner.join()
-                                print(cmd_runner.output)
-                                command_output = cmd_runner.output
-                            
-                elif bt.widget.__class__.__name__ == 'CompressFile':
-                    print(bt.widget.ids.type.text)
-                    if bt.widget.ids.type.text == '.Zip':
-                        if(bt.widget.ids.output_name.text == ''):
-                            cmd = commands.CompressFileZip(source = command_output, target= command_output[0][0:command_output[0].rfind("/")]+'/out.zip')
-                            command_output = [command_output[0][0:command_output[0].rfind("/")]+'/out.zip']
-                        else:
-                            cmd = commands.CompressFileZip(source = command_output, target= command_output[0][0:command_output[0].rfind("/")]+'/'+bt.widget.ids.output_name.text+'.zip')
-                            command_output = [command_output[0][0:command_output[0].rfind("/")]+'/'+bt.widget.ids.output_name.text+'.zip']
-                        cmd_runner = commands.CommandRunner(cmd.build())
-                        cmd_runner.start()
-                        cmd_runner.join()
-                        print(cmd_runner.output)
-                        
-                    elif bt.widget.ids.type.text == '.gzip':
-                        print('ss')
-                        if(bt.widget.ids.output_name.text == ''):
-                            cmd = commands.CompressFileZip(source = command_output, target= command_output[0][0:command_output[0].rfind("/")]+'/out.xzip')
-                        else: cmd = commands.CompressFileZip(source = command_output, target= command_output[0][0:command_output[0].rfind("/")]+'/'+bt.widget.ids.output_name.text+'.xzip')
-                        print('XZip')
-                
-                elif bt.widget.__class__.__name__ == 'HiddenFile':
-                    print('hiddenfile')
-                    if(bt.widget.ids.output_name.text == ''):
-                        print('Error')
-                    else: cmd = commands.hindenfile(souce = command_output)
-                
-                elif bt.widget.__class__.__name__ == 'ConvertPDFFile':
-                    print(bt.widget.ids.type.text)
-                    if bt.widget.ids.type.text == 'image to PDF':
-                        print("command_output:",command_output)
-                        cmd = commands.PDFMergging(source = command_output, target= path_file+'/'+bt.widget.ids.nameinput.text+'.pdf')
-                        cmd_runner = commands.CommandRunner(cmd.build())
-                        cmd_runner.start()
-                        cmd_runner.join()
-                        command_output = [path_file+'/'+bt.widget.ids.nameinput.text+'.pdf']
-                        print(command_output)
-                    elif bt.widget.ids.type.text == 'doc to PDF':
-                        print("command_output:",command_output)
-                        cmd = commands.DocToPDF(source = command_output)
-                        print(cmd.build())
-                        cmd_runner = commands.CommandRunner(cmd.build())
-                        cmd_runner.start()
-                        cmd_runner.join()
-                        command_output = [path_file+'/'+bt.widget.ids.nameinput.text+'.pdf']
-                        print(command_output)
-                        
-                elif bt.widget.__class__.__name__ == 'ResizeImage':
-                    print(bt.widget.ids.size_per.text)
                     if type(command_output) is list:
-                            for i in command_output:
-                                cmd = commands.Resize(source = i, percent= str(bt.widget.ids.size_per.text)+'%' ,target=i[:i.rfind('.')]+str(bt.widget.ids.type_name.text))
-                                cmd_runner = commands.CommandRunner(cmd.build())
-                                cmd_runner.start()
-                                cmd_runner.join()
-                                print('this')
-                                print(cmd_runner.output)
-                                command_output = cmd_runner.output
+                        for i in command_output:
+                            cmd = commands.ConvertFileCommand(source = i, target=i[:i.rfind('.')]+".pdf")
+                            cmd_runner = commands.CommandRunner(cmd.build())
+                            cmd_runner.start()
+                            cmd_runner.join()
+                            print(cmd_runner.output)
+                            command_output = cmd_runner.output
+                        
+            elif bt.widget.__class__.__name__ == 'CompressFile':
+                print(bt.widget.ids.type.text)
+                if bt.widget.ids.type.text == '.Zip':
+                    if(bt.widget.ids.output_name.text == ''):
+                        cmd = commands.CompressFileZip(source = command_output, target= command_output[0][0:command_output[0].rfind("/")]+'/out.zip')
+                        command_output = [command_output[0][0:command_output[0].rfind("/")]+'/out.zip']
+                    else:
+                        cmd = commands.CompressFileZip(source = command_output, target= command_output[0][0:command_output[0].rfind("/")]+'/'+bt.widget.ids.output_name.text+'.zip')
+                        command_output = [command_output[0][0:command_output[0].rfind("/")]+'/'+bt.widget.ids.output_name.text+'.zip']
+                    cmd_runner = commands.CommandRunner(cmd.build())
+                    cmd_runner.start()
+                    cmd_runner.join()
+                    print(cmd_runner.output)
+                    
+                elif bt.widget.ids.type.text == '.gzip':
+                    print('ss')
+                    if(bt.widget.ids.output_name.text == ''):
+                        cmd = commands.CompressFileZip(source = command_output, target= command_output[0][0:command_output[0].rfind("/")]+'/out.xzip')
+                    else: cmd = commands.CompressFileZip(source = command_output, target= command_output[0][0:command_output[0].rfind("/")]+'/'+bt.widget.ids.output_name.text+'.xzip')
+                    print('XZip')
+            
+            elif bt.widget.__class__.__name__ == 'HiddenFile':
+                print('hiddenfile')
+                if(bt.widget.ids.output_name.text == ''):
+                    print('Error')
+                else: cmd = commands.hindenfile(souce = command_output)
+            
+            elif bt.widget.__class__.__name__ == 'ConvertPDFFile':
+                print(bt.widget.ids.type.text)
+                if bt.widget.ids.type.text == 'image to PDF':
+                    print("command_output:",command_output)
+                    cmd = commands.PDFMergging(source = command_output, target= path_file+'/'+bt.widget.ids.nameinput.text+'.pdf')
+                    cmd_runner = commands.CommandRunner(cmd.build())
+                    cmd_runner.start()
+                    cmd_runner.join()
+                    command_output = [path_file+'/'+bt.widget.ids.nameinput.text+'.pdf']
+                    print(command_output)
+                elif bt.widget.ids.type.text == 'doc to PDF':
+                    print("command_output:",command_output)
+                    cmd = commands.DocToPDF(source = command_output)
+                    print(cmd.build())
+                    cmd_runner = commands.CommandRunner(cmd.build())
+                    cmd_runner.start()
+                    cmd_runner.join()
+                    command_output = [path_file+'/'+bt.widget.ids.nameinput.text+'.pdf']
+                    print(command_output)
+                    
+            elif bt.widget.__class__.__name__ == 'ResizeImage':
+                print(bt.widget.ids.size_per.text)
+                if type(command_output) is list:
+                        for i in command_output:
+                            cmd = commands.Resize(source = i, percent= str(bt.widget.ids.size_per.text)+'%' ,target=i[:i.rfind('.')]+str(bt.widget.ids.type_name.text))
+                            cmd_runner = commands.CommandRunner(cmd.build())
+                            cmd_runner.start()
+                            cmd_runner.join()
+                            print('this')
+                            print(cmd_runner.output)
+                            command_output = cmd_runner.output
 #                 elif bt.widget.__class__.__name__ == 'AddPhotoToAlbum':
 #                     if type(command_output) is list:
 #                             for i in command_output:
@@ -175,91 +170,91 @@ class SdcnController(FloatLayout):
 #                                 cmd_runner.join()
 #                                 print(cmd_runner.output)
 #                                 command_output = cmd_runner.output
-                elif bt.widget.__class__.__name__ == 'ChangeImageType':
+            elif bt.widget.__class__.__name__ == 'ChangeImageType':
 
-                    for i in command_output:
-                        cmd = commands.ChangImageTypeCommand(source = i, target=i[:i.rfind('.')] + bt.widget.ids.type.text)
-                        cmd_runner = commands.CommandRunner(cmd.build())
-                        cmd_runner.start()
-                        cmd_runner.join()
-                        print(cmd_runner.output)
-                                
-                elif bt.widget.__class__.__name__ == 'ConvertMusicType':
-                    print("command_output:",command_output)
+                for i in command_output:
+                    cmd = commands.ChangImageTypeCommand(source = i, target=i[:i.rfind('.')] + bt.widget.ids.type.text)
+                    cmd_runner = commands.CommandRunner(cmd.build())
+                    cmd_runner.start()
+                    cmd_runner.join()
+                    print(cmd_runner.output)
+                            
+            elif bt.widget.__class__.__name__ == 'ConvertMusicType':
+                print("command_output:",command_output)
 
-                    print(bt.widget.ids.type.text)
-                    output = []
-                    for i in command_output:
-                        cmd = commands.ConvertMusicFile(source = i[:i.rfind('.')]+ str(bt.widget.ids.type.text), target = i)
-                        cmd_runner = commands.CommandRunner(cmd.build())
-                        cmd_runner.start()
-                        cmd_runner.join()
-                        output.append(i[:i.rfind('.')]+ str(bt.widget.ids.type.text))
-                    command_output = output
-                    print(command_output)
-                 
-                elif bt.widget.__class__.__name__ == 'ConvertVideoType':
-                    print("command_output:",command_output)
-                    print(bt.widget.ids.type.text)
-                    output = []
-                    for i in command_output:
-                        cmd = commands.ConvertVideoFile(source = i , target = i[:i.rfind('.')]+ str(bt.widget.ids.type.text))
-                        cmd_runner = commands.CommandRunner(cmd.build())
-                        cmd_runner.start()
-                        cmd_runner.join()
+                print(bt.widget.ids.type.text)
+                output = []
+                for i in command_output:
+                    cmd = commands.ConvertMusicFile(source = i[:i.rfind('.')]+ str(bt.widget.ids.type.text), target = i)
+                    cmd_runner = commands.CommandRunner(cmd.build())
+                    cmd_runner.start()
+                    cmd_runner.join()
+                    output.append(i[:i.rfind('.')]+ str(bt.widget.ids.type.text))
+                command_output = output
+                print(command_output)
+             
+            elif bt.widget.__class__.__name__ == 'ConvertVideoType':
+                print("command_output:",command_output)
+                print(bt.widget.ids.type.text)
+                output = []
+                for i in command_output:
+                    cmd = commands.ConvertVideoFile(source = i , target = i[:i.rfind('.')]+ str(bt.widget.ids.type.text))
+                    cmd_runner = commands.CommandRunner(cmd.build())
+                    cmd_runner.start()
+                    cmd_runner.join()
 #                         output.append(i[:i.rfind('.')]+ str(bt.widget.ids.type.text))
-                    command_output = output
-                    print(command_output)
-                    
-                    
-                elif bt.widget.__class__.__name__ == 'NewFolder':
-                    print("command_output:",command_output)
-                    output = []
-                    if(command_output == None):
-                        cmd = commands.NewFolders(target = bt.widget.ids.text_folder.text,mode = 0)
-                        print(cmd)
-                        cmd_runner = commands.CommandRunner(cmd.build())
-                        cmd_runner.start()
-                        cmd_runner.join()
-                        output.append(expanduser('~') + '/' + cmd.target +'/')
-                    else:
-                        x = 0
-                        for i in command_output:
-                            x+=1
-                            if(x==1):
-                                cmd = commands.NewFolders(target = i[:i.rfind('/')]+'/'+bt.widget.ids.text_folder.text ,mode = 1,source = i)
-                                print(cmd)
-                                cmd_runner = commands.CommandRunner(cmd.build())
-                                cmd_runner.start()
-                                cmd_runner.join()
-                                cmd = commands.NewFolders(target = i[:i.rfind('/')]+'/'+bt.widget.ids.text_folder.text ,mode = 2,source = i)
-                                cmd_runner = commands.CommandRunner(cmd.build())
-                                cmd_runner.start()
-                                cmd_runner.join()
-                            else:
-                                cmd = commands.NewFolders(target = i[:i.rfind('/')]+'/'+bt.widget.ids.text_folder.text ,mode = 2,source = i)
-                                print(cmd)
-                                cmd_runner = commands.CommandRunner(cmd.build())
-                                cmd_runner.start()
-                                cmd_runner.join()
-#                             output.append(i[:i.rfind('.')]+ str(bt.widget.ids.type.text))
-                    command_output = output
-                    print(command_output)
+                command_output = output
+                print(command_output)
                 
-                elif bt.widget.__class__.__name__ == 'RotateImage':
-                    print("command_output:",command_output)
-
-                    output = []
-                    if():
-                        pass
+                
+            elif bt.widget.__class__.__name__ == 'NewFolder':
+                print("command_output:",command_output)
+                output = []
+                if(command_output == None):
+                    cmd = commands.NewFolders(target = bt.widget.ids.text_folder.text,mode = 0)
+                    print(cmd)
+                    cmd_runner = commands.CommandRunner(cmd.build())
+                    cmd_runner.start()
+                    cmd_runner.join()
+                    output.append(expanduser('~') + '/' + cmd.target +'/')
+                else:
+                    x = 0
                     for i in command_output:
-                        cmd = commands.Rotate( target = i[:i.rfind('/')] +'/'+ str(bt.widget.ids.name_input.text)+ i[i.rfind('.'):], source = i,degree = bt.widget.ids.degree.text)
-                        cmd_runner = commands.CommandRunner(cmd.build())
-                        cmd_runner.start()
-                        cmd_runner.join()
-                        output.append(i[:i.rfind('.')]+ str(bt.widget.ids.name_input.text))
-                    command_output = output
-                    print(command_output) 
+                        x+=1
+                        if(x==1):
+                            cmd = commands.NewFolders(target = i[:i.rfind('/')]+'/'+bt.widget.ids.text_folder.text ,mode = 1,source = i)
+                            print(cmd)
+                            cmd_runner = commands.CommandRunner(cmd.build())
+                            cmd_runner.start()
+                            cmd_runner.join()
+                            cmd = commands.NewFolders(target = i[:i.rfind('/')]+'/'+bt.widget.ids.text_folder.text ,mode = 2,source = i)
+                            cmd_runner = commands.CommandRunner(cmd.build())
+                            cmd_runner.start()
+                            cmd_runner.join()
+                        else:
+                            cmd = commands.NewFolders(target = i[:i.rfind('/')]+'/'+bt.widget.ids.text_folder.text ,mode = 2,source = i)
+                            print(cmd)
+                            cmd_runner = commands.CommandRunner(cmd.build())
+                            cmd_runner.start()
+                            cmd_runner.join()
+#                             output.append(i[:i.rfind('.')]+ str(bt.widget.ids.type.text))
+                command_output = output
+                print(command_output)
+            
+            elif bt.widget.__class__.__name__ == 'RotateImage':
+                print("command_output:",command_output)
+
+                output = []
+                if():
+                    pass
+                for i in command_output:
+                    cmd = commands.Rotate( target = i[:i.rfind('/')] +'/'+ str(bt.widget.ids.name_input.text)+ i[i.rfind('.'):], source = i,degree = bt.widget.ids.degree.text)
+                    cmd_runner = commands.CommandRunner(cmd.build())
+                    cmd_runner.start()
+                    cmd_runner.join()
+                    output.append(i[:i.rfind('.')]+ str(bt.widget.ids.name_input.text))
+                command_output = output
+                print(command_output) 
                                 
 #                 elif bt.widget.__class__.__name__ == 'ConvertMusicType':
 #                     print("command_output:",command_output)

@@ -23,6 +23,7 @@ class MyFilechooser(Popup):
         self.dismiss()
     def cancels(self):
         self.dismiss()#                     print(selection_file)
+        print(str(self.filechooser.selection))
     pass
 
 class TestApp(App):
