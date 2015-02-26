@@ -18,26 +18,34 @@
             	size: self.size
 		text: 'Find File'
 		color: (0,0,0,1)
+		font_size: 20
 	Button:
 		text: 'X'
 		size_hint:(0.1,0.30)
 		on_press: root.delete_in_workflow_layout(root)
+		font_size: 20
 	Button:
 		id: _browser_button
 		text: 'Browser'
 		size_hint: (0.5,0.30)
 		on_press: root.open_file_chooser()
+		font_size: 20
 		
 	TextInput:
     	id: path_input
 		size_hint: (0.49,0.30)
 		text: root.popup_filechoser.filechooser.path
 		multiline: False
+		font_size: 20
+		
 	Label:
 		text: 'filter'
 		size_hint: (0.25,0.30)
 		color: (0,0,0,1)
+		font_size: 20
+		
 	TextInput:
 		id: file_input
 		size_hint: (0.74,0.30)
 		multiline: False
+		font_size: 20

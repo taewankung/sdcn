@@ -18,10 +18,12 @@
 				pos: self.pos
             	size: self.size
         color: (0,0,0,1)
+        font_size: 20
 	Button:
 		text: 'X'
 		size_hint:(0.1,0.5)
 		on_press: root.delete_in_workflow_layout(root)
+		font_size: 20
 		
 	Spinner:
 		id: type
@@ -29,10 +31,14 @@
 		values: ('.mp4','.dat','.mov','.mpeg', '.avi', '.webm', '.ogv')
 		size_hint: (0.40,0.5)
 		size:  (1,44)
+		font_size: 20
+		
 	Label:
 		size_hint:(0.30,0.5)
 		text:'name'
         color: (0,0,0,1)
+        font_size: 20
 	TextInput:
 		id: nameinput
 		size_hint:(0.29,0.5)
+		font_size: 20

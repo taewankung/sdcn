@@ -4,3 +4,5 @@ from sdcn import application
 if __name__=='__main__':
 	app = application.SdcnApplication()
 	app.run()
+# 	def exit(self):
+# 		app.get_running_app().stop()

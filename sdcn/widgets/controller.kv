@@ -18,6 +18,7 @@
 				id: out_label
 				size_hint_x: 0.7
 				size_hint_y: 0.5
+				font_size: 30
 			Button:
 				id: play_button
 				enable: 0
@@ -26,28 +27,71 @@
 				size_hint_x: None
 				size_hint_y: None
 				size:(60,60)
+				font_size: 20
 				on_press: root.status_play_button()
-					 
+					
 		BoxLayout:
+			StackLayout:
+				size_hint: (None,1)
+				size: (250,1)
+				padding: 20
+				Label:
+					text: 'Workflow Maneger'
+					size_hint_x: 1
+					size_hint_y: None
+					size:(100,50)
+					font_size: 30
+				Button:
+					id: save_button
+				##background_normal: root.menu_path +'/../data/images/video_icon.png'
+					text: 'Save'
+				##background_disabled_normal: root.menu_path +'/../data/images/video_icon_disable.png'
+				##background_disabled_down: root.menu_path +'/../data/images/video_icon_disable.png'
+					size_hint_x: None
+					size_hint_y: None
+					size:(234,50)
+					on_press: root.save_workflow()
+					font_size: 30
+				Button:
+					id: open_button
+					##background_normal: root.menu_path +'/../data/images/video_icon.png'
+					text: 'Open'
+					##background_disabled_normal: root.menu_path +'/../data/images/video_icon_disable.png'
+					##background_disabled_down: root.menu_path +'/../data/images/video_icon_disable.png'
+					size_hint_x: None
+					size_hint_y: None
+					size:(234,50)
+					on_press: root.open_workflow()
+					font_size: 30
+				Button:
+					id: new
+					text: 'New'
+					size_hint_x: None
+					size_hint_y: None
+					size:(234,50)
+					font_size: 30
+					on_press: root.new()
+				Button:
+					id: exit
+					text: 'Exit'
+					size_hint_x: None
+					size_hint_y: None
+					size:(234,50)
+					font_size: 30
+					on_press: root.exit()
 			BoxLayout:
 				size_hint: (None,1)
 				size: (234,1)
 				padding: 20
 				orientation: 'vertical'
 				StackLayout:
-					
 					id: main_menu_layout
-	##				canvas.before:
-	##    				Color:
-	##    					rgb: (0.5,0.5,0.5,2) # your color here
-	##    				Rectangle:
-	##    					pos: self.pos
-	##    					size: self.size
 					Label:
 						text: 'Menu'
 						size_hint_x: 1
 						size_hint_y: None
 						size:(100,50)
+						font_size: 30
 					Button:
 						id: document_button
 						##background_color:(0,1.49,2,2)
@@ -100,15 +144,7 @@
 						size_hint_x: None
 						size_hint_y: None
 						size:(234,50)
-						on_press: root.change_submenu("VideoMenu", video_button)
-					
-				#	Button:
-				#		id: save_button
-				#		text: 'Save As...'
-				#		size_hint_x: 1
-				#		size_hint_y: 0.075
-				#		on_press: root.save_as()
-						
+						on_press: root.change_submenu("VideoMenu", video_button)			
 			StackLayout:
 				size_hint: (None,1)
 				size: (250,1)
@@ -118,6 +154,7 @@
 					size_hint_x: 1
 					size_hint_y: None
 					size:(100,50)
+					font_size: 30
 				StackLayout:
 					id: sub_menu_layout
 			StackLayout:
@@ -127,6 +164,7 @@
 					size_hint_x: 1
 					size_hint_y: None
 					size:(100,65)
+					font_size: 30
 				ScrollView:
 					# bar_color:(2,0,0,1)
 					GridLayout:
@@ -137,23 +175,5 @@
 						height:500
 		BoxLayout:
 			size_hint: (1,0.1)
-			Button:
-				id: save_button
-				##background_normal: root.menu_path +'/../data/images/video_icon.png'
-				text: 'Save'
-				##background_disabled_normal: root.menu_path +'/../data/images/video_icon_disable.png'
-				##background_disabled_down: root.menu_path +'/../data/images/video_icon_disable.png'
-				size_hint_x: None
-				size_hint_y: None
-				size:(234,50)
-				on_press: root.save_workflow()
-			Button:
-				id: open_button
-				##background_normal: root.menu_path +'/../data/images/video_icon.png'
-				text: 'Open'
-				##background_disabled_normal: root.menu_path +'/../data/images/video_icon_disable.png'
-				##background_disabled_down: root.menu_path +'/../data/images/video_icon_disable.png'
-				size_hint_x: None
-				size_hint_y: None
-				size:(234,50)
-				on_press: root.open_workflow()
+			
+				

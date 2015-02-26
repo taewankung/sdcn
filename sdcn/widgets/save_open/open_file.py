@@ -17,7 +17,6 @@ Builder.load_string("""
         FileChooserIconView:
             id: open_chooser
             size_hint: (1,0.9)
-            path:'~/'
         BoxLayout:
             size_hint: (1,0.09)
             Label:
@@ -25,22 +24,24 @@ Builder.load_string("""
                 size_hint: (0.24,0.5)
             TextInput:
                 id: name
-                size_hint: (0.75,0.75)
+                size_hint: (0.75,None)
+                size: (100,50)
+                font_size: 20
             Button:
                 id: _ok
                 text: 'Ok'
                 size_hint: (None,None)
-                size: (100,25)
+                size: (100,50)
                 on_press: root.okfile()
             Button:
                 id: _cancel
                 text: 'Cancel'
                 size_hint: (None,None)
-                size: (100,25)
+                size: (100,50)
                 on_press: root.dismiss()
 """)
 class OpenPopup(Popup):
-    def __init__(self,title,workflow_layout,main_menu_layout):
+    def __init__(self, title, workflow_layout, main_menu_layout):
         super().__init__()
         self.workflow_layout = workflow_layout
         self.main_menu_layout = main_menu_layout

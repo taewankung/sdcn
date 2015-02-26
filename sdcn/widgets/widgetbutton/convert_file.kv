@@ -18,10 +18,12 @@
 				pos: self.pos
             	size: self.size
         color: (0,0,0,1)
+        font_size: 20
 	Button:
 		text: 'X'
 		size_hint:(0.1,0.5)
 		on_press: root.delete_in_workflow_layout(root)
+		font_size: 20
 		
 	Spinner:
 		id: type
@@ -29,11 +31,14 @@
 		values: ('.doc to Text','.doc to HTML')
 		size_hint: (0.5,0.5)
 		size:  (1,44)
+		font_size: 20
 	Label:
 		text: 'to:'
 		size_hint: (0.25,.5)
         color: (0,0,0,1)
+        font_size: 20
 	TextInput:
 		id: output
 		size_hint: (.25,0.5)
 		multiline: False
+		font_size: 20

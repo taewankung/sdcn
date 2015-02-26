@@ -4,7 +4,7 @@ Created on Jan 14, 2015
 @author: taewankung
 '''
 from kivy.lang import Builder
-
+from kivy.app import App
 from kivy.uix.floatlayout import FloatLayout
 from sdcn.widgets.submenu.pdf import PdfMenu
 from sdcn.widgets.submenu.document import DocumentMenu
@@ -56,7 +56,11 @@ class SdcnController(FloatLayout):
                          FileAndFolderMenu(self.workflow_layout, self), ImageMenu(self.workflow_layout, self), 
                          MusicMenu(self.workflow_layout, self), VideoMenu(self.workflow_layout, self)]
         self.workflow_layout.bind(minimum_height=self.workflow_layout.setter('height'))
-   
+    def exit(self):
+        App.get_running_app().stop()
+    def new(self):
+        self.ids.workflow_layout.clear_widgets()
+        
     def status_play_button(self):
         self.ids.play_button.enable += 1
         if self.ids.play_button.enable % 2 == 0:
